@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="SicFollowRecordMapper">
+
+    <!--          千万不要尝试修改该文件，该文件为模板基础，若表变更，重新执行Generator即可             -->
+    <sql id="allFieldMap">
+            id AS id,
+            sic_info_id AS sicInfoId,
+            turnover_intention_id AS turnoverIntentionId,
+            communicate_detail AS communicateDetail,
+            operator_emp_id AS operatorEmpId,
+            operator_source AS operatorSource,
+            follow_date AS followDate,
+            operator_dept_name AS operatorDeptName,
+            operator_account_id AS operatorAccountId
+    </sql>
+
+    <sql id="AllFields">
+            id,
+            sic_info_id,
+            turnover_intention_id,
+            communicate_detail,
+            operator_emp_id,
+            operator_source,
+            follow_date,
+            operator_dept_name,
+            operator_account_id
+    </sql>
+
+    <select id="getByExample" parameterClass="com.mmc.sic.service.modules.repository.mapper.example.SicFollowRecordExample" resultClass="com.mmc.sic.service.modules.domain.SicFollowRecord">
+        SELECT
+        <dynamic>
+            <isNotNull property="distinct">
+                DISTINCT
+            </isNotNull>
+            <isNotNull property="fields">
+                <![CDATA[ $fields$ ]]>
+            </isNotNull>
+            <isNull property="fields">
+                <include refid="allFieldMap" />
+            </isNull>
+            FROM t_sic_follow_record WHERE 1=1
+            <isNotNull property="conditionSql">
+                <![CDATA[ $conditionSql$ ]]>
+            </isNotNull>
+            <isNotNull  property="orderByClause">
+                ORDER BY <![CDATA[ $orderByClause$ ]]>
+            </isNotNull>
+            <isNotNull  property="limit">
+                <isNotNull  property="offset">
+                    LIMIT #offset#, #limit#
+                </isNotNull>
+                <isNull property="offset">
+                    LIMIT #limit#
+                </isNull>
+            </isNotNull>
+
+        </dynamic>
+    </select>
+
+    <select id="getById" parameterClass="java.lang.Long" resultClass="com.mmc.sic.service.modules.domain.SicFollowRecord">
+        SELECT
+        <dynamic>
+            <include refid="allFieldMap" />
+            FROM t_sic_follow_record WHERE id = #id#
+        </dynamic>
+    </select>
+
+    <insert id="insert" parameterClass="com.mmc.sic.service.modules.domain.SicFollowRecord">
+        insert into t_sic_follow_record (<include refid="AllFields"/>)
+        values (
+        #id#,
+        #sicInfoId#,
+        #turnoverIntentionId#,
+        #communicateDetail#,
+        #operatorEmpId#,
+        #operatorSource#,
+        #followDate#,
+        #operatorDeptName#,
+        #operatorAccountId#
+        )
+        <selectKey resultClass="long" keyProperty="id">
+            select LASt_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <insert id="insertBatch" parameterClass="java.util.Map">
+        INSERT INTO t_sic_follow_record (<include refid="AllFields"/>)
+        VALUES
+        <iterate property="list" conjunction=",">
+            (
+                #list[].id#,
+                #list[].sicInfoId#,
+                #list[].turnoverIntentionId#,
+                #list[].communicateDetail#,
+                #list[].operatorEmpId#,
+                #list[].operatorSource#,
+                #list[].followDate#,
+                #list[].operatorDeptName#,
+                #list[].operatorAccountId#
+            )
+        </iterate>
+    </insert>
+
+    <select id="countByExample" parameterClass="com.mmc.sic.service.modules.repository.mapper.example.SicFollowRecordExample" resultClass="java.lang.Long">
+        SELECT
+        <dynamic>
+            COUNT(1) FROM t_sic_follow_record
+            FROM t_sic_follow_record WHERE 1=1
+            <isNotNull property="conditionSql">
+                <![CDATA[ $conditionSql$ ]]>
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <update id="updateByExample" parameterClass="com.mmc.sic.service.modules.repository.mapper.example.SicFollowRecordExample">
+        UPDATE t_sic_follow_record SET
+        <isNotNull property="updatedCondition">
+            <![CDATA[ $updatedCondition$ ]]>
+        </isNotNull>
+        WHERE 1=1
+        <isNotNull property="conditionSql">
+            <![CDATA[ $conditionSql$ ]]>
+        </isNotNull>
+    </update>
+
+    <delete id="deleteById" parameterClass="java.lang.Long">
+        DELETE FROM t_sic_follow_record WHERE id = #id#;
+    </delete>
+
+</sqlMap>

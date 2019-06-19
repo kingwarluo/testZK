@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="SicHistoryRecordMapper">
+
+    <!--          千万不要尝试修改该文件，该文件为模板基础，若表变更，重新执行Generator即可             -->
+    <sql id="allFieldMap">
+            id AS id,
+            sic_info_id AS sicInfoId,
+            sic_status AS sicStatus,
+            operator_type AS operatorType,
+            operator_emp_id AS operatorEmpId,
+            operator_source AS operatorSource,
+            operator_date AS operatorDate,
+            operator_remark AS operatorRemark,
+            operator_dept_name AS operatorDeptName
+    </sql>
+
+    <sql id="AllFields">
+            id,
+            sic_info_id,
+            sic_status,
+            operator_type,
+            operator_emp_id,
+            operator_source,
+            operator_date,
+            operator_remark,
+            operator_dept_name
+    </sql>
+
+    <select id="getByExample" parameterClass="com.mmc.sic.service.modules.repository.mapper.example.SicHistoryRecordExample" resultClass="com.mmc.sic.service.modules.domain.SicHistoryRecord">
+        SELECT
+        <dynamic>
+            <isNotNull property="distinct">
+                DISTINCT
+            </isNotNull>
+            <isNotNull property="fields">
+                <![CDATA[ $fields$ ]]>
+            </isNotNull>
+            <isNull property="fields">
+                <include refid="allFieldMap" />
+            </isNull>
+            FROM t_sic_history_record WHERE 1=1
+            <isNotNull property="conditionSql">
+                <![CDATA[ $conditionSql$ ]]>
+            </isNotNull>
+            <isNotNull  property="orderByClause">
+                ORDER BY <![CDATA[ $orderByClause$ ]]>
+            </isNotNull>
+            <isNotNull  property="limit">
+                <isNotNull  property="offset">
+                    LIMIT #offset#, #limit#
+                </isNotNull>
+                <isNull property="offset">
+                    LIMIT #limit#
+                </isNull>
+            </isNotNull>
+
+        </dynamic>
+    </select>
+
+    <select id="getById" parameterClass="java.lang.Long" resultClass="com.mmc.sic.service.modules.domain.SicHistoryRecord">
+        SELECT
+        <dynamic>
+            <include refid="allFieldMap" />
+            FROM t_sic_history_record WHERE id = #id#
+        </dynamic>
+    </select>
+
+    <insert id="insert" parameterClass="com.mmc.sic.service.modules.domain.SicHistoryRecord">
+        insert into t_sic_history_record (<include refid="AllFields"/>)
+        values (
+        #id#,
+        #sicInfoId#,
+        #sicStatus#,
+        #operatorType#,
+        #operatorEmpId#,
+        #operatorSource#,
+        #operatorDate#,
+        #operatorRemark#,
+        #operatorDeptName#
+        )
+        <selectKey resultClass="long" keyProperty="id">
+            select LASt_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <insert id="insertBatch" parameterClass="java.util.Map">
+        INSERT INTO t_sic_history_record (<include refid="AllFields"/>)
+        VALUES
+        <iterate property="list" conjunction=",">
+            (
+                #list[].id#,
+                #list[].sicInfoId#,
+                #list[].sicStatus#,
+                #list[].operatorType#,
+                #list[].operatorEmpId#,
+                #list[].operatorSource#,
+                #list[].operatorDate#,
+                #list[].operatorRemark#,
+                #list[].operatorDeptName#
+            )
+        </iterate>
+    </insert>
+
+    <select id="countByExample" parameterClass="com.mmc.sic.service.modules.repository.mapper.example.SicHistoryRecordExample" resultClass="java.lang.Long">
+        SELECT
+        <dynamic>
+            COUNT(1) FROM t_sic_history_record
+            FROM t_sic_history_record WHERE 1=1
+            <isNotNull property="conditionSql">
+                <![CDATA[ $conditionSql$ ]]>
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <update id="updateByExample" parameterClass="com.mmc.sic.service.modules.repository.mapper.example.SicHistoryRecordExample">
+        UPDATE t_sic_history_record SET
+        <isNotNull property="updatedCondition">
+            <![CDATA[ $updatedCondition$ ]]>
+        </isNotNull>
+        WHERE 1=1
+        <isNotNull property="conditionSql">
+            <![CDATA[ $conditionSql$ ]]>
+        </isNotNull>
+    </update>
+
+    <delete id="deleteById" parameterClass="java.lang.Long">
+        DELETE FROM t_sic_history_record WHERE id = #id#;
+    </delete>
+
+</sqlMap>
