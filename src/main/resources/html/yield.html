@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yield</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    /**
+     * yield只能在生成器函数里使用，出现yield表示肯定是生成器函数
+     * /
+
+    /**
+     * 例子1：yeild有两个属性 value=后续表达式的值， done=循环是否结束
+     * @returns {IterableIterator<number>}
+     */
+    function* countApple() {
+        for (let i=0; i < 3; i++) {
+            yield i
+        }
+    }
+
+    // let myApple = countApple()
+    // console.log(myApple.next())
+    // console.log(myApple.next())
+    // console.log(myApple.next())
+    // console.log(myApple.next())
+
+    /**
+     * 例子2：生成器函数调用next时，传入参数，将yield后面的表达式替换成入参，yield i 替换成 true
+     * @returns {IterableIterator<number>}
+     */
+    function* countPear() {
+        for (let i = 0; true; i++) {
+            let reset = yield i
+            if(reset) i = -1
+        }
+    }
+
+    // let myPear = countPear()
+    // console.log(myPear.next())
+    // console.log(myPear.next())
+    // console.log(myPear.next(true))
+    // console.log(myPear.next())
+    // console.log(myPear.next())
+
+
+    /**
+     * 例子3：
+     * @param x
+     * @returns {IterableIterator<*>}
+     */
+    function* test(x) {
+        let y = 2 * (yield (x + 1))
+        let z = yield (y / 3)
+        console.log("x:", x, ", y:" , y , ", z:", z)
+        return x + y + z
+    }
+
+    let a = test(5)
+    console.log(a.next())//{value: 6, done: false}
+    console.log(a.next())//{value: NaN, done: false}
+    console.log(a.next())//{value: NaN, done: true}
+    //a=x: 5 , y: NaN , z: undefined
+
+    let b = test(5)
+    console.log(b.next())//{value: 6, done: false}
+    /**
+     * 执行完第一个next()，此时程序停留在(yield(x + 1))，并不会对y赋值
+     * next()的返回值为yield后面的表达式，值为6
+     */
+    console.log(b.next(12))//{value: 8, done: false}
+    /**
+     * 执行完第二个next(12)，此时程序停留在yield(y / 3)
+     * 由于有入参，此作用为将入参替换为第一个yield表达式的值，即将(yield(x + 1))替换为12
+     * 此时将let y = 2 * (yield (x + 1)) 理解为 ley y = 2 * 12， y = 24
+     * next(12)的返回值为 y / 3 = 8，值为8
+     */
+    console.log(b.next(13))//{value: 42, done: true}
+    /**
+     * 第三次调用next(13)，此时方法执行完成
+     * 由于next(13)有入参13，所以将yield(y / 8) 替换为 13，即 z = 13
+     * next(13)的值为函数返回值，为42
+     */
+    //b=x: 5 , y: 24 , z: 13
+
+
+    /**
+     * 例子4：
+     * @returns {IterableIterator<number>}
+     */
+    // function* foo() {
+    //     x = yield 2
+    //     z++
+    //     y = yield (x * z)
+    //     console.log(x, y, z)
+    // }
+    //
+    // let z = 1, x = 0, y = 0
+    // let it1 = foo()
+    // let it2 = foo()
+    //
+    // let var1 = it1.next().value
+    // let var2 = it2.next().value
+    //
+    // console.log(var1)
+    // console.log(var2)
+    //
+    // console.log(it1.next(var2 / 2))
+    // console.log(it2.next(var1 / 4))
+</script>
+</html>
