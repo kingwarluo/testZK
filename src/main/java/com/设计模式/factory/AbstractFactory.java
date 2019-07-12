@@ -10,8 +10,12 @@ public abstract class AbstractFactory {
 
     protected abstract Car getCar();
 
-    //这段代码就是动态配置的功能
-    //固定模式的委派
+    /**
+     * 这段代码就是动态配置的功能
+     * 固定模式的委派
+     * @param name
+     * @return
+     */
     public Car getCar(String name) {
         if("BMW".equals(name)) {
             return new BMWFactory().getCar();

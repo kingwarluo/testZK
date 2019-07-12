@@ -9,9 +9,9 @@ package com.设计模式.factory;
 public class CarFactory {
 
     public String getCar(String name) {
-        if(name.equals("Benz")) {
+        if("Benz".equals(name)) {
             return new Benz().getName();
-        } else if(name.equals("BMW")) {
+        } else if("BMW".equals(name)) {
             return new BMW().getName();
         } else {
             return "没有汽车";
