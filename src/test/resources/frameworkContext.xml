@@ -17,4 +17,14 @@
 
 	<bean id="initPostTest" class="com.spring.SpringInitialzingPostProcessor"></bean>
 
+	<bean id="config" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="application.properties"/>
+		<property name="fileEncoding" value="UTF-8"/>
+	</bean>
+
+	<bean id="springBean" class="com.bean.SpringBeanConfig">
+		<property name="name" value="#{config['spring.bean.name']}"/>
+		<property name="mail" value="#{config['spring.bean.mail']}"/>
+	</bean>
+
 </beans>

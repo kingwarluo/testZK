@@ -8,11 +8,11 @@ package com.spring;
 public class DemoImpl implements IDemo {
     @Override
     public void getName() {
-        System.out.println("proxy name");
+        System.out.println("====================proxy name===============");
     }
 
     @Override
     public void getValue() {
-        System.out.println("proxy value");
+        System.out.println("=====================proxy value=================");
     }
 }
