@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:p="http://www.springframework.org/schema/p"
 	   xmlns:context="http://www.springframework.org/schema/context"
@@ -17,6 +17,7 @@
 
 	<bean id="initPostTest" class="com.spring.SpringInitialzingPostProcessor"></bean>
 
+	<!-- 方法一 -->
 	<bean id="config" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="location" value="application.properties"/>
 		<property name="fileEncoding" value="UTF-8"/>
@@ -27,4 +28,10 @@
 		<property name="mail" value="#{config['spring.bean.mail']}"/>
 	</bean>
 
+	<!-- 方法二 -->
+	<context:property-placeholder location="classpath*:application.properties"/>
+
+	<bean id="springBean2" class="com.bean.SpringBeanConfig">
+		<property name="mail" value="${spring.bean.mail}"/>
+	</bean>
 </beans>

@@ -25,7 +25,7 @@ public class SpringTest {
     @Resource(name = "initPostTest")
     private IDemo initPostBean;
 
-    @Autowired
+    @Resource(name = "springBean2")
     private SpringBeanConfig bean;
 
     @Test
@@ -50,6 +50,7 @@ public class SpringTest {
     @Test
     public void test3() {
         System.out.println(bean.getName());
+        System.out.println(bean.getMail());
     }
 
 }
