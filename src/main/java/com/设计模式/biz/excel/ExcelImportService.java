@@ -1,6 +1,7 @@
 package com.设计模式.biz.excel;
 
 import com.google.common.collect.Lists;
+import com.设计模式.biz.excel.bo.ImportBo;
 import com.设计模式.biz.excel.handler.ExcelCheckDataHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
@@ -26,7 +27,6 @@ public class ExcelImportService {
     public static void main(String[] args) {
         ExcelImportUtil excelImport = new ExcelImportUtil();
         URL url = excelImport.getClass().getClassLoader().getResource("");
-        System.out.println(url.getPath());
         File file = new File(url.getPath() + "导入测试(2000条).xlsx");
         excelImport.setExcel(file);
 
@@ -41,13 +41,22 @@ public class ExcelImportService {
         log.info("校验中。。。");
         long start = System.currentTimeMillis();
         checkExcelData(excelImport);
-        log.info("总耗时：{}", System.currentTimeMillis() - start);
+        log.info("总耗时：{}ms", System.currentTimeMillis() - start);
+        if(!excelImport.isSuccess()) {
+            log.info("错误条数：{}条", excelImport.getFails().size());
+            for (ImportBo fail : excelImport.getFails()) {
+                System.out.println(fail.getRowNum() + ":" + fail.getReason());
+            }
+        }
+        //记得关闭线程池，这是一次性执行。如果不手动关闭，则线程池会一直占用资源
+        executor.shutdown();
     }
 
     public static void checkExcelData(ExcelImportUtil excelImport) {
         excelImport.initCheckStep();
         List<Row> allRows = excelImport.getAllRows();
-        List<List<Row>> rowGroup = Lists.partition(allRows, 1000);
+        log.info("总共要校验{}条信息。", allRows.size());
+        List<List<Row>> rowGroup = Lists.partition(allRows, 500);
         List<Future> res = new ArrayList<Future>();
         for (List rows : rowGroup) {
             if(CollectionUtils.isNotEmpty(rows) && rows.get(0) != null) {
