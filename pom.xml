@@ -12,6 +12,15 @@
         <org.springframework.version>4.1.9.RELEASE</org.springframework.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- commons家族版本 -->
+        <commons.beanutils.version>1.9.3</commons.beanutils.version>
+        <commons.codec.version>1.13</commons.codec.version>
+        <commons.collections.version>3.2.2</commons.collections.version>
+        <commons.configuration.version>1.10</commons.configuration.version><!-- configuration、configuration2两个版本 -->
+        <commons.io.version>2.6</commons.io.version>
+        <commons.lang3.version>3.9</commons.lang3.version><!-- lang已废弃，采用lang3 -->
+        <commons.logging.version>1.2</commons.logging.version>
+        <commons.net.version>3.6</commons.net.version>
     </properties>
 
     <parent>
@@ -163,12 +172,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/metaq/metaq -->
         <dependency>
             <groupId>com.taobao.metamorphosis</groupId>
@@ -205,13 +208,6 @@
             <groupId>com.github.shyiko</groupId>
             <artifactId>mysql-binlog-connector-java</artifactId>
             <version>0.13.0</version>
-        </dependency>
-
-        <!-- ftp 操作 -->
-        <dependency>
-            <groupId>commons-net</groupId>
-            <artifactId>commons-net</artifactId>
-            <version>3.3</version>
         </dependency>
 
         <!-- 添加lombok支持 -->
@@ -264,12 +260,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.8</version>
@@ -279,6 +269,51 @@
             <artifactId>poi-ooxml</artifactId>
             <version>3.8</version>
         </dependency>
+
+        <!-- apache commons 家族 -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons.beanutils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons.codec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>${commons.configuration.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+        </dependency>
+        <!-- ftp 操作 -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${commons.net.version}</version>
+        </dependency>
+        <!-- apache commons 家族 -->
     </dependencies>
 
     <profiles>
