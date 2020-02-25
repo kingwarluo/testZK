@@ -9,6 +9,9 @@ package com.random;
  * 第四个部分是 5 个 bit：表示的是机器 id，1 1001。
  * 第五个部分是 12 个 bit：表示的序号，就是某个机房某台机器上这一毫秒内同时生成的 id 的序号，0000 00000000。
  *
+ *  <问题>
+ *      1、还需做并发控制
+ *  </问题>
  * @author jianhua.luo
  * @date 2020/1/17
  */
@@ -74,11 +77,16 @@ public class SnowFlake {
      */
     private long timestampLeftShift = sequenceBits + workerIdBits + dataCenterIdBits;
     /**
-     *
+     * 异或操作，就是左移几位，就是2的位数次方 - 1，就是这个数值
      */
     private long sequenceMask = -1L ^ (-1L << sequenceBits);
-    // 时间起始标记点，作为基准，一般取系统的最近时间（一旦确定不能变动）
+    /**
+     * 时间起始标记点，作为基准，一般取系统的最近时间（一旦确定不能变动）
+     */
     private final static long twepoch = 1288834974657L;
+    /**
+     * 上一次生成序号的时间（ms）
+     */
     private long lastTimestamp = -1L;
 
     /**
@@ -87,7 +95,7 @@ public class SnowFlake {
      */
     public synchronized long nextId() {
         // 获取当前时间戳，单位是毫秒
-        long timestamp = timeGen();
+        long timestamp = System.currentTimeMillis();
         if (timestamp < lastTimestamp) {
             throw new RuntimeException(
                     String.format("Clock moved backwards. Refusing to generate id for %d milliseconds",
@@ -117,18 +125,18 @@ public class SnowFlake {
                 (workerId << workerIdShift) | sequence;
     }
 
+    /**
+     * 等待直到下一毫秒
+     *
+     * @author jianhua.luo
+     * @date 2020/2/25
+     */
     private long tilNextMillis(long lastTimestamp) {
-
-        long timestamp = timeGen();
-
+        long timestamp = System.currentTimeMillis();
         while (timestamp <= lastTimestamp) {
-            timestamp = timeGen();
+            timestamp = System.currentTimeMillis();
         }
         return timestamp;
-    }
-
-    private long timeGen() {
-        return System.currentTimeMillis();
     }
 
     public static void main(String[] args) {
