@@ -1,4 +1,4 @@
-package com.spring.autoInject.mmcsic;
+package com.spring.autoInject.mmcsic.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

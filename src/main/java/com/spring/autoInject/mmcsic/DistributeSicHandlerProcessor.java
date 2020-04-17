@@ -1,5 +1,6 @@
 package com.spring.autoInject.mmcsic;
 
+import com.spring.autoInject.mmcsic.annotation.DistributeSicHandlerType;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

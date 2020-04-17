@@ -1,6 +1,6 @@
 package com.spring.autoInject.mmcsic.handler;
 
-import com.spring.autoInject.mmcsic.DistributeSicHandlerType;
+import com.spring.autoInject.mmcsic.annotation.DistributeSicHandlerType;
 import org.springframework.stereotype.Component;
 
 @Component
