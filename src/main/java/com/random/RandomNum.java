@@ -14,6 +14,8 @@ import com.google.common.collect.Multiset;
 public class RandomNum {
 
     /**
+     * 扩展：
+     *      （A * 9301 + 49297） % 233280 只是其中一组，扩展参考：https://imgchr.com/i/JqoeZF（免费图片网站，我自己传的）
      * 问题：
      *      1、同一个i值，取出的随机数是同一个：起始值需要设置随机开始，溢出后将i值置0，重新加1
      *      2、如何保证每次取出的随机数不重复：随机数同步起始值，将i值保存在redis，每次取出后加1
