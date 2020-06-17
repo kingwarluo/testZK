@@ -1,0 +1,47 @@
+remote-client 包疑问
+
+动态代理：在jvm运行时生成类（javassist包类似）
+有独立代理和聚合代理策略
+独立代理是为每个要代理的类生成一个代理类，利用FactoryBean将JVM运行期间动态代理生成的代理类（有点拗口，实际上注册的是动态代理类，不是真正的FactoryBean类），再由实现了BeanDefinitionRegistryPostProcessor的类将代理类注入Spring容器
+聚合代理是统一生成一个代理类，再由FactoryBean注入到spring容器中（没有看很明白）
+
+1.2.0-release
+FactoryBean通常用来创建复杂的Bean，但仍需要在application.xml中配置代理bean，使用时直接使用getObject返回的对象
+BeanDefinitionRegistryPostProcessor可以实现动态注入spring Bean
+InitializingBean在bean初始化完之后调用afterPropertiesSet()
+
+2.0.0-springboot
+ResourceLoaderAware：
+EnvironmentAware：springboot中实现了EnvironmentAware接口重写了setEnvironment方法后，在工程启动时获取application.properties的配置文件配置属性值。
+
+1、Class和Class<?>的区别
+Class<?>和Class写法效果基本一样，但是Class<?>写法比较规范，再某些类型转换的时候，可以避免不必要的unchecked错误。
+
+2、RemoteClientComponent中beanDefinitionMap类型
+Map<String, BeanDefinition>类型
+
+3、RemoteClientComponent中getClassesByJar的classPaths容量*60是为什么
+
+4、Optional<List<String>> optional = Optional.fromNullable(FileUtil.getAllFile(baseContext, EMPTY, DOT_CLASS));这句干嘛不清楚
+
+5、策略模式（Strategy），包装器（Wrapper），调用器（Invoker）适用在什么场景
+
+6、Enhancer用法、CallBack派生的子类？？
+
+7、每次代理完成purge操作？
+执行purge时，已经全部生成完成代理类。所以清空
+
+8、为什么@Resoure引用RemoteClientComponent,注解下用service类
+@Resource有byName和byType两种
+@Autowired只有byType
+
+9、实现FactoryBean接口，会自动注入IOC吗
+
+10、调度类注册到spring，后续使用时，已经生成代理类了吗？cglib批量代理或者单个代理
+
+亮点
+1、getRemoteServiceId时候，避免重复解析注解，在第一次未找到注解时，将空remoteServiceId放入map。
+后续找该方法remoteServiceId时，如果该方法存在map中，说明之前解析过该方法，且该方法未注解RemoteService，直接返回。
+可以避免多次查找方法注解。但是放入map，也引起内存开销。
+
+问题：1、cglib是伪代理 不能代理被代理类的私有属性？正确。cglib是重新生成一个类，并不是直接继承被代理类。

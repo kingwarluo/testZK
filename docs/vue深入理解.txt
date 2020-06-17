@@ -1,0 +1,32 @@
+vue-element-admin-master项目
+1、
+import 
+export default {
+  mixins: [混入], //一种分发 Vue 组件中可复用功能的非常灵活的方式。只提供代码复用，不共享数据
+  component: {
+    
+  }
+}
+
+2、svg使用
+
+3、重定向和别名
+导航守卫 beforeRouteUpdate(to, from, next)
+router.beforeEach((to, from, next) 全局钩子函数，用来判断访问地址否是携带token，未携带（登陆）则跳转首页
+
+4、axios 发送http请求，过滤器，拦截器
+拦截器
+service.interceptors.request.use	用来设置系统请求存放的token拦截
+service.interceptors.response.use	
+
+5、mock 拦截请求
+mock url
+
+权限：
+菜单添加	获取权限，存入store(vuex)
+未登录跳转首页  --> 转 Router 重定向和别名
+访问过的页面缓存	vue自带的keep-alive实现缓存
+如何只在app-main做出反应
+未登陆跳转外链登陆
+打开新窗口不带外部frame		使用el-container+iframe实现
+breadcrumb面包屑

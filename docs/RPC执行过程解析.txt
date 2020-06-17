@@ -1,0 +1,5 @@
+1、Hessian方式
+客户端先调用RPC请求，Hessian方式进入DispatcherServletExtend的doService方法，然后调用父类DispatcherServlet的doService方法，
+跳转DispatcherServletExtend的doDispatch方法，找到HessianController，执行HessianController的execute方法。
+
+疑问:RSInterceptor什么时候执行？

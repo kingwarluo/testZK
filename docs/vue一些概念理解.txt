@@ -1,0 +1,184 @@
+1.
+watch,computed,method的区别
+watch: 一般用于监控路由、input输入框的值特殊处理等等。
+	   适合的场景是一个数据影响多个数据
+computed: 用来监控自己定义的变量，该变量不在data里面声明，直接在computed里面定义，
+		  然后就可以在页面上进行双向数据绑定展示出结果或者用作其他处理。
+		  适合对多个变量或者对象进行处理后返回一个结果值
+method: 适用于普通的方法
+	 
+1) 监听组件
+	var vm = new Vue({
+		watch : {
+			kilometers:function(val) {
+				this.kilometers = val;
+				this.meters = val * 1000;
+			},
+			meters : function (val) {
+				this.kilometers = val/ 1000;
+				this.meters = val;
+			}
+		}
+	});
+	// $watch 是一个实例方法
+	vm.$watch('kilometers', function (newValue, oldValue) {
+		// 这个回调将在 vm.kilometers 改变后调用
+		document.getElementById ("info").innerHTML = "修改前值为: " + oldValue + "，修改后值为: " + newValue;
+	})
+2) vue组件(vue.component)
+	vue.component('hello', {template: '<h1>自定义组件!</h1>'});
+	自定义组件
+	<div id="app">
+		<div id="counter-event-example">
+		  <p>{{ total }}</p>
+		  <button-counter v-on:increment="incrementTotal"></button-counter>
+		  <button-counter v-on:increment="incrementTotal"></button-counter>
+		</div>
+	</div>
+	 
+	<script>
+	Vue.component('button-counter', {
+	  template: '<button v-on:click="incrementHandler">{{ counter }}</button>',
+	  data: function () {
+		return {
+		  counter: 0
+		}
+	  },
+	  methods: {
+		incrementHandler: function () {
+		  this.counter += 1
+		  this.$emit('increment')
+		}
+	  },
+	})
+	new Vue({
+	  el: '#counter-event-example',
+	  data: {
+		total: 0
+	  },
+	  methods: {
+		incrementTotal: function () {
+		  this.total += 1
+		}
+	  }
+	})
+	</script>
+3) vue自定义指令(Vue.directive)
+	Vue.directive('focus', {
+	  bing: function(el, bidding) {
+		
+	  },
+	  // 当绑定元素插入到 DOM 中。
+	  inserted: function (el) {
+		// 聚焦元素
+		el.focus()
+	  },
+	  update: function(el, bindding) {},
+	  componentUpdated: function(el, bindding) {}
+	})
+	// v-permission:10010="userPermissions"
+	★指令钩子函数会被传入以下参数：
+		el：指令所绑定的元素，可以用来直接操作 DOM 。
+		binding：一个对象，包含以下属性：
+		name：指令名，不包括 v- 前缀。
+		value：指令的绑定值，例如：v-my-directive="1 + 1" 中，绑定值为 2。
+		oldValue：指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。
+		expression：字符串形式的指令表达式。例如 v-my-directive="1 + 1" 中，表达式为 "1 + 1"。
+		arg：传给指令的参数，可选。例如 v-my-directive:foo 中，参数为 "foo"。
+		modifiers：一个包含修饰符的对象。例如：v-my-directive.foo.bar 中，修饰符对象为 { foo: true, bar: true }。
+		vnode：Vue 编译生成的虚拟节点。移步 VNode API 来了解更多详情。
+		oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。
+	
+6.vue内置对象
+1）slot插槽 scope代表什么？
+2）$root
+3）vue.prototype
+4）$nextTick 在DOM渲染完成后执行，created和mounted执行后
+5）vue过滤器写法 { message | filterA | filterB }
+
+7.各个插件用法（Vuex、Router、axios）
+1）Vuex是一个专为 Vue.js 应用程序开发的状态管理模式。Vuex 的状态存储是响应式的。
+  const store = new Vuex.Store({
+	state,		//包含了全部的应用层级状态
+	getters,	//过滤一些属性，可以传入（state, 其他getter）
+	mutations,	//供action调用，mutation 必须同步执行，一般用常量命名，可以传入(state, payload)
+	actions		//供模块调用，可以异步操作，如何组合actions(Promise、async/await),可以传入（context : { dispatch, commit, state }, payload）
+  })
+  modules:将 store 分割成模块,每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块;
+		  命名空间：添加 namespaced: true 的方式使其成为带命名空间的模块,所有 getter、action 及 mutation 都会自动根据模块注册的路径调整命名。
+		  模块动态注册：
+			// 注册模块 `myModule`
+			store.registerModule('myModule', {
+			  // ...
+			})
+  
+  mapGetters,mapActions,mapStates,mapMutations用法一样
+  mutations : this.$store.commit(type, payload)
+  actions : this.$store.dispatch(type, payload)
+  ...表示将一个数组转为用逗号分隔的参数序列
+  computed: {
+  // 使用对象展开运算符将 getter 混入 computed 对象中
+    ...mapGetters([
+      'doneTodosCount',
+      'anotherGetter'
+    ])
+  }
+	
+2）Router 通过注入路由器，我们可以在任何组件内通过 this.$router 访问路由器
+{
+	path: 'user/add',
+	component: User
+}
+a）动态路由匹配 /user/:id
+b）嵌套路由 子路由使用children进行配置
+c）编程式的导航	<router-link></router-link>用this.$route.push代码代替。
+   this.$router.replace 它不会向 history 添加新记录
+   this.$router.go(n) 
+   访问相同的路径，需要刷新调用:beforeRouteUpdate(to, from, next)
+d）命名路由 访问：router.push({ name: 'user', params: { userId: 123 }})
+{
+	path: '/user/:userId',
+	name: 'user',
+	component: User
+}
+e）命名视图 注意点：component多个s，NavBar
+	<!-- UserSettings.vue -->				
+	<div>
+	  <h1>User Settings</h1>
+	  <NavBar/>
+	  <router-view/>
+	  <router-view name="helper"/>
+	</div>
+	
+	{
+	  path: '/settings',
+	  // 你也可以在顶级路由就配置命名视图
+	  component: UserSettings,
+	  children: [{
+		path: 'emails',
+		component: UserEmailsSubscriptions
+	  }, {
+		path: 'profile',
+		components: {
+		  default: UserProfile,
+		  helper: UserProfilePreview
+		}
+	  }]
+	}
+f）重定向和别名
+导航守卫 beforeRouteUpdate(to, from, next)
+router.beforeEach((to, from, next) 全局钩子函数，用来判断访问地址否是携带token，未携带（登陆）则跳转首页
+
+3）axios 发送http请求，过滤器，拦截器
+拦截器
+service.interceptors.request.use	用来设置系统请求存放的token拦截
+service.interceptors.response.use	
+
+4）mock 拦截请求
+mock url
+
+权限：
+菜单添加	获取权限，存入store(vuex)
+未登录跳转首页  --> 转 Router 重定向和别名
+访问过的页面缓存	vue自带的keep-alive实现缓存
+如何只在app-main做出反应

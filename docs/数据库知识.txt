@@ -1,0 +1,9 @@
+explain
+1、避免出现Using filesort，结局方法，建立组合索引
+2、组合索引，遵循最左前缀法则。按顺序避免出现中间遗漏
+3、左模糊查询、in not in（用exists代替）、null查询、<> !=、or、表达式（num/2=100）、函数（substring(name,1,3)='abc' ）都会使索引失效，避免使用
+4、尽量借用覆盖索引（只需扫描索引而无须回表），标志 extra：Using index。
+
+MyISAM、InnoDB的区别
+
+数据库分表

@@ -1,0 +1,10 @@
+netty 画图：processon
+
+传统IO表现BIO：
+图解BIO原理及存在的问题：accept操作是阻塞，阻塞指IO操作阻塞。利用线程池技术，解决多客户端连接阻塞问题。
+NIO通信架构：由于线程调度很耗时，在有IO操作时，才创建线程。Channel\selector\bytebuffer；非阻塞：缓冲区执行
+netty:异步：selector用线程池
+
+
+
+AIO？？？

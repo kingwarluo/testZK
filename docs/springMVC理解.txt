@@ -1,0 +1,36 @@
+springMVC
+
+1、DispatcherServlet映射 --> handlerMapping（handler映射，例如：user/login找到userController，mapping用map保存）
+ --> HandlerAdapter（处理数据，属于userController） --> viewResolver --> view
+ 
+ 
+2、一个请求user/login进入，如果handlerMapping找到路径，请求handlerMapping；如果找不到路径，报404。
+	一个请求user/login.js进入，如果handlerMapping找到路径，处理请求；如果不存在，继续去tomcat的default-servlet-handler中请求静态资源。
+	
+3、handlerExecutableChain，包含了HandlerMapping中的interceptors，执行只要controller方法和过滤器和interceptors拦截器
+
+
+代码理解：
+1、DispatcherServlet继承自FrameworkServlet继承自HttpServletBean
+
+HttpServletBean中PropertyAccessorFactory.forBeanPropertyAccess(Object target)，返回值为BeanWrapper，功能是为target设置属性值。
+pvs：保存init-param配置的key-value值，提供必要属性设置的入口，未满足所有必要属性会抛ServletException；
+
+HttpServletBean：把servlet中配置的参数设置到相应的属性
+FrameworkSerlvet：初始化WebApplicationContext
+DispatcherServlet：初始化了自身9个组件
+
+
+9大组件：
+1、HandlerMapping
+2、HandlerAdapter
+3、HandlerExceptionResolver
+4、ViewResolver
+5、RequestToViewNameTranslator
+6、LocaleResolver
+7、ThemeResolver
+8、MultipartResolver
+9、FlashMapManager
+
+1、自定义拦截器，XXInterceptor extends HandlerInterceptorAdapter
+2、自定义返回值，XXResolver extends AbstractHandlerExceptionResolver

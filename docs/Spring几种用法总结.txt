@@ -1,0 +1,45 @@
+Spring几种用法总结
+
+1、ContextLoaderListener初始化过程
+step1:创建一个WebApplicationContext
+step2:配置并且刷新Bean
+step3：将容器初始化到servlet上下文中
+
+configureAndRefreshWebApplicationContext中初始化refresh()
+1）obtainFreshBeanFactory();//让子类刷新内部bean工厂，实际上是重新创建一个bean工厂
+
+2）prepareBeanFactory(beanFactory);//工厂创建好了，还不能投入使用。还需配置些东西，例如：ClassLoader、post-processors。
+
+3）postProcessBeanFactory(beanFactory);//添加ServletContextAwareProcessor到bean工厂，忽略ServletContextAware、ServletConfigAware接口，
+注册WEB应用特定的域（scope）到bean工厂中，以便WebApplicationContext可以使用它们。比如"request", "session", "globalSession", "application"，
+注册WEB应用特定的Environment bean到bean工厂中，以便WebApplicationContext可以使用它们。如："contextParameters", "contextAttributes"
+
+4）invokeBeanFactoryPostProcessors(beanFactory);//调用所有的bean工厂处理器（BeanFactoryPostProcessor）对bean工厂进行一些处理。这个方法必须在所有的singleton初始化之前调用。
+主要是在这里面调用了所有的BeanFactoryPostProcessor：
+BeanDefinitionRegistryPostProcessor 接口，往容器里注册其他的bean definition。（annotation和mybatis的mapper都是通过此步实现的）
+BeanDefinitionRegistryPostProcessor会先于BeanFactoryPostProcessor调用
+
+5）registerBeanPostProcessors(beanFactory);//注册用来拦截bean创建的BeanPostProcessor bean.这个方法需要在所有的application bean初始化之前调用。
+把这个注册的任务委托给了PostProcessorRegistrationDelegate来完成。
+
+6）registerListeners();//注册应用的监听器。就是注册实现了ApplicationListener接口的监听器bean，这些监听器是注册到ApplicationEventMulticaster（事件广播器）中的。
+
+7）finishBeanFactoryInitialization(beanFactory);//完成bean工厂的初始化工作。这一步非常复杂，也非常重要，涉及到了bean的创建。
+
+8）加载过程： 通过 ResourceLoader和其子类DefaultResourceLoader完成资源文件位置定位，实现从类路径，文件系统，url等方式定位功能，
+完成定位后得到Resource对象，再交给BeanDefinitionReader，它再委托给BeanDefinitionParserDelegate完成bean的解析并得到BeanDefinition对象，
+然后通过registerBeanDefinition方法进行注册，IOC容器内ibu维护了一个HashMap来保存该BeanDefinition对象，
+Spring中的BeanDefinition其实就是我们用的JavaBean。
+
+
+2、ServletContextListener用于StartInit，初始化应用的配置。
+
+3、实现ApplicationContextAware接口，获取Spring的ApplicationContext对象，来getBean。
+
+4、实现InitializingBean接口，在Spring容器装载完Bean之后会立即执行afterPropertiesSet方法
+
+5、实现BeanDefinitionRegistryPostProcessor接口，来对bean动态初始化
+
+6、实现DisposableBean接口，实现bean销毁前处理
+
+7、FactoryBean可以代理类

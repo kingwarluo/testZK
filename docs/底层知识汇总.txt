@@ -1,0 +1,479 @@
+重点：多线程、设计模式、jvm、spring事务+aop、rest api、高并发
+
+--------JVM虚拟机专题----------
+1，对Java内存的理解。  java垃圾回收机制。
+  java内存分为：堆、虚拟机栈、本地方法栈、方法区、PC寄存器。
+  初始化new的对象放在堆里面。栈存放当前线程的局部基本类型的变量。类信息常量池等放在方法区。
+  堆里面分为新生代和老年代。  新生代又分为：eden和survivor区，survivor又分为from和to，eden满了会触发minor gc。然后会把经过minor gc后幸存的对象放到ServivorTo。
+  ServivorFrom区会根据对象年龄来判断移动到to区或者老年代。经过一次minor gc后，from和eden区被清空，然后From跟To区交换角色，空的区就成为survivor to。
+  经过多次GC后，存活下来的对象（年龄够了）会移到老年区，当存放到老年代的对象大小大于老年代剩余空间就会发生full gc。full gc清理整个内存并阻塞其它线程。当full gc的时间超过GCTimeRatio的限制时，就会发生OOM。新生代使用复制算法，老年代使用标记-清除算法。
+ 
+  内存溢出：
+     heap space：java堆溢出，设置-Xms和-Xmx。
+     permgen space：永久区（方法区）溢出，设置-XX:PermSize和-XX:MaxPermSize
+     unable to create native tread：栈溢出，设置：-Xss
+
+2，JVM垃圾回收机制，两个对象相互引用，它们会被回收吗？
+ 答：
+ 对什么东西进行回收？怎样判断对象是否存活？？
+   对没有引用的对象进行回收。jvm判断是否存活主要使用引用计数器算法和可达性分析算法。引用计数算法就是给对象添加一个引用计数器。有地方引用时，计数器+1，引用失效时，计数器-1，当计数为0时，回收该对象。（延伸：当两个对象互相引用的时候，计数器都不会为0，就不会被回收）
+   还有一种是可达性分析算法。从gc root开始向下搜索，搜索不到该对象，说明此对象不可用，会进行回收。
+ 可作为GC Root的对象：
+   1，虚拟机栈中引用的对象。
+   2，本地方法栈中native方法引用的对象
+   3，方法区中类静态属性引用的对象。
+   4，方法区中常量引用的对象。
+
+3，什么时候回收？？怎么回收？？
+  回答上面新生代、老年代的结构和gc。
+
+4，String s = new String("abc")创建了几个对象？
+  两个！ abc为字符串常量，存放在常量池中，也就是方法区。 是一个对象
+  new String() 新创建了一个对象，放在堆中。 s其实是new String的引用。不是新创建的对象
+
+
+--------多线程专题----------------
+1，为什么要使用线程池，多线程各个线程池的优点？？
+ 答：
+   线程池的作用：
+     1，可以减少创建线程和销毁线程的资源消耗，重复利用已创建好的线程。
+     2，提高响应速度，有任务来时，不需要等待创建线程
+     3，提高线程的可管理性。
+   缺点：线程泄露、代码问题造成死锁、资源耗尽
+   Executors工具类，提供了4种线程池：
+     1，newSingleThreadExecutor： 单个线程的线程池。就是每次只有一个线程工作。串行执行任务
+     2，newFixedThreadPool：固定数量的线程池。当线程池数量达到最大时，后面提交的线程就进入等待队列，等前面的任务完成后才能继续执行
+     3，newCachedThreadPool：可缓存的线程池，不限制大小。有任务时才会创建线程，会回收空闲了指定时间的线程（默认1分钟）当线程池的大小超过了所要处理的任务数量时，就会回收。  使用该线程池要注意控制任务的数量，不然大量线程会造成系统瘫痪。
+     4，newScheduleThreadPool：可定时定期执行任务（定长）
+   还有一种使用ThreadPoolExcutor方式创建。
+   阿里java开发规范有个建议：
+   【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 的方式，
+	这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。
+
+2，ThreadPoolExecutor几个参数的含义？？ 
+构造方法(int corePoolSize, 核心线程池大小
+      int maximumPoolSize,  最大线程池大小
+      long keepAliveTime,  线程池中超过核心线程数的空闲线程的最大存活时间，超过时间会销毁
+      TimeUnit unit,  空闲时间的单位
+      BlockingQueue<Runnable> workQueue, 阻塞任务队列
+      RejectedExecutionHandler handler)  拒绝策略
+ 几个参数之间的关系：
+   a,当线程池小于corePoolSize的时候，新提交的任务将创建一个线程，即使线程中存在空闲线程也会创建。 corePoolSize相当于平时保留的线程数量。
+   b,当线程池达到corePoolSize时，新提交的任务放入workQueue队列中排队，等待线程池中任务调度。
+   c,当workQueue满了，就会创建临时线程，临时线程空闲一定时间后，就会回收。
+   d,当线程总数超过Max+queue时，后续提交的任务都会被拒绝策略拒绝。
+ 拒绝策略handler有4种类型：1，AbortPolicy（默认）：直接抛弃并抛出异常  2，CallerRunsPolicy：用调用者的线程执行任务（会阻塞主线程）  3，DiscardOldestPolicy：抛弃队列中最久的任务  4，DiscardPolicy抛弃当前任务，不抛出异常
+  阻塞队列有：LinkedBlockingQueue无界队列  ArrayBlockingQueue有界队列 SynchronousQueue没容量的队列
+
+3，线程数大小设置多少合适？？
+一般是2倍的cpu核数
+  最佳线程数量=(线程等待时间+线程cpu时间)/线程cpu时间*cpu核数
+			  
+
+2，多线程同步synchronized和Lock的用法和区别？？
+     synchronized可以保证方法或者代码块在执行时，同一时刻只有一个线程进入使用，同时还可以保证共享变量的可见性。
+   原理：大体就是每一个对象都有一个Monitor关联。当Monitor被持有后，对象就处于锁定状态。是基于进入和退出Monitor对象来实现同步的，通过成对的MonitorEnter和MonitorExit指令来实现。MonitorEnter指令插入在同步代码块的开始位置，当代码执行到该指令时，会尝试获取该对象Monitor的所有权。拿到锁时，Monitor的进入数+1，退出就-1。其他线程获取锁时，必须是Monitor进入数=0时，才能拿到。
+   区别：
+   1，synchronized是一个关键字，Lock是一个接口（实现类：ReentrantLock，更轻量级，通过lock()和unlock()方法进行锁的操作，synchronized当发生异常时，会自动释放锁。 而Lock需要手动释放锁,一般放在finally代码块中）。
+   2，lock可以知道有没有成功获取锁(tryLock方法返回true/false)。 而synchronized不行
+   3，synchronized不是可中断锁，lock是可中断锁。 
+
+3，wait、notify、notifyAll方法
+  这几个方法必须在同步的代码块中使用。 执行这几个方法时，线程必须是获取到了锁。
+  wait：让出当前线程的锁，使线程进入等待状态。  直到其他线程执行notify或notifyall才继续执行。
+  notify/notifyAll： 会唤醒一个或多个等待该对象锁的线程。然后继续往下执行。  实际编程中,notify应该放在代码块的最后一行。
+
+
+4、说一下多线程的ThreadLocal和volatile的理解，是用来解决什么问题的？
+volatile只能保证可见性，不能保证原子性。  
+ 可见性：某个线程修改了volatile修饰共享变量的值，则会将修改的值立即写入主存，其他线程就可以拿到最新的值。
+ 但是不能保证原子性：线程1在线程2修改之前拿到的值不会变化。
+ 不加volatile的共享变量，修改值，不确定什么时候会写入主存，所以不能保证可见性。
+ 总结：volatile关键字只能保证线程读到最新的，但是不能控制线程写的瞬间那个值还是最新的。
+使用synchronized，其他线程只能等待，效率没有volatile高。
+
+ThreadLocal是一个类。ThreadLocal的变量在每个线程中创建一个副本。每个线程可以访问自己内部的副本变量。多线程中，改变变量的值（调用ThreadLocal定义的变量的set方法），不影响其他线程。  （案列：spring的数据管理器）
+比在线程中直接new变量成私有的，性能更好。
+
+5，多线程concurrent包的常用类。如concurrentHashMap的用法。
+  答：1，CountDownLatch，类似计数器的并发线程。作用是允许一个线程等待其他多个线程都执行完毕后，才继续执行。（用法：主线程new CountDownLatch(n)，指定线程数量n，把该对象传递给子线程，在子线程run方法的finally中执行countdown()方法，使要等待的线程数-1，主线程执行await()方法等待子线程都执行完，才执行await()后面的代码）
+      2，Callable接口，类似于Runnable，但是Callable接口可以获取到线程的返回值。  配合Future使用，调用Future.get方法获取返回值。
+      3，ExecutorService和Executors.newXXXThreadPool获取线程池。
+   ConcurrentHashMap是HashMap的一个线程安全的，支持高并发的版本。   HashTable线程安全，HashMap线程不安全
+   ConcurrentHashMap的实现使用的是锁分离的思想，锁住的只是一个node，而锁住node之前的操作是基于在volatile和CAS无锁并且线程安全的。
+
+
+---------锁专题-----------
+1，死锁的四个必要条件。
+  举例： 有两个线程a，线程b，两个对象1，对象2。 a线程获取对象1的锁，等待对象2的锁。  线程b获取对象2的锁，等待对象1的锁，则就进入了死锁。
+  简单来说就是两个线程互相持有对方正在等待的东西。
+
+2，乐观锁、悲观锁
+   a,乐观锁：总是认为不会产生并发问题，每次取数据都认为不会有其他线程对其修改，因此不会上锁，但是在更新时会判断其他线程是否有进行更新。
+   一般通过版本号机制。（数据库增加version字段，每次修改就将值+1，线程A修改时，先判断version值是否与当前值一致，一致的时候才更新。）
+   b,悲观锁：总是假设最坏的情况，每次取数据时都认为有其他线程会修改，所以都会加锁，当其他线程要访问时，都会进入阻塞状态。 如：java的synchronized，数据库的行锁、读锁与写锁。
+   乐观锁适合读取数据比较频繁的操作。  悲观锁适合写入数据比较频繁的操作。
+   
+3，可重入锁如何设计？
+ 可重入锁就是ReentrantLock类，是Lock接口的实现类。 ReentrantLock提供公平锁和非公平锁（默认）。
+ 可重入锁：也叫可递归锁，某一个线程可多次获得同一个锁。 递归调用，必须可再次获取到该锁，不然就死锁了。 synchronized和ReentrantLock都是可重入锁。
+ 公平锁：必须按照请求锁的先后顺序获取锁（多个线程等待，则等待最久的先获取到锁）。  
+ 非公平锁：允许线程插队，来得早不如来得巧。占用锁的线程刚释放锁，而排队等待的线程还未唤醒时，新来的线程则可以直接抢占锁。
+ 可重入锁设计原理：每个锁关联一个计数器state和持有者线程，计数器使用volatile修饰。  如果当前线程已经获取到了锁，就把计数器state加1，释放锁state减1，计数器为0时，锁就被释放。保证了多一个锁可以被同一个线程获取多次，避免死锁的情况。
+
+
+
+--------集合类的问题--------------
+1，list有哪些类，他们的优缺点。  
+   list集合的实现类有ArrayList、LinkedList、Vector。  
+	   ArrayList是数组结构的列表。 查询很快，往中间插入、删除元素较慢（要移动顺序）。  非线程安全
+	   LinkedList是双向链表结构，插入和删除方便。  非线程安全
+	   Vector是ArrayList的线程安全的实现方式，方法都加了synchronized锁
+
+2，list和set的区别
+  答：list是有序集合，保存了每个元素的插入顺序。且允许插入重复的对象。
+      set是无序集合，不允许重复的对象。
+
+3，map有哪些类，他们的优缺点。
+   实现类有：HashMap、HashTable、TreeMap、ConcurrentHashMap、LinkedHashMap
+	HashMap：根据key的hashCode值进行存储，允许存储key为null，非同步
+	TreeMap：根据key进行排序，默认是升序，key不能为null，非同步
+	HashTable：线程安全
+	LinkedHashMap：保存了插入的顺序，循环遍历时，会根据插入顺序取出元素。（效率比HashMap慢）
+
+4，hashtable和concurrentHashMap的区别，哪个效率高？
+ 答：hashtable和concurrentHashMap都是线程安全的，HashMap是线程不安全的。
+    HashTable使用的是一个单独的全部map的锁，而ConcurrentHashMap使用的是分段锁的概念。把一个大的Map拆分成几个segment，每个segment类似HashTable的结构，根据key.hashCode（）来决定放在哪一个segment中，只有在同一个segment中的操作才会存在竞争锁的关系，并发性的性能更好。
+    HashTable的get/put都是同步方法，而ConcurrentHashMap的get不需要锁（get方法里面的共享变量都用volatile修饰），put需要锁。
+    Hashtable的大小增加到一定的时候，性能会急剧下降，因为迭代时需要被锁定很长的时间。因为ConcurrentHashMap引入了分割(segmentation)，不论它变得多么大，仅仅需要锁定map的某个部分，而其它的线程不需要等到迭代完成才能访问map。简而言之，在迭代的过程中，ConcurrentHashMap仅仅锁定map的某个部分，而Hashtable则会锁定整个map。
+
+5，HashMap循环的话，能不能做remove操作。
+   使用Iterator迭代器循环。可以做iterator.remove()删除操作。
+
+6，HashMap原理？？？
+   HashMap的key和value可以存放空值。  Hashtable和ConcurrentHashMap不能存放空值。HashMap是非线程安全的，所以操作很快。
+   HashMap是基于hashing原理，调用put方法时，会根据key的hashcode来找到bucket位置，bucket位置存放Entry对象（键对象和值对象）。不同的key算出来的hash值可能一样，这时会通过链表LinkedList来存放。调用get方法时，根据key的hash值，找到bucket位置，如果同一个位置存在多个Entry的话，就要从对应的链表的头结点开始一个个往下找。
+
+7，HashMap大小超过了负载因子定义的容量时，会发生什么？？
+  默认的负载因子是0.75，也就是HashMap的bucket容量达到75%时，会进行扩容。会创建两倍的bucket容量。将原来的对象存放在新的bucket中。
+  多线程中，当重新调整HashMap大小时，就会存在竞争关系。 两个线程同时发现了HashMap大小需要调整，就会同时试着调整大小。调整过程中，会将链表中的元素顺序反过来，移动到新的bucket中。
+
+
+----------设计模式------------------------------------
+常见的设计模式：单例模式、工厂模式、代理模式、适配者模式、装饰者模式、观察者模式。
+项目中的应用：  
+   a,单例模式：一个应用中，只有该类的一个对象。  案例：保存spring的applicationContext对象。  通过该对象的getBean来获取bean对象
+   b,工厂模式：对实现统一接口的不同类的实例创建。 案例：网宿项目：计费方式工厂类、数据源工厂类。好处是增加了创建对象时的封装层次。  
+   c,代理模式：代理原对象进行一系列的操作，不修改原对象的情况下，增强一些功能（如：火车票代售处。本来要跑1小时到火车站买票，现在在楼下的代售处就可以买。这边代售处就是代理火车站卖票的操作）。
+    代理模式有分静态代理和动态代理。
+      静态代理：每个代理类只能为一个服务。代理类需要实现代理对象一样的接口。 一旦接口增加方法，目标对象和代理类都要做修改。
+      动态代理：利用Java反射创建不同的代理类。（Proxy.newProxyInstance动态生成代理对象，在handler方法中通过反射调用代理方法）案例：spring的各种proxy
+   d,适配者模式：将不匹配变得匹配，简单点理解就是平常所见的转换器之类的存在。案例：java的IO流，如inputStream转换成FileInputStream）
+
+2，适配者模式和装饰者模式的区别？？
+适配器模式被用于桥接两个接口，而装饰模式的目的是在不修改类的情况下给类增加新的功能。
+	举例如下：
+	1、适配器模式 
+	FileInputStream fileInput = new FileInputStream(file); 
+	InputStreamReader inputStreamReader = new InputStreamReader(fileInput);
+	以上就是适配器模式的体现，FileInputStream是字节流，而并没有字符流读取字符的一些api，因此通过InputStreamReader将其转为Reader子类，因此有了可以操作文本的文件方法。 
+	2、装饰者模式
+	BufferedReader bufferedReader=new BufferedReader(inputStreamReader);构造了缓冲字符流，将FileInputStream字节流包装为BufferedReader过程就是装饰的过程，刚开始的字节流FileInputStream只有read一个字节的方法，包装为inputStreamReader后，就有了读取一个字符的功能，在包装为BufferedReader后，就拥有了read一行字符的功能。
+
+
+
+
+--------SQL和数据库专题----------
+1，mysql的字符集utf8和utf8mb4的区别
+  答：utf8只支持3个字节的数据。而utf8mb4可以支持4个字节的数据。 比如移动端的表情符就是4个字节的字符。
+
+2，mybatis的#和&的区别
+   答：#会进行预编译，且会进行数据类型匹配。$不会进行预编译。#用于变量的替换，$实际上是字符串的拼接，这样会有SQL注入的安全问题。  
+     预编译是指数据库驱动将sql和参数发送给数据库时，对sql语句进行了编译，这样数据库执行sql时，不需要重新编译。
+
+3，sql  join和union的区别
+   join是两个表相同条件的部分列，组成一个结果集。  
+   join有分inner join（内连接，有匹配的才返回行）、left join（即使在右表没有匹配的行，左表也返回所有行,右边置为null）、right join（右表返回所有行）、full join（返回两张表所有行）。
+   union是将两个查询的记录集合并起来。 
+   union有分union（检查重复、效率低）和union all（不检查重复）
+
+4，建索引一定比没建索引快吗？
+  不一定。索引查询的数据占表中10%的时候，效率才最佳。  如果表中都是重复数据，不管怎么查都是80%以上的数据，索引的作用也体现不出来。还没全表扫描的快。
+
+5，数据库的联合索引，如果只查询一个字段，会使用到该索引吗？？
+答： 如果查询的字段是联合索引中的第一个字段，就会走索引。组合索引有最左前缀原则：从最左面的开始组合，就会走索引。 
+  mysql如果使用not in,not exists和不等于!=，不会走索引。 大于号小于号要根据实际查询的数据来判断，如果全表扫描的速度比索引的速度快，就不走索引。
+
+6，mysql的聚集索引和非聚集索引。
+ 聚集索引：就是主键索引。  每个表只能有一个主键。 数据行的物理地址 与 主键的顺序一致。 非聚集索引:非主键的索引
+ mysql索引是使用B+树的数据结构来实现。
+
+7，MySQL的表类型，innoDB和MyIsam的区别？？
+  MyIsam不支持事务，也不支持外建。 有存储表的行数，统计全部行数时，比innoDB快。
+  InnoDB支持事务，支持行级锁和外键。
+
+8，SQL如何优化？   
+  (1)通过查看执行计划explain，分析哪些表是执行了全表扫描（Table acess Full），哪些表是使用了索引（index unique scan），给执行全表扫描的表建索引
+  (2)语法上的优化，如果in和exists的代替。  如果外表记录大于内表，使用in效率会比较好。   外表记录小于内表，使用exists效率更好。
+  (3)当表的数据量很大时，单纯的sql优化，效果不会提升多少，这时候就要做垂直拆分和水平拆分了。 然后说网宿做的分库分表。
+
+  mongo通过explain("executionStats")查看性能分析。
+
+  mysql开启慢查询：1，查看开关：show variables like '%slow_query_log%';  2，开启：set global slow_query_log=1;  3，修改慢查询时间阈值：long_query_time默认为10秒，可以使用命令修改，也可以在my.cnf参数里面修改。 set global long_query_time=5;   通过explain查看执行计划。
+  
+2，select name from table_a where name like '%刚'
+ %百分号在后面，会使用到字段的索引。
+ %百分号在前面，不会使用到字段的索引。
+ 建立一个反向reverse索引。
+ create index XXX on table_a（reverse(name)）;
+ 查询条件使用反向索引查询
+ select name from table_a where reverse(name) like '%刚'
+
+3，select create_time from talbe_a where date_format(create_time,'%Y-%m-%d')='2016-11-27'
+craete_time字段使用date_format函数后不会走索引。
+改成where create_time like '2016-11-27%'
+
+4，MYSQL表分区、分库分表
+  网宿分库分表： 流量库的flow_5表有近2千万的数据。  有做垂直拆分：将近2天的数据存放在内存表中，其它的存放在SSD表中。
+  水平拆分：分表策略：根据时间+域名的FNV1_32_HASH值%分表数量  分库策略：根据域名的FNV1_32_HASH%分库数量
+      代码中使用当当网的sharding-jdbc框架，不用针对分库分表修改太多代码。
+
+  分库分表如何解决事务、join/group by/count/order by等聚合查询？？
+    聚合查询一般是各个单库上查询好结果，在程序中进行合并。
+    事务一般拆分成单个数据库的事务，通过程序控制整个事务。（zookeeper等）
+
+6，char和varchar的区别
+  char的长度是固定的，varchar的长度是可变的。 比如长度10的话，存储数据“abc”，char(10)数据库还是占用了10个字符，有7个空字符。  varhcar(10)的话只占用3个字符。  因为char长度固定，所以存取速度会比varchar快，但是空间占用比较大。 以空间换时间。  char英文字符占1个字节，中文占2个字节。  varchar中文和英文都占用2个字节。
+
+
+
+-----------算法------------
+时间复杂度，耗时排序：O(1) < O(logn) < O(n) < O(nlogn) < O(n^2) < O(n^3) < O(2^n) < O(n!) < O(nn)  注意：n^2表示n的2次方，2^n表示2的n次方(n作为指数)
+1，选择排序、冒泡排序和快速排序。  各自优缺点和时间复杂度。
+ 冒泡排序：依次比较相邻的两个数，将小的数放前面。N个数字要进行n-1趟排序。 每i趟的排序次数为n-i次。 如果数据已经排序好了，复杂度为O(n)。最坏的数据都是倒序的，时间复杂度为O(n平方)
+ 选择排序：每一趟选出所有记录中最小的元素，顺序地放在已排序好的序列最后，直到所有记录排序完毕。时间复杂度为O(n平方)
+ 快速排序：数组中选择一个基准点，分别从数组的两端扫描数据，比基准点小的，就交换位置。  时间复杂度为O(nlongn)
+
+
+代码实现：
+    /**
+     * 冒泡排序：依次比较相邻的两个数字，将比较大的移动到右端
+     *  共执行n-1轮循环。  每轮比较n-1-i次（i表示第0~n-1）。
+     *  冒泡排序最好的时间复杂度为O(n),最坏时间复杂度为：O(n的平方) 
+     */
+    public void testBubbleSort(){
+        int[] data = {50,27,21,89,60,120,1,79};
+        for(int i = 0;i<data.length-1;i++){
+            for(int j=0;j<data.length-1-i;j++){
+                if(data[j]>data[j+1]){
+                    //交换位置
+                    int temp = data[j+1];
+                    data[j+1] = data[j];
+                    data[j] = temp;
+                }
+            }
+        }
+        System.out.println("冒泡排序后的数组："+ Arrays.toString(data));
+    }
+
+
+    /**
+     * 快速排序：每次排序的时候设置一个基准点，将小于基准点的全部放在基准点的右边，大于基准点的放在左边。
+     * 冒泡排序每次都是比较相邻的两个点，快速排序的交换是跳跃式的。
+     * 快速排序最差的复杂度也是O(n的平法)，平均复杂度：O(NlogN)
+     */
+    public void quickSort(int[] data, int low, int high) {
+        int start = low;
+        int end = high;
+        if(low>high){
+            return;
+        }
+        //基准位
+        int key = data[low];
+        while (start < end) {
+            //先看右边，j位置依次往左递减，直到j位置的值比基准值小。
+            while (key <= data[end] && start < end) {
+                end--; //j位置值比基准值小
+            }
+            //再看左边，i位置依次往右递增，直到i位置的值比基准值大
+            while (key >= data[start] && start < end) {
+                start++; //i位置的值比基准值大
+            }
+            //交换i和j的值
+            if (start < end) {
+                int temp = data[end];
+                data[end] = data[start];
+                data[start] = temp;
+            }
+        }
+        //最后将基准值与i=j的位置交换
+        data[low] = data[end];
+        data[end] = key;
+        //递归调用左半数组
+        quickSort(data, low, end - 1);
+        //递归调用右半数组
+        quickSort(data, end + 1, high);
+    }
+
+    @Test
+    public void testQuik() {
+        int[] data = {100,2, 6, 7, 56, 11, 8, 99,1, 3, 77, 21, 10, 9, 4};
+        quickSort(data, 0, data.length - 1);
+        System.out.println("排序后的数组：" + Arrays.toString(data));
+    }
+
+
+    /**
+     * 选择排序：每轮排序选出一个最小值的下标，跟第n个进行替换。  第一轮跟第一个替换，第二轮跟第二个替换。
+     */
+    @Test
+    public void testSelect() {
+        int[] data = {100, 2, 6, 7, 56, 11, 8, 99, 1, 3, 77, 21, 10, 9, 4};
+        for (int i = 0; i < data.length; i++) {
+            int k = i;
+            for (int j = i + 1; j < data.length; j++) {
+                if (data[j] < data[k]) {
+                    k = j;
+                }
+            }
+            if (k > i) {
+                int temp = data[i];
+                data[i] = data[k];
+                data[k] = temp;
+            }
+        }
+        System.out.println("排序后的数组：" + Arrays.toString(data));
+    }
+
+2，一致性hash算法原理
+  好处：一致性hash算法解决了分布式环境下机器增加或者减少时，简单的取模hash运算伸缩性差的问题（变更的服务器数据访问不到了，需要对数据进行重新hash并迁移）。通过虚拟节点的使用，一致性hash算法可以均匀分担机器的负载，使得这一算法更具现实的意义。
+  原理：一致性hash算法是将整个哈希值空间组织成一个虚拟的圆环（长度为0~2的32次方-1），整个空间顺时针方向组织。 根据服务器ip的hash值将服务器节点放置在hash圆环上，然后计算数据的key的hash值，在hash圆环上从数据映射的位置顺时针查找，将数据分不到找到的第一个服务器节点上。一致性hash算法引入虚拟节点机制，每台服务器增加多个虚拟节点，解决数据倾斜的问题。
+
+  
+3，有一段楼梯有N级台阶，规定每一步只能跨一级或两级，要登上第N级台阶有几种不同的走法?
+  斐波那契数列：1，1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144   这个数列从第3项开始，每一项都等于前两项之和。
+  该题这就是一个斐波那契数列：登上第一级台阶有一种登法；登上两级台阶，有两种登法；登上三级台阶，有三种登法；登上四级台阶，有五种登法……1，2，3，5，8，13……
+  到第N个阶梯前有2种情况：1，走一步，即n-1，再求n-1个阶梯的走法 2，走两步，即n-2，再求n-2个阶梯的走法。  所以n级阶梯的走法是n-1个阶梯的走法加上n-2个阶梯的走法。 公式： F[n]=F[n-1]+F[n-2]
+  代码实现：
+     /**
+     * 斐波那契算法，公式：F[n]=F[n-1]+F[n-2]
+     * 方法1：使用递归调用，效率很低，算法复杂度O(2^n)
+     * 例如计算n=6：T(6)=T(5)+T(4)=T(4)+T(3)+T(3)+T(2)=T(3)+T(2)+T(2)+T(1)+T(2)+T(1)+T(2)=T(2)+T(1)+T(2)+T(2)+T(1)+T(2)+T(1)+T(2)
+     * 这样一看你就会发现重复计算特别多，时间复杂度上将是灾难性的。
+     */
+    public long fibo1(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        long value = fibo1(n - 1) + fibo1(n - 2);
+        return value;
+    }
+
+    /**
+     * 方法2：
+     * 前面我们计算斐波那契数列是从后往前计算的，就是计算f(n)=f(n-1)+f(n-2)，
+     * 然后再递归计算f(n-1)，又是从后往前计算，就是因为这样的从后往前计算，所以才会有很多的重复计算。
+     * 那么我们可以逆转思路，考虑从前往后计算。比如我们要计算f(4)，那么我们就计算f(0)、f(1)、f(2)、f(3)，将这些计算出来的值保存在一个数组arry[n+1]上，
+     * 这样计算斐波那契数列就相当于是一个填表的过程。时间复杂度大大降低，时间和空间复杂度都是O(n)。循环一次就够了
+     */
+    public long fibo2(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        long[] data = new long[n + 1];
+        data[0] = 0;
+        data[1] = 1;
+        for (int k = 2; k <= n; k++) {
+            data[k] = data[k - 1] + data[k - 2];
+        }
+        return data[n];
+    }
+
+    /**
+     * 方法3：在方法2中，我们保存了每一个中间变量，但是仔细观察我们可以发现没有必要保存每一个中间变量，我们只需要保存两个临时变量即可完成斐波那契数列的计算。
+     * 不需要用数组进行缓存，时间复杂度O(n)，空间复杂度O(1)
+     */
+    public long fibo3(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        long minusTwo = 0; //指f[n-2]
+        long minusOne = 1; //指f[n-1]
+        long data = 0; //指f[n]
+        for (int k = 2; k <= n; k++) {
+            data = minusTwo + minusOne;
+            minusTwo = minusOne;
+            minusOne = data;
+        }
+        return minusOne;
+    }
+
+
+
+------------网络--------------------
+1，http的get和post请求的区别？  http状态码有哪些？
+ 区别：(1)get请求把参数放在url中，而post放在请求体中。(2)get提交的数据会在地址栏显示出来，而post提交地址栏不会变。
+     （3）get在浏览器回退时是无害的，而post回退的话会再次提交请求。（4）get请求的url参数长度有限制，post参数大小无限制 （5）get产生一个tcp数据包（header和data一次性发送出去，服务器响应200），Post产生两个tcp数据包（第一次发送header，服务器响应100。第二次再发送data，服务器响应200）
+ 状态码：200：成功请求，表示正常状态。  404：没有找到该资源/页面。 500：服务器程序报错。   302：请求被重定向，需拿到重定向的url再次请求
+
+2，http的头部构成？
+  头部包含http状态码、Content-type（表示消息体属于什么类型）、Content-length、Date（消息发送时间）、User-Agent（浏览器类型和版本）
+
+3，TCP和UDP的区别
+  TCP和UDP是传输层的协议。   TCP是面向连接的协议，就是在正式通信之前必须与对方建立连接。会有三次握手来建立连接。保证了传输的可靠性。 三次握手简单来说就是1，询问对方是否可以发送数据  2，对方回复可以  3，发送一个数据确认包，确认后就建立了连接。
+  UDP是面向非连接的协议。不用和对方建立连接，直接把数据发送过去。（类似手机短信） 不保证传输的可靠性。 传输速度比TCP快。
+  TCP适合于传输大量数据，对可靠性要求高的场合，  UDP适合传输少量数据，对可靠性要求不高的场合。
+  TCP建立连接要三次握手。  关闭连接要进过四次挥手。
+
+4，http和https的区别
+  （1）http协议传输的数据是未加密的。 https会对传输数据进行ssl加密。（2）http的标准端口是80，https的标准端口是443 （3）https需要申请ca证书，收费的
+
+5，浏览器从输入url到展示页面，背后发生了什么？
+  总体的过程：(1)DNS解析，将域名解析成IP地址（DNS解析过程：查询浏览器缓存、查询本地Hosts缓存、查询路由器缓存、ISP的DNS缓存、递归查询：从根域名服务器到顶级服务器一层层找下去） (2)TCP三次握手连接 (3)向服务器发送HTTP请求 (4)服务器处理请求并返回HTTP报文(http报文包括请求行、请求头、请求体、) (5)浏览器解析并渲染页面 (6)断开连接：TCP四次挥手
+
+
+
+------------其他--------------------
+1，String、StringBuffer、StringBuilder的区别。
+ 答：String是字符串常量，StringBuffer和StringBuilder是字符串变量。
+    String值是不可变的，每次改变值都是产生新的String对象（为了减少JVM中创建的字符串数量，有了String常量池，每当代码创建字符串常量时，jvm会先检查是否在常量池中，如果存在就会返回实例的引用，不存在则会新实例化一个放入池中）。  
+    使用new String()创建的是对象，放入在堆中的，会分配内存空间，所以==结果为false（==对象判断的是内存地址、对象引用，基本数据类型判断的是值。equals要判断对象有没有重写equals方法，一般比较值）。
+    经常改变值的字符串应该用StringBuffer或StringBuilder。
+    StringBuffer是线程安全的，StringBuilder非线程安全，所以性能会比StringBuffer高。
+
+
+2，int和Integer的区别？
+ int基本数据类型。Integer是int的包装类。
+ java Integer缓存策略，会缓存-128到127间的值。下次获取就从内存中取出，不再新开辟内存。
+
+3，jsp的编译过程。
+ 若jsp文件被第一次调用时，web容器会降jsp转换成servlet，生成html格式的响应页面，并将编译成.class字节码文件。
+ 不是第一次调用的话，就执行执行.class文件。所以首次调用会慢点。
+
+4，系统宕机，怎么处理？？  
+ 答：分析gc日志，JStack导出线程堆栈，查看消耗久的线程。  如果出现内存溢出out of memory，dump出堆栈信息，使用内存分析工具加载dump出来的文件，然后查看内存中存放的对象。
+
+5，有10万级别的数据需要过滤，除了for循环，还可以怎么处理。
+  分批次，比如每批次1万条，然后使用多线程并发去处理。
+
+
+6，JAVA序列化有哪几种实现方式，用来做什么？
+  答：序列化是将对象转化为二进制的数据流，这样就可以在网络中传输，或者写入到硬盘中。
+    a. 对象序列化实现Serializable接口。  
+    b. 实现Externalizable接口，可以自定义哪些属性可以序列化，哪些不可以序列化。通过实现writeExternal跟readExternal方法。
+    可以使用ObjectInputStream跟ObjectOutputStream进行转化。
+    Json序列化，使用阿里巴巴的fastJson包进行对象的转化。JSON.toJSONString(object)、JSON.parseObject(jsonStr)
+
+7，如何计算服务器负载？？？
+ linux使用top、uptime、w命令可以查看机器负载。cpu使用、内存使用、IO都会使服务器负载变高。 
+ 单核的话load average保持在3以下是正常的， 比如10核的话，值在30以上的话就得注意了。
+  一般会使用top查看获取cpu高的进程pid，根据pid找到线程id，转换成16进制，java使用jstack导出线程堆栈，根据线程id定位占用高的线程。 排查对应的方法是否有问题。
+
+8，两个对象equals相等，hashCode会相等吗？？
+  对象重写了equals和hashCode方法，equals相等，则hashCode一定相等。
+  反过来hashCode相等，但不一定equals。
+
+9，长网址变成短网址如何设计？？
+  1，将长网址Url通过一系列方法转换成比如8位不重复的短码，短码由数字和字母组合。（只要保证不重复，怎么实现都可以，可以通过MD5等方式转换）  或者通过发号器，比如第一个长网址对应的是xx/1，第二个对应xx/2
+  2，将长短链接存入数据库，形成对应关系。常用的key-value数据库，如：redis或memcached
+  3，访问短链接的时候，从数据库中找出对应的长连接，通过302重定向跳转。

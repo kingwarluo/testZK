@@ -1,0 +1,25 @@
+mysql 5.7 和 5.6 的差别
+
+1、5.7不支持不严谨的group gy 和 union操作
+例如：
+	select job,salary,deptno from emp group by deptno;
+	这句在mysql 5.7中会报错，在mysql 5.6中则不会
+例如：
+	select * from emp limit 1
+	union all
+	select * from emp limit 23
+	这句在mysql 5.7中会报错，在mysql 5.6中则不会
+
+2、mysql 5.7在创建表时使用日期数据类型指定的默认值必须为合法日期，指定"0000-00-00"时mysql 5.7报错，mysql 5.6则允许使用这类非法日期做默认值
+3、修改字段类型小于最长字符时mysql 5.7报错，mysql 5.6则截断字符修改字段类型成功
+4、插入字符串大于字段长度时mysql 5.7报错
+
+如果布隆过滤器中存在，那不一定存在
+如果布隆过滤器中不存在，那一定不存在
+
+黑名单：5，7，9，11，15
+白名单：15
+
+mq消费模式：
+生产者、消费者
+广播者、观察者

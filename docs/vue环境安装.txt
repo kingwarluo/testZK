@@ -1,0 +1,60 @@
+安装淘宝cnpm
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+idea调试vue
+https://blog.csdn.net/linyifan_/article/details/79700663
+
+1.nodejs 安装
+检测 : nodejs -v	npm -v
+https://www.cnblogs.com/zhouyu2017/p/6485265.html
+
+2.安装webpack
+npm i -g webpack
+webpack 4.X 开始，需要安装 webpack-cli 依赖 ,所以使用这条命令  npm install webpack webpack-cli -g
+出现write after end错误，降级npm到5.6.0，命令：npm i -g npm@5.6.0
+
+3.安装vue-cli
+npm i -g vue-cli
+出现write after end错误，降级npm到5.6.0，命令：npm i -g npm@5.6.0
+
+ycctemplate项目：
+到vue项目目录 cd ycctemplate-fe
+安装ucar依赖 npm install --registry=http://r.npm.10101111.com/
+npm install 或者 npm install --registry=https://registry.npm.taobao.org
+npm run dev
+
+第一个vue项目：
+https://zhuanlan.zhihu.com/p/45299104
+执行 vue init webpack myProject 
+然后
+	cd myProject 
+	npm install 	可能出现 Unexpected end of JSON input while parsing near，解决：npm cache clean --force
+	npm run dev
+就可以启动一个vue项目。
+
+
+4.idea Vue 配置
+a.eslint 对vue代码错误检测 npm i -g eslint 下载eslint依赖
+b.热部署 
+File | Settings | Appearance & Behavior | System Settings | 取消勾选 Use "save write"
+c.构建包
+cd ycctemplate-fe 
+npm run build
+
+#node多版本切换
+用nvm工具，会设置nvmHOME和公共node快捷方式，注意设置全局缓存目录prefix为公共快捷方式目录。这样各版本间node的全局依赖才不会相互影响
+
+#安装yarn，cnpm辅助下载所需包
+
+#install过程中出现node-sass需要安装python和vs环境时，可以用gyp组件跳过python安装
+这是install过程中出现问题最多的地方。
+1、一般会出现python在PATH中找不到，用以下命令设置PATH中的变量，但是不起作用；最后下载python安装包到C:\PYTHON27\python.exe
+npm install -g node-gyp	  跳过python安装，或者直接安装python
+2、出现msbuild.exe文件找不到，在https://github.com/nodejs/node-gyp中找到几种支持gyp的选项，其中一中就是以下命令。另一种是用vsInstaller安装 Visual Studio 2017 Community (using the "Desktop development with C++" workload)
+yarn install –global –production windows-build-tools	这个命令安装vs2017、Visual Studio Build Tools等
+
+#安装过程中出现vue和vue-template-complier版本不一致导致启动不了，将vue版本降到和vue-template-complier一样的版本
+安装过程中出现vue-template-complier在仓库中找不到，所以降级vue版本，效果一样
+命令：npm i vue@版本号
+
+#node-sass-china是node-sass的免翻墙国情增强版，由于版本可能更新不及时，所以推荐设置全局环境变量 NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node，然后安装原版 node-sass
+

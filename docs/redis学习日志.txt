@@ -1,0 +1,16 @@
+1、redis基本类型
+String: 字符串，set/get name "runoob"
+Hash: 散列，HMSET/HMGET HSET/HGET myhash field1 "Hello" field2 "World"
+List: 列表，lpush/lrange runoob rabitmq
+Set: 集合，sadd/smembers runoob rabitmq
+Sorted Set: 有序集合，zadd/ZRANGEBYSCORE runoob 0 redis
+
+2、常用命令
+del key/dump key/exists key
+expire key/expireat key/pexpire key/pexpireat key/persist key
+ttl key/pttl key
+keys pattern*/
+randomkey/rename key newkey/renamenx key newkey
+type key
+
+3、结合redisson学习

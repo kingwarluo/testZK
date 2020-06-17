@@ -1,0 +1,100 @@
+wiki更新
+redis缓存
+redisson加锁的对象  是namespace
+redisson操作redis
+
+加个channel查询	√
+catalina.out日志分割
+mq
+消费进度   消费日志
+datalink数据迁移	√
+双中心	升级完成  √
+超时刷新	√
+枚举	√
+架构组短信平台地址
+
+额外：
+搭一套框架
+dozer
+你把A、B中心的服务划分为不同消费者分组，验证下，看是否支持跨机房消费消息
+netty配置
+
+
+为什么出现目录？SS	用:区分目录，多了一层smscenter: 解决了。。。。。√
+未登录跳转登录页	√
+一些常量配置化 properties	√
+
+
+b中心读账号 10.104.50.53:3310 RVIP	mmcsmscenter_r   mjpnsWCMXYb8D3Fn
+
+a中心读账号 10.104.50.25:3306	mmcsmscenter_r   mjpnsWCMXYb8D3Fn
+
+test2: 10.104.50.25:3308 mmcsmscenter_r   zkyw3TFiH4Chm7Yx
+
+重启服务器tomcat
+/etc/init.d/tomcatd restart
+
+
+上线准备
+配置中心
+	redis配置
+	mmclog.monitor.switch	{"isMonitorLog":true,"isFilterParam":false,"isFilterSql":false}
+	mmclog.monitorRedis.switch	{"isStoreToRedis":true}
+	mmcsmscenter.monitor.switch.private	true
+properties配置
+
+治理平台
+sddl配置
+域名
+
+zk节点配置
+tomcat准备
+topic
+
+
+
+更改目录用户组权限
+chown -R tomcat:tomcat apache-tomcat-8.5.3/
+更改目录访问权限
+chmod -R 777 apache-tomcat-8.5.3/
+
+https://www.linuxidc.com/Linux/2017-11/148518.htm
+service vsftpd status  #查看ftp状态
+netstat -nltp | grep 21 #看到系统已经监听了 21 端口
+systemctl restart vsftpd #重启vsftpd
+useradd -d /var/ftp/test -g ftp -s /sbin/nologin ftpuser
+其中,-d命令是指定用户主目录，-g是指定用户分组，-s /sbin/nologin 是禁止用户登陆系统，最后ftpuser是本次新建用户的用户名。
+为用户 ftpuser 设置密码
+echo "javen205" | passwd ftpuser --stdin
+设置为用户的主目录：
+usermod -d /data/ftp ftpuser
+
+systemctl start firewalld  #启动firewall
+systemctl enable firewalld.service  #开启开机启动firewall
+systemctl stop firewalld.service	 #停止firewall
+systemctl disable firewalld.service #禁止firewall开机启动
+firewall-cmd --state #查看默认防火墙状态
+
+
+大数据量查询优化：
+测试数据量：1200W，线上实际数据量740W
+
+
+存在问题及解决方案
+
+一、order by及检索字段
+
+问题：排序字段使用的是create_time  该字段无索引，一排序就是全表搜索，导致即使排除掉count查询后，从查询第一页开始就需要2秒以上。
+解决方案：create_time添加索引（建议直接用自增的id进行排序），另外标题也是检索字段，需添加索引（状态字段只有两种值，没必要添加索引）
+
+二、count语句
+问题：每次查询都会去执行一次count语句，数据在1000W左右的时候，一次count就需要2s左右，如此将会产生大量慢查询。
+解决方案：
+1、分表
+2、不count，取消数量统计，不做跳页，只保留上一页下一页功能（这是之前韩老板培训时的建议，我们根据业务情况评估）
+3、利用redis做数据点标记【伪分表】
+
+三、查询翻页至较高页数（20000页以上）
+问题：limit至2000000条左右的时候，查询时间会超过一秒。
+解决方案：
+同2

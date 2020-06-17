@@ -1,0 +1,13 @@
+mysql in exist inner join left join 什么时候用
+
+1、为什么JVM调优经常讲-Xms和-Xmx参数设置成一样（-Xms堆内存初始化大小，-Xmx堆内存最大大小）
+	减少JVM向OS申请内存空间
+	延缓JVM首次GC发生时机
+	减少启动后发生GC的次数
+	避免swap space
+2、java线程池核心属性以及处理流程
+	核心线程数、最大线程数、工作线程、等待队列、拒绝策略、线程在空闲时，最多保持多久时间终止（当线程数大于核心线程数时，才起作用，直到线程数不再大于核心线程数时）
+3、inner join、left join、from 多个表
+	a inner join b on a.id = b.id ：如果a.id在b中不存在，则不会找出该条数据；如果b.id在a中不存在，则不会找出该条数据；（类似于交集，x∈a且x∈b）
+	a left join b on a.id = b.id ：如果a.id在b中不存在，则不关联出b的数据；
+	from a, b, c where a.id = b.id and a.id = c.id ：生成笛卡尔（a * b * c种可能）

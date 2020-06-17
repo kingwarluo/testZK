@@ -1,0 +1,36 @@
+搜索linux日志命令
+less 文件名
+/查找的内容
+
+获取tomcat进程pid 
+ps -ef|grep tomcat
+
+统计该tomcat进程内的线程个数 
+ps -Lf 29295|wc -l
+
+修改密码：
+passwd
+旧密码
+新密码
+
+
+xshell6：登陆后自动执行脚本
+ogin:  用于输入用户名
+assword:  用于输入密码
+
+linux 查找文件夹下文件包含某个字符串
+grep -rn "set" *     -r 是递归查找  -n 是显示行号
+
+
+查看磁盘命令
+df -lh 查看磁盘使用量
+df -h 目录  查看目录挂载在哪个磁盘上
+du -sh *或目录   查看当前目录下，文件或目录占用的磁盘空间
+
+
+上传下载文件
+sz filename 下载一个文件，必须跟上文件名
+sz filename1 filename2 下载多个文件
+sz dir/*  下载dir目录下的所有文件，不包含dir下的文件夹
+rz 上传文件，输入rz命令，xshell会提示选择上传的文件
+需要远程linux安装这两个命令，安装方式：yum -y install lrzsz

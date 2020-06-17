@@ -1,0 +1,21 @@
+1、hadoop学习(https://blog.csdn.net/hliq5399/article/details/78193113)
+centos7 
+配置hosts域名、关闭防火墙、关闭selinux
+安装jdk
+安装hadoop
+
+hadoop概念的理解：
+1、NameNode、DFSZKFailoverController
+2、ResourceManager
+3、DataNode、NodeManager、JournalNode、QuorumPeerMain
+
+hadoop模块：
+1、core
+2、hdfs
+3、mapreduce
+4、yarn
+
+其中HBase位于结构化存储层，Hadoop HDFS为HBase提供了高可靠性的底层存储支持，Hadoop MapReduce为HBase提供了高性能的计算能力，Zookeeper为HBase提供了稳定服务和failover机制。
+此外，Pig和Hive还为HBase提供了高层语言支持，使得在HBase上进行数据统计处理变的非常简单。 Sqoop则为HBase提供了方便的RDBMS数据导入功能，使得传统数据库数据向HBase中迁移变的非常方便。
+
+hbase

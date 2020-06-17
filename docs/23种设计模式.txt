@@ -1,0 +1,17 @@
+
+※※※结构模式：
+适配器模式：没有层次关系；Java AWT(MouseAdapter)、Java IO(InputStreamReader，字节流->没编码和字符流->有编码)、Spring Web MVC
+装饰器模式：有层次关系，动态的添加或覆盖被装饰者的接口行为；Java IO(FilterInputStream)、Spring Core、Spring MVC
+组合模式： XXXComposite, 把对象像属性一样执行
+享元模式：共享对象状态，减少重复创建；Integer、String intern、ThreadLocal
+代理模式：
+门面模式： XXXFacade, 把多种操作一起执行
+桥接模式：
+
+
+※※※条件模式：
+责任链模式：不同的职责切分；before\after；过滤器、FileAppender
+拦截器模式：pre\post\afterCompeletion；拦截器
+观察者模式：Observerable包含多个Observer
+访问者模式：优酷、爱奇艺访问者 visotor--> login QQ、微信、微博登录
+调节者模式：Mediator

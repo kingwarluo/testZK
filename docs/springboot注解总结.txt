@@ -1,0 +1,13 @@
+1、@AliasFor
+	1、在同一个注解中成对使用，例如RequestMapping的value和path属性，都互相注解的@AliasFor，类型和默认值都是相同。
+	2、显示覆盖元注解中的属性，例如junit测试，@ContextConfiguration(classes = XXX.class)，可以在新注解@interface STC { @AliasFor(annotation = ContextConfiguration.class, value = "classes") Class<?>[] cs() default {};}，在新类中注解@STC(cs = {XXX.class})就相当于注解了ContextConfiguration注解的classes属性
+	3、属性别名的传递，和第2点类似
+	4、用AnnotationUtils.findAnnotation(MyClass.class, MyAnnotation.class);获取注解
+	
+2、@Inherited
+	public @interface A{}注解A，class B注解了@A注解，那么class C extends B{}，C类也相当于注解了@A
+	
+3、@ConditionalOnClass、@ConditionalOnBean、@ConditionalOnJava等等@ConditionalOnXXX
+	1、注解了@ConditionalOnClass({SqlSessionFactory.class})的类，只有当SqlSessionFactory存在于上下文时，该类的所有@Bean注解的bean才会生效
+	
+4、@Import

@@ -1,0 +1,321 @@
+只有技术 才值得我学习 （自己搭框架）
+下一家很重要，选择
+慢查询优化、代码重构、usop、dbms
+
+产品过程：产品需求宣讲--->产品需求答疑--->开发设计（数据库，设计文档）--->开发设计答疑--->开发--->联调（多系统）--->提测--->预生产验证--->上线
+设计阶段：
+	索引
+开发注意：
+	分布式锁
+	缓存
+	多线程
+	事务
+	是否保存配置中心
+建议：更新内容按每月一次进行总体会议；组员轮流做不同系统了解不同系统的需求；
+
+idea插件：backgroud-img，alibaba Java coding guidelines, findbugs, sonarLint, jrebel热部署 、lombok、maven helper、uuid生成插件、vuejs插件、atom代码效果插件、restulToolKit
+单元测试：jacoco（测试代码覆盖率）、h2（模拟dao层）、mock平台（模拟RPC服务）、junit、vue.js devtools
+postman、swagger说明文档编写、jmeter测试工具、
+maven脚手架快速生成项目模板
+
+jdk查看内存：jcmd、jmap、jstack
+
+github pages、hexo、markdown mermaid流程图
+
+设计模式：factory、handler、builder、manager、proxy、loader、adapter、strategy
+
+路径：mams通知管理-->remote-client-->smscenter-->mmcsic
+结业：写一个类似redis插件
+
+激活 第三种
+http://139.199.89.239:1008/88414687-3b91-4286-89ba-2dc813b107ce
+邮箱随便填
+
+公司使用的封装：
+1、线程池CommonThreadPool:需要配置threadPoolConfig.properties，实现IAsynchronousHandler接口
+
+互联网常用手段：限流、降级、规则引擎、链路监控、jmeter压测、jprofiler的jvm查看
+
+-Xms512m -Xmx1024m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=225m -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true
+闲下来做做对项目进度有益的事
+封装组件、设计数据结构、了解各个平台、多提提解决方案
+少做自己的研究。
+1. resources下的properties如何关联获取filter下的配置文件值
+2.maven profile取值方式（dev、pre、pro、test1、test2）
+通过pom.xml方式配置，profiles节点配置各个环境变量，在com.zuche.common-parent-1.7.1.pom中配置
+
+3.配置中心的加载方式
+通过DefaultConfigCenterManager.getInstance()，获取manager实例。
+对manager添加回调监听，监听节点新增、修改、删除事件。
+
+4.读写分离如何实现（JNDI?）
+由神州封装，已无法查看
+很多电商项目都使用读写分离
+网上结果是 使用AbstractRoutingDataSource继承了AbstractDataSource
+新建DynamicDataSource类继承AbstractRoutingDataSource，重写determineCurrentLookupKey(),将数据源放在resolvedDataSources以Map形式存储
+最后使用Spring AOP的annotation技术，来决定使用读或写源。（是否每个方法都需要配置注解来决定使用哪个源?）
+
+
+4.1 读写分离数据库如何配置？
+mycat不支持的语法：
+select
+跨分片的交叉查询，两个表中的分片字段不同
+跨结点的联合查询
+insert
+插入的字段不包含分片字段
+插入的分片找不到对应的分片
+复制插入，insert into ... select ...
+update
+更新列包含分片列
+delete
+删除语句不能起别名，delete user_info a where a.main_user_id=1
+Keepalived + HAProxy + mycat读写分离
+VRRP 虚拟一个ip（VIP）
+
+4.2 分库分表？
+主要解决数据库写问题,利用mycat实现
+
+5.redis集群（无中心节点，节点间相互通信）
+redis-trib.rb工具实现
+
+5.1 redis缓存穿透 缓存击穿 基于注解实现redis缓存
+在redis的key达到expire的瞬间，有大量请求进入，所有请求会请求数据库，发生缓存穿透
+设置不同的过期时间《----》必要的参数永不过期
+guava
+
+
+6.netty用处
+有哪些模型
+同步：用户线程发起IO请求后，必须等待系统内核将数据准备好才可继续执行（等待、轮询）
+异步：用户线程发起IO请求后可以继续执行无需等待或者轮询，内核数据准备好之后会通知用户线程或者调用用户线程注册的回调函数
+阻塞：必须等待IO操作彻底完成才能返回结果到用户空间。
+非阻塞：IO操作调用后立即返回一个状态给用户，无需等待操作彻底完成
+
+基于NIO（多路复用、异步IO、事件响应机制）
+用于RPC初始化（ServerBootstrap和Bootstrap）
+
+7.服务启动会启动connect to server，是netty吗？
+不是，是tomcat的服务启动
+
+8.总平台如何识别调用哪个地址的服务?
+在服务治理平台http://prismtest.10101111.com/prism --> 项目管理 --> 应用管理中查看
+
+9.ucadmin的session机制（配合定制的tomcat实现，重写DispatcherServletExtend来保存。）
+
+10.memcache
+11.服务治理平台是怎么样的平台
+12.kafka connecter
+消息队列框架，以文件的形式存储消息流
+
+13.jira
+项目单、需求单、提测工单、上线工单、bug单
+
+14.dozer
+简单、高效的实体转换工具。
+可使用注解、xml方式来配置对象映射，进行实体转换的工具
+
+15.guava和apache-commons-collection和com.google.code.findbugs:jsr305和validation-api
+好东西，可以优雅的写代码
+Optional.
+Preconditions.checkArgument、Strings.isNullOrEmpty
+Maps、Lists、Optional、Predicate
+Collections2.transform、Collections2.filter、Collections2.orderedPermutations、Collections2.permutations
+Iterables.tryFind
+Ordering
+BloomFilter
+LoadingCache、LRPUMap
+
+16.spring component-scan
+Spring:
+<context:component-scan base-package="com.uc">
+	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+</context:component-scan>
+SpringMVC:
+<context:component-scan base-package="com.uc" use-default-filters="false">
+	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+</context:component-scan>
+
+17.idea远程调试
+要让远程服务器运行的代码支持远程调试，则启动的时候必须加上特定的JVM参数，这些参数是：
+-Xdebug -Xrunjdwp:transport=dt_socket,suspend=n,server=y,address=${debug_port}
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=4001
+idea新建remote configuration，配置要调试的IP、PORT
+
+18.字段长度5000
+19.在事务中新建线程
+事务会失效。
+
+20.RPC为什么叫RPC，如何实现RPC服务。
+hessian实现RPC，netty服务实现服务端。如何实现？？？？？
+基于TCP协议。
+
+21、延时消息队列
+22、log4j
+自定义logAppender，通过继承AppenderSkeleton抽象类实现。
+不同类输出不同文件，log4j.logger.XX=XX,AA, log4j.appender.AA=yy。
+同一类输出多个日志文件
+private static Log logger1 = LogFactory.getLog("myTest1");
+private static Log logger2 = LogFactory.getLog("myTest2");
+log4j.logger.myTest1= DEBUG, test1
+log4j.additivity.myTest1 = false//只让它们输出到自己指定的日志中，additivity设为false就不会输出到其它地方啦！
+或
+log4j.logger.myTest1=DEBUG, test1, stdout //stdout里我还想同时输出
+
+23、redis启动过程(包括一直监听)
+redis一直报错问题
+24、双活数据中心
+25、https服务器
+26、redis基础包结构
+27、zookeeper监听机制
+zookeeper的watcher只能一次性的监控节点，不能持续监听节点。
+如果相对节点持续监控，需要传入true或者新的watcher对象，传入true表示监控的对象为上一次的watcher
+NodeCreated 需要用exists(path, true)来持续监控
+NodeDataChanged 需要用getData(path, true, stat)来对节点持续监控
+
+28、nginx配置、分表=============================================重要
+
+28.1 es使用 es数据同步
+使用：dsl查询
+	base-dao-es包提供，由http访问请求
+	•结构化数据(精确值)：比如日期，数字，类型，状态等这些类型的数据，在对他们进行过滤的时候要么符合条件，要么不符合条件，而没有相似这种概念，也就不存在所谓的匹配度。
+    •非结构化数据：即需要进行全文检索的数据，该字段的检索则涉及到相关性，语句分析等操作。通常就是text类型。
+	精确值查找
+    •当进行精确值查找的时候通常使用filter(过滤器)，filter的执行速度非常快(不需要进行评分，在数据量一定的范围内容易被缓存在内存中)。想要提高性能，应该尽可能多的使用过滤器。
+	curl -X GET -H 'Content-Type:application/json' http://localhost:9200/star_message/_doc/_search?pretty -d '{"query":{"bool":{"filter":{"term":{"age":20}}}}}'
+	bitsets结构、es缓存
+	
+	全文检索&分析器
+	相关性：评价结果和查询条件的匹配程度，并根据相关性作为默认的排序条件.
+		•检索词频率：检索词在该文档中出现的频率（出现的次数越多，相关性越高）
+		•反向文档频率：检索词在该索引上所有文档中出现的频率（出现的次数越多，相关性越低）
+		•字段长度准则：在文档中，字段的内容的长度（字段越长，相关性越低）
+
+	
+	分页
+	•from / size   6-36-117 效率越来越低
+	•scroll		   6-70-36  效率成抛物线
+	•search_after  6-6-6效率最高
+	
+	★ 6.X 层级文档
+
+同步：利用zookeeper控制版本信息。zookeeper更新到最新版本信息
+	从数据库同步数据到zk
+	
+	执行任务时，启动一个线程去执行。设置回调函数callback
+	利用map记录正在执行的任务，防止重复执行
+	利用spring bean取出对应dao执行sql查询
+	过程：循环取出一万条数据，循环同步（每次同步1000条）
+		将进度及总数存入redis
+		{
+			先处理子查询nested（FutureTask）
+			查询出数据
+			batchCreateDoc保存到es
+			未查找到相关id的es doc删除
+			记录操作日志、执行日志
+		}
+	休眠10秒
+	最后在callback中删除es存储的旧版本文档
+	
+	监听：数据库变化，canal会给uces推送mq，监听消息进行消费的类是：
+		com.uc.es.module.syn.listener.TableChangeListener
+		详细参考uces/webapp/doc/下的文件
+
+29、aop动态代理 cglib（MethodInterceptor） proxy（InvocationHandler） asm @Interface Proxy
+Enhancer才是老大
+cglib相当于派生一个子类  CGlib方式适用于无需频繁创建的代理
+Proxy InvocationHandler一起，是原生JDK 动态创建实例
+Spring中AOP代理由Spring的IOC容器负责生成、管理，其依赖关系也由IOC容器负责管理
+asm操作class文件
+@Interface注解式的aop，@Aruond
+
+30、限流、熔断、降级
+sentinel主要以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度来帮助保护服务的稳定性
+
+
+31、datalink使用
+基于阿里的otter（基于Canal开源产品，获取数据库增量日志数据）开发
+利用mysql的bin-log功能
+额外：Canal配合kafka/RocketMQ使用。Runtime.addShutdownHook
+
+32、docker/k8s
+33、链路监控
+美团cat、log4j的MDC
+ELK框架
+Spring Cloud + SkyWalking框架
+zabbix
+
+34、集成部署
+jenkins
+
+35、秒杀流程
+校验库存-->更新库存-->下单成功
+数据库保存采用乐观锁机制(version) --> 防止无效订单
+分布式限流（基于应用限流，令牌桶算法RateLimiter） --> 防止请求量过大导致服务器压力
+Redis 缓存 --> 库存预先缓存到redis，减少校验库存查询
+kafka --> 异步处理请求，完成库存校验后，发送消息，将更新库存和下订单放在消费端
+原则
+1)不要整个系统宕机。
+2)即使系统故障，也不要将错误数据展示出来。
+3)尽量保持公平公正。
+技术攻关
+1)用户秒杀开始前，通过不断刷新浏览器来保证不会错过秒杀活动。
+2)频繁的访问程序、数据库会对应用服务器和数据库服务器造成负载压力。
+3)网络带宽的问题比超过平时好多倍。
+4)避免直接下单。
+应对策略
+1)秒杀系统独立部署
+  为了避免短时间内的大访问量对现有网站业务造成的冲击，可以将秒杀系统独立部署。
+  如果需要还可以使用独立域名，使其与网站完全隔离。
+  即使秒杀系统崩溃了，也不会对网站造成影响。
+2)秒杀商品页面静态化
+  将商品描述、参数、详情，全部写到一个静态页面，不用进行程序的逻辑处理，不需访问数据库。
+  不用部署动态的服务器和数据库服务器。
+3)租借秒杀活动的网络带宽
+  因为秒杀新增的网络带宽，必须和运营商重新购买或租借带宽。
+  为了减轻服务器的压力，需要将秒杀商品页面缓存在CDN,同样CDN服务器也需要临时租借带宽。
+4)动态生成随机下单页面的URL
+  为了避免用户直接访问下单URL,需要将URL动态化，用随机数作为参数，只能秒杀开始的时候才生成。
+  获取秒杀url接口中，返回一个服务端随机数（MD5），下单URL中带上随机数
+
+36、心跳机制
+定时器 
+
+37、hbase使用
+数据清洗？hbase+solr+mongo
+
+38、wrapper包装
+39、spring事务、数据库事务
+
+
+40、看zookeeper包源码
+41、JMeter？？并发测试？
+42、为什么要用es存储公共数据、不用redis存储
+43、zk监听机制，例如注册中心，是服务提供者监听-->是主动获取还是用监听机制
+44、一致性hash
+45、tomcat启动时，启动了多少个线程
+46、一个操作添加了分布式锁，还需要添加事务吗？
+47、统一缓存注解的开发
+48、concurrentHashMap
+https://blog.csdn.net/weixin_44460333/article/details/86770169
+
+linux
+1、linux 挂载
+2、linux 权限系统 （用户、组、文件关系） 
+3、ftp服务器（文件图片服务器）
+ftp、nginx、配置文件图片服务器
+PORT（主动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请求，服务器接受连接，建立一条命令链路。当需要传送数据时，客户端在命令链路上用PORT命令告诉服务器：“我打开了XXXX端口，你过来连接我”。于是服务器从20端口向客户端的XXXX端口发送连接请求，建立一条数据链路来传送数据。 
+PASV（被动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请求，服务器接受连接，建立一条命令链路。当需要传送数据时，服务器在命令链路上用PASV命令告诉客户端：“我打开了XXXX端口，你过来连接我”。于是客户端向服务器的XXXX端口发送连接请求，建立一条数据链路来传送数据。
+ 
+一、客户端只有内网IP，没有公网IP 
+从上面的FTP基础知识可知，如果用PORT方式，因为客户端没有公网IP，FTP将无法连接客户端建立数据链路。因此，在这种情况下，客户端必须要用PASV方式，才能连接FTP服务器。大部分人登录不上，典型的错误原因就是因为客户端没有公网IP，但用了IE作为FTP客户端来登录（IE默认使用PORT方式）。 
+二、客户端有公网IP，但安装了防火墙 
+如果用PASV方式登录FTP服务器，因为建立数据链路的时候，是由客户端向服务器发送连接请求，没有问题。反过来，如果用PORT方式登录FTP服务器，因为建立数据链路的时候，是由服务器向客户端发送连接请求，此时连接请求会被防火墙拦截。如果要用PORT方式登录FTP服务器，请在防火墙上打开1024以上的高端端口。
+ 
+https://www.linuxidc.com/Linux/2017-11/148518.htm
+服务器域名？访问域名？
+
+？服务框架入门
+http://wiki.10101111.com/pages/viewpage.action?pageId=26772157
+
+？任务调度配置
+http://wiki.10101111.com/pages/viewpage.action?pageId=100860077

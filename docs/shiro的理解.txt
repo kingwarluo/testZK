@@ -1,0 +1,13 @@
+ShiroFilterFactoryBean初始化securityManager、filters，向securityManager注入realm、sessionManager
+filters：作为认证的核心
+
+1、对登录流程的理解
+AuthenticationToken
+Realm
+Subject
+SubjectContext
+
+2、对认证流程的理解
+
+
+3、对鉴权流程的理解
