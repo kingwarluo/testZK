@@ -1,0 +1,485 @@
+Message-ID: <1677554679.9812.1592901053667.JavaMail.root@wiki01.mgr.prod.bj2>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_9811_2590313.1592901053666"
+
+------=_Part_9811_2590313.1592901053666
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>2.ES-=E6=98=A0=E5=B0=84=E5=9F=BA=E7=A1=80</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>2.ES-=E6=98=A0=E5=B0=84=E5=9F=BA=E7=A1=80</h1>
+    <div class=3D"Section1">
+        <h4 id=3D"id-2.ES-=E6=98=A0=E5=B0=84=E5=9F=BA=E7=A1=80-mapping=E6=
+=A6=82=E8=BF=B0">mapping=E6=A6=82=E8=BF=B0</h4>
+<p>mapping =E5=8F=AF=E4=BB=A5=E7=90=86=E8=A7=A3=E4=B8=BA=E6=95=B0=E6=8D=AE=
+=E5=BA=93=E4=B8=AD=E8=A1=A8=E7=9A=84DDL=EF=BC=8C=E4=B8=8D=E5=90=8C=E7=9A=84=
+=E6=98=AF=EF=BC=9A=E5=B8=B8=E8=A7=84=E7=9A=84=E5=85=B3=E7=B3=BB=E5=9E=8B=E6=
+=95=B0=E6=8D=AE=E5=BA=93=E5=9C=A8=E8=BF=9B=E8=A1=8C=E6=95=B0=E6=8D=AE=E6=8F=
+=92=E5=85=A5=E7=9A=84=E6=97=B6=E5=80=99=E9=9C=80=E8=A6=81=E5=85=88=E8=BF=9B=
+=E8=A1=8C=E7=B1=BB=E5=9E=8B=E7=9A=84=E5=A3=B0=E6=98=8E=EF=BC=8C=E8=80=8CES=
+=E5=9C=A8=E8=BF=99=E9=87=8C=E5=81=9A=E5=88=B0=E6=9B=B4=E8=BF=9B=E4=B8=80=E6=
+=AD=A5=EF=BC=8C=E5=81=9A=E5=88=B0=E4=BA=86=E7=B1=BB=E5=9E=8B=E7=9A=84=E6=8E=
+=A8=E6=BC=94(=E5=9C=A8=E4=BD=A0=E6=B2=A1=E6=9C=89=E5=A3=B0=E6=98=8E=E4=BB=
+=BB=E4=BD=95=E8=A7=84=E7=BA=A6=E7=9A=84=E6=97=B6=E5=80=99=EF=BC=8C=E4=BC=9A=
+=E5=8A=A8=E6=80=81=E7=9A=84=E8=BF=9B=E8=A1=8C=E7=B1=BB=E5=9E=8B=E7=9A=84=E6=
+=8E=A8=E5=AF=BC=EF=BC=8C=E4=BB=8E=E8=80=8C=E5=8A=A8=E6=80=81=E7=9A=84=E7=BB=
+=99=E4=BD=A0=E7=94=9F=E6=88=90=E4=B8=80=E4=B8=AAmapping=EF=BC=8C<strong>=E5=
+=AF=B9=E5=BA=94=E5=AD=97=E6=AE=B5=E7=9A=84=E7=BA=A6=E6=9D=9F=E4=B8=80=E6=97=
+=A6=E7=94=9F=E6=88=90=E5=88=99=E4=B8=8D=E5=8F=AF=E6=9B=B4=E6=94=B9</strong>=
+=E3=80=82=E4=BE=8B=E5=A6=82=E4=BD=A0=E7=AC=AC=E4=B8=80=E6=AC=A1=E5=B0=86nam=
+e=E8=B5=8B=E4=BA=88float=E7=B1=BB=E5=9E=8B=EF=BC=8C=E7=84=B6=E5=90=8E=E4=BD=
+=A0=E6=83=B3=E8=A6=81=E5=86=8D=E6=8F=92=E5=85=A5=E5=AD=97=E7=AC=A6=E4=B8=B2=
+=E7=B1=BB=E5=9E=8B=E7=9A=84=E6=95=B0=E6=8D=AE=E5=88=B0name=E4=B8=AD=E6=98=
+=AF=E4=B8=8D=E8=A2=AB=E5=85=81=E8=AE=B8=E7=9A=84)=E3=80=82</p>
+<p>=E4=BB=A5=E4=B8=8B=E6=98=AF=E6=9F=A5=E7=9C=8B=E7=B4=A2=E5=BC=95mapping=
+=E4=BF=A1=E6=81=AF=E7=9A=84=E8=AF=B7=E6=B1=82URL</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X GET -H 'Content-type:application/json' http://localhost:92=
+00/analyze_idx_1/_mapping?pretty</pre>=20
+</div>=20
+</div>
+<h4 id=3D"id-2.ES-=E6=98=A0=E5=B0=84=E5=9F=BA=E7=A1=80-5.2.=E6=98=A0=E5=B0=
+=84=E4=BD=9C=E7=94=A8=E4=B8=BE=E4=BE=8B">5.2.=E6=98=A0=E5=B0=84=E4=BD=9C=E7=
+=94=A8=E4=B8=BE=E4=BE=8B</h4>
+<ul>
+<li>=E5=A3=B0=E6=98=8E=E5=93=AA=E4=BA=9B=E5=AD=97=E6=AE=B5=E5=8F=AF=E4=BB=
+=A5=E5=85=A8=E6=96=87=E7=B4=A2=E5=BC=95=E3=80=82</li>
+<li>=E5=93=AA=E4=BA=9B=E5=AD=97=E6=AE=B5=E5=8C=85=E5=90=AB=E6=95=B0=E5=AD=
+=97=E3=80=81=E6=97=A5=E6=9C=9F=E6=88=96=E5=9C=B0=E7=90=86=E4=BD=8D=E7=BD=AE=
+=E3=80=82</li>
+<li class=3D"listitem">=E6=98=AF=E5=90=A6=E5=BA=94=E5=B0=86=E6=96=87=E6=A1=
+=A3=E4=B8=AD=E6=89=80=E6=9C=89=E5=AD=97=E6=AE=B5=E7=9A=84=E5=80=BC=E7=B4=A2=
+=E5=BC=95=E5=88=B0<a class=3D"external-link" href=3D"https://www.elastic.co=
+/guide/en/elasticsearch/reference/current/mapping-all-field.html" rel=3D"no=
+follow" title=3D"_all=E5=AD=97=E6=AE=B5"><code class=3D"literal">_all</code=
+></a>=E5=AD=97=E6=AE=B5=E4=B8=AD=E3=80=82</li>
+<li class=3D"listitem">=E5=AE=9A=E4=B9=89=E6=97=A5=E6=9C=9F=E5=AD=97=E6=AE=
+=B5=E7=9A=84<a class=3D"external-link" href=3D"https://www.elastic.co/guide=
+/en/elasticsearch/reference/current/mapping-date-format.html" rel=3D"nofoll=
+ow" title=3D"=E6=A0=BC=E5=BC=8F">=E6=A0=BC=E5=BC=8F</a>=E3=80=82</li>
+<li class=3D"listitem">=E8=BF=98=E6=9C=89=E5=BE=88=E5=A4=9A=E5=85=B6=E4=BB=
+=96=E5=BC=BA=E5=A4=A7=E7=9A=84=E5=8A=9F=E8=83=BD....</li>
+</ul>
+<h4 class=3D"listitem" id=3D"id-2.ES-=E6=98=A0=E5=B0=84=E5=9F=BA=E7=A1=80-5=
+.3.=E6=98=A0=E5=B0=84=E7=B1=BB=E5=9E=8B">5.3.=E6=98=A0=E5=B0=84=E7=B1=BB=E5=
+=9E=8B</h4>
+<ul>
+<li><a class=3D"external-link" href=3D"https://www.elastic.co/guide/en/elas=
+ticsearch/reference/current/mapping-fields.html" rel=3D"nofollow" title=3D"=
+Meta-Fields">Meta-fields</a>(=E5=85=83=E6=95=B0=E6=8D=AE)<br>=E5=AE=9A=E4=
+=B9=89=E5=A6=82=E4=BD=95=E5=A4=84=E7=90=86=E6=96=87=E6=A1=A3=E4=BB=A5=E5=8F=
+=8A=E6=96=87=E6=A1=A3=E4=B9=8B=E9=97=B4=E5=85=B3=E7=B3=BB=E7=9A=84=E6=95=B0=
+=E6=8D=AE=E5=8F=AB=E5=81=9A=E5=85=83=E6=95=B0=E6=8D=AE=EF=BC=8C=E6=AF=94=E5=
+=A6=82=EF=BC=9A_index, _source,&nbsp; _id =E7=AD=89=E7=AD=89</li>
+<li><a class=3D"external-link" href=3D"https://www.elastic.co/guide/en/elas=
+ticsearch/reference/current/mapping-types.html" rel=3D"nofollow" title=3D"F=
+ield datatypes">Fields</a><span style=3D"color: rgb(43,69,144);">&nbsp;</sp=
+an>and properties<br>=E4=B8=80=E4=B8=AAmapping=E5=8C=85=E5=90=AB=E4=BA=86=
+=E8=8B=A5=E5=B9=B2=E4=B8=AA=E5=AD=97=E6=AE=B5=E4=BB=A5=E5=8F=8A=E5=B1=9E=E6=
+=80=A7=E7=9A=84=E5=A3=B0=E6=98=8E</li>
+</ul>
+<h4 id=3D"id-2.ES-=E6=98=A0=E5=B0=84=E5=9F=BA=E7=A1=80-5.4.=E5=AD=97=E6=AE=
+=B5=E7=B1=BB=E5=9E=8B">5.4.=E5=AD=97=E6=AE=B5=E7=B1=BB=E5=9E=8B</h4>
+<p>=E6=AF=8F=E4=B8=80=E4=B8=AA=E5=AD=97=E6=AE=B5=E9=83=BD=E6=9C=89=E5=AD=97=
+=E6=AE=B5=E7=B1=BB=E5=9E=8B=EF=BC=8C=E5=B8=B8=E7=94=A8=E7=9A=84=E5=AD=97=E6=
+=AE=B5=E7=B1=BB=E5=9E=8B=E6=9C=89:&nbsp;</p>
+<ul>
+<li>=E5=AD=97=E7=AC=A6=E4=B8=B2=E7=B1=BB=E5=9E=8B:&nbsp;<code class=3D"lite=
+ral">text,keyword</code></li>
+<li>=E6=95=B0=E5=AD=97=E7=B1=BB=E5=9E=8B=EF=BC=9A<code class=3D"literal">lo=
+ng<span style=3D"color: rgb(68,68,68);">,&nbsp;</span></code><code class=3D=
+"literal">integer</code><span style=3D"color: rgb(68,68,68);">,&nbsp;</span=
+><code class=3D"literal">short</code><span style=3D"color: rgb(68,68,68);">=
+,&nbsp;</span><code class=3D"literal">byte</code><span style=3D"color: rgb(=
+68,68,68);">,&nbsp;</span><code class=3D"literal">double</code><span style=
+=3D"color: rgb(68,68,68);">,&nbsp;</span><code class=3D"literal">float</cod=
+e><span style=3D"color: rgb(68,68,68);">,&nbsp;</span><code class=3D"litera=
+l">half_float</code><span style=3D"color: rgb(68,68,68);">,&nbsp;</span><co=
+de class=3D"literal">scaled_float</code></li>
+<li><span>=E6=97=B6=E9=97=B4=E7=B1=BB=E5=9E=8B=EF=BC=9Adate</span></li>
+<li><span>=E5=B8=83=E5=B0=94=E7=B1=BB=E5=9E=8B=EF=BC=9Aboolean</span></li>
+<li><span>=E5=AD=97=E8=8A=82=E7=B1=BB=E5=9E=8B=EF=BC=9Abinary</span></li>
+<li><span>=E8=8C=83=E5=9B=B4=E7=B1=BB=E5=9E=8B=EF=BC=9A<code class=3D"liter=
+al">integer_range</code><span style=3D"color: rgb(68,68,68);">,&nbsp;</span=
+><code class=3D"literal">float_range</code><span style=3D"color: rgb(68,68,=
+68);">,&nbsp;</span><code class=3D"literal">long_range</code><span style=3D=
+"color: rgb(68,68,68);">,&nbsp;</span><code class=3D"literal">double_range<=
+/code><span style=3D"color: rgb(68,68,68);">,&nbsp;</span><code class=3D"li=
+teral">date_range</code></span></li>
+<li><span><code class=3D"literal">=E6=9B=B4=E5=A4=9A=E5=85=B6=E4=BB=96=E7=
+=B1=BB=E5=9E=8B=E8=AF=A6=E8=A7=81=EF=BC=9A<a class=3D"external-link" href=
+=3D"https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping=
+-types.html" rel=3D"nofollow">https://www.elastic.co/guide/en/elasticsearch=
+/reference/current/mapping-types.html</a></code></span></li>
+</ul>
+<p><span>=E5=88=9B=E5=BB=BA=E7=B4=A2=E5=BC=95=E6=97=B6=E5=88=9B=E5=BB=BAmap=
+ping=E4=BF=A1=E6=81=AF=EF=BC=9A</span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X PUT -H 'Content-type:application/json' http://localhost:92=
+00/mapping_demo_3?pretty \
+-d '{
+    "mappings":{
+        "demo_type":{  //demo_type =E4=B8=BA=E7=B4=A2=E5=BC=95=E7=B1=BB=E5=
+=9E=8B=EF=BC=8C=E5=9C=A86.0=E4=B9=8B=E5=90=8E=E7=9A=84=E7=89=88=E6=9C=AC=E8=
+=AF=A5=E7=B1=BB=E5=9E=8B=E6=AF=8F=E4=B8=AA=E7=B4=A2=E5=BC=95=E5=8F=AA=E8=83=
+=BD=E5=8F=88=E4=B8=80=E4=B8=AA,=E5=B0=9D=E8=AF=95=E5=88=9B=E5=BB=BA=E7=AC=
+=AC=E4=BA=8C=E4=B8=AA=E7=B1=BB=E5=9E=8B=E7=9A=84=E6=97=B6=E5=80=99es
+            "properties":{
+                "name":{
+                    "type":"keyword"
+                },
+                "remark":{
+                    "type":"text"
+                },
+                "age":{
+                    "type":"integer"
+                },
+                "work_time":{
+       =09=09=09=09"type":"date_range",
+=09=09=09=09=09"format":"yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+=09=09=09=09}
+            }
+        }
+    }
+}'</pre>=20
+</div>=20
+</div>
+<p><span>=E6=9F=A5=E7=9C=8B=E7=B4=A2=E5=BC=95mapping=E4=BF=A1=E6=81=AF=EF=
+=BC=9A</span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X GET -H 'Content-type:application/json' http://localhost:92=
+00/demo_index_2/_mapping?pretty</pre>=20
+</div>=20
+</div>
+<p>=E6=96=B0=E5=A2=9E=E4=B8=80=E4=B8=AA=E6=96=87=E6=A1=A3=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X PUT -H 'Content-Type:application/json' http://localhost:92=
+00/mapping_demo_4/_doc/1?pretty  -d \
+'{
+    "name":"my name is tutu",
+    "remark":"my name is tutu",
+    "age":18,
+    "work_time":{
+        "gte":"2018-01-01 08:00:00",
+        "lte":"2018-12-31"
+    }
+}'</pre>=20
+</div>=20
+</div>
+<p><span><strong>String=E5=9C=A8ES5.0=E4=B9=8B=E5=90=8E=E5=B0=B1=E8=A2=AB=
+=E6=8B=86=E6=88=90=E4=BA=86=E4=B8=A4=E4=B8=AA=E7=B1=BB=E5=9E=8B: keyword =
+=E5=92=8C text=E3=80=82=E5=9C=A8=E5=8A=A8=E6=80=81=E5=AD=97=E7=AC=A6=E4=B8=
+=B2=E6=98=A0=E5=B0=84=E7=9A=84=E6=97=B6=E5=80=99=EF=BC=8C=E4=BC=9A=E5=B0=86=
+=E5=AD=97=E7=AC=A6=E4=B8=B2=E7=B1=BB=E5=9E=8B=E8=87=AA=E5=8A=A8=E6=98=A0=E5=
+=B0=84=E6=88=90text=E5=92=8Ckeyword=E4=B8=A4=E7=A7=8D=E7=B1=BB=E5=9E=8B=E7=
+=9A=84=E7=BB=84=E5=90=88</strong>=EF=BC=8C=E5=8D=B3=EF=BC=9A</span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: actionscript3; gutter: false; theme: Confluence; collapse: true" data-the=
+me=3D"Confluence">{
+    "type":"text",
+    "fields":{
+        "keyword":{
+            "type":"keyword",
+            "ignore_above":256
+        }
+    }
+}</pre>=20
+</div>=20
+</div>
+<p><span><strong>text</strong>:=E6=94=AF=E6=8C=81=E5=88=86=E8=AF=8D=E7=B4=
+=A2=E5=BC=95=EF=BC=8C=E6=94=AF=E6=8C=81=E6=A8=A1=E7=B3=8A&amp;=E7=B2=BE=E7=
+=A1=AE=E6=9F=A5=E8=AF=A2=EF=BC=8C=E4=B8=8D=E6=94=AF=E6=8C=81=E8=81=9A=E5=90=
+=88=E3=80=82=E4=B8=80=E8=88=AC=E7=94=A8=E4=BA=8E=E5=85=A8=E6=96=87=E6=90=9C=
+=E7=B4=A2=EF=BC=8C=E6=AF=94=E5=A6=82=E5=8D=9A=E5=AE=A2=E5=86=85=E5=AE=B9=E6=
+=A3=80=E7=B4=A2=EF=BC=8C=E5=9C=A8=E6=A3=80=E7=B4=A2=E5=89=8D=E9=9C=80=E8=A6=
+=81=E5=AF=B9=E5=86=85=E5=AE=B9=E8=BF=9B=E8=A1=8C=E5=88=86=E8=AF=8D=E6=93=8D=
+=E4=BD=9C=EF=BC=8C=E4=B8=8D=E8=83=BD=E7=94=A8=E8=AF=A5=E5=AD=97=E6=AE=B5=E8=
+=BF=9B=E8=A1=8C=E6=8E=92=E5=BA=8F=EF=BC=8C=E4=B8=80=E8=88=AC=E4=B8=8D=E7=94=
+=A8=E6=9D=A5=E5=81=9A=E8=81=9A=E5=90=88=E6=93=8D=E4=BD=9C=E3=80=82</span></=
+p>
+<p><span><strong>keyword</strong>:=E4=B8=8D=E6=94=AF=E6=8C=81=E5=88=86=E8=
+=AF=8D=E7=B4=A2=E5=BC=95=EF=BC=8C=E6=94=AF=E6=8C=81=E6=A8=A1=E7=B3=8A&amp;=
+=E7=B2=BE=E7=A1=AE=E6=9F=A5=E8=AF=A2=EF=BC=8C=E6=94=AF=E6=8C=81=E8=81=9A=E5=
+=90=88=E3=80=82=E4=B8=80=E8=88=AC=E7=94=A8=E6=9D=A5=E7=B4=A2=E5=BC=95=E7=BB=
+=93=E6=9E=84=E5=8C=96=E7=9A=84=E5=86=85=E5=AE=B9(=E5=A6=82=E9=82=AE=E7=AE=
+=B1=E5=9C=B0=E5=9D=80=EF=BC=8C=E7=94=B5=E8=AF=9D=E5=8F=B7=E7=A0=81=EF=BC=8C=
+=E7=8A=B6=E6=80=81=EF=BC=8C=E6=80=A7=E5=88=AB)=E3=80=82=E4=B8=80=E8=88=AC=
+=E7=94=A8=E6=9D=A5=E8=BF=9B=E8=A1=8C=E7=8A=B6=E6=80=81=E8=BF=87=E6=BB=A4=E3=
+=80=81=E8=81=9A=E5=90=88=E3=80=81=E6=8E=92=E5=BA=8F=E6=93=8D=E4=BD=9C=E3=80=
+=82</span></p>
+<p><span><br></span></p>
+    </div>
+</body>
+</html>
+------=_Part_9811_2590313.1592901053666--

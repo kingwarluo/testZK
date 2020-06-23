@@ -1,0 +1,817 @@
+Message-ID: <1448420221.9630.1592900993387.JavaMail.root@wiki01.mgr.prod.bj2>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_9629_414726350.1592900992538"
+
+------=_Part_9629_414726350.1592900992538
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>1.ES-=E5=9F=BA=E7=A1=80=E7=9F=A5=E8=AF=86</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>1.ES-=E5=9F=BA=E7=A1=80=E7=9F=A5=E8=AF=86</h1>
+    <div class=3D"Section1">
+        <h3 id=3D"id-1.ES-=E5=9F=BA=E7=A1=80=E7=9F=A5=E8=AF=86-1.=E5=9F=BA=
+=E7=A1=80=E6=A6=82=E5=BF=B5">1.=E5=9F=BA=E7=A1=80=E6=A6=82=E5=BF=B5</h3>
+<ul>
+<li>=E5=87=86=E5=AE=9E=E6=97=B6(Near Realtime)=EF=BC=9Aes=E6=98=AF=E4=B8=80=
+=E4=B8=AA=E8=BF=91=E5=AE=9E=E6=97=B6=E6=90=9C=E7=B4=A2=E5=B9=B3=E5=8F=B0=EF=
+=BC=8C=E8=BF=99=E5=B0=B1=E8=AF=B4=E6=98=8E=E6=9F=A5=E8=AF=A2=E6=9C=89=E4=B8=
+=80=E5=AE=9A=E7=9A=84=E5=BB=B6=E8=BF=9F(=E5=A4=A7=E6=A6=82=E4=B8=BA1=E7=A7=
+=92)=EF=BC=8C=E7=9B=B8=E5=AF=B9=E6=95=B0=E6=8D=AE=E5=BA=93=E6=9D=A5=E8=AF=
+=B4=EF=BC=8C=E9=80=9F=E5=BA=A6=E5=81=8F=E6=85=A2=EF=BC=8C=E5=A6=82=E8=A6=81=
+=E4=BD=BF=E7=94=A8=E9=9C=80=E8=A6=81=E7=BB=BC=E5=90=88=E8=80=83=E8=99=91=E3=
+=80=82</li>
+<li>=E6=94=AF=E6=8C=81=E9=9B=86=E7=BE=A4(Cluster)=EF=BC=9Aes=E9=9B=86=E7=BE=
+=A4=E4=BD=BF=E7=94=A8=E9=9B=86=E7=BE=A4=E5=90=8D=E7=A7=B0=E6=9D=A5=E5=94=AF=
+=E4=B8=80=E6=A0=87=E8=AF=86=E4=B8=80=E4=B8=AA=E9=9B=86=E7=BE=A4=E3=80=82</l=
+i>
+<li>=E8=8A=82=E7=82=B9(Node)=EF=BC=9Aes=E5=8D=95=E4=B8=AA=E5=AE=9E=E4=BE=8B=
+=E4=B8=BA=E4=B8=80=E4=B8=AA=E8=8A=82=E7=82=B9=EF=BC=8C=E5=A4=9A=E4=B8=AA=E8=
+=8A=82=E7=82=B9=E7=BB=84=E6=88=90=E4=B8=80=E4=B8=AA=E9=9B=86=E7=BE=A4=EF=BC=
+=8C=E7=94=B1=E4=BA=8Ees=E9=BB=98=E8=AE=A4=E9=9B=86=E7=BE=A4=E5=B1=9E=E6=80=
+=A7=EF=BC=8C=E9=BB=98=E8=AE=A4=E7=9A=84=E9=9B=86=E7=BE=A4=E5=90=8D=E7=A7=B0=
+=E4=B8=BAelasticsearch=E3=80=82=E6=89=80=E4=BB=A5=E5=8D=95=E4=B8=AA=E8=8A=
+=82=E7=82=B9=E5=8D=B3=E4=B8=BA=E4=B8=80=E4=B8=AA=E5=8D=95=E8=8A=82=E7=82=B9=
+=E7=9A=84=E9=9B=86=E7=BE=A4=E3=80=82</li>
+<li>=E7=B4=A2=E5=BC=95(Index)=EF=BC=9A=E7=9B=B8=E5=BD=93=E4=BA=8E=E6=95=B0=
+=E6=8D=AE=E5=BA=93=E4=B8=AD=E7=9A=84=E8=A1=A8=E3=80=82=E7=94=B1=E7=B4=A2=E5=
+=BC=95=E5=90=8D=E7=A7=B0=E6=9D=A5=E6=A0=87=E8=AF=86=EF=BC=8C=E7=B4=A2=E5=BC=
+=95=E5=90=8D=E7=A7=B0=E5=BF=85=E9=A1=BB=E5=85=A8=E9=83=A8=E5=B0=8F=E5=86=99=
+=E3=80=82</li>
+<li>=E7=B1=BB=E5=88=AB(Type)=EF=BC=9A=E5=AF=B9=E4=BA=8E=E7=B4=A2=E5=BC=95=
+=E4=B8=AD=E6=95=B0=E6=8D=AE=E7=9A=84=E9=80=BB=E8=BE=91=E5=8C=BA=E5=88=86=EF=
+=BC=8C(=E5=9C=A8es 6.0.0=E7=89=88=E6=9C=AC=E4=B8=AD=E8=A2=AB=E5=BA=9F=E5=BC=
+=83,=E6=89=80=E6=9C=89=E7=9A=84=E7=B4=A2=E5=BC=95=E7=9A=84=E7=B1=BB=E5=9E=
+=8B=E9=83=BD=E9=BB=98=E8=AE=A4=E4=B8=BA_doc,=E5=8F=AF=E4=BB=A5=E8=87=AA=E5=
+=B7=B1=E6=8C=87=E5=AE=9A=E7=B1=BB=E5=9E=8B=E5=90=8D=E7=A7=B0=EF=BC=8C=E4=BD=
+=86=E6=98=AF=E4=B8=80=E4=B8=AA=E7=B4=A2=E5=BC=95=E5=8F=AA=E8=83=BD=E6=9C=89=
+=E4=B8=80=E4=B8=AA=E7=B1=BB=E5=9E=8B)</li>
+<li>=E6=96=87=E6=A1=A3(Document)=EF=BC=9A=E5=8F=AF=E4=BB=A5=E8=A2=AB=E7=B4=
+=A2=E5=BC=95=E7=9A=84=E6=9C=80=E5=9F=BA=E6=9C=AC=E7=9A=84=E5=8D=95=E4=BD=8D=
+=EF=BC=8C=E4=B8=BAJSON=E6=A0=BC=E5=BC=8F=E3=80=82=EF=BC=88=E7=9B=B8=E5=BD=
+=93=E4=BA=8E=E6=95=B0=E6=8D=AE=E5=BA=93=E4=B8=AD=E7=9A=84=E6=95=B0=E6=8D=AE=
+=E8=A1=8C=EF=BC=89</li>
+<li>=E5=88=86=E7=89=87(Shards)=EF=BC=9A=E6=8F=90=E9=AB=98=E7=B4=A2=E5=BC=95=
+=E6=9F=A5=E8=AF=A2=E6=80=A7=E8=83=BD=E7=9A=84=E6=89=8B=E6=AE=B5=E3=80=82=E5=
+=B0=86=E5=8D=95=E4=B8=AA=E7=B4=A2=E5=BC=95=E5=88=86=E6=95=A3=E5=9C=A8=E4=B8=
+=8D=E5=90=8C=E7=9A=84=E5=AE=9E=E4=BE=8B=E4=B8=AD=E3=80=82=E9=BB=98=E8=AE=A4=
+=E6=83=85=E5=86=B5=E4=B8=8B=E6=AF=8F=E4=B8=AA=E7=B4=A2=E5=BC=95=E4=BC=9A=E5=
+=88=86=E9=85=8D5=E4=B8=AA=E5=88=86=E7=89=87</li>
+<li>=E5=89=AF=E6=9C=AC(Replicas)=EF=BC=9A=E6=95=85=E9=9A=9C=E8=BD=AC=E7=A7=
+=BB=EF=BC=8C=E4=B8=8D=E4=B8=8E=E4=B8=BB=E8=8A=82=E7=82=B9=E5=88=86=E9=85=8D=
+=E5=9C=A8=E5=90=8C=E4=B8=80=E4=B8=AA=E5=AE=9E=E4=BE=8B=E4=B8=AD=E3=80=82=E9=
+=BB=98=E8=AE=A4=E6=83=85=E5=86=B5=E4=B8=8B=E4=BC=9A=E6=9C=89=E4=B8=80=E4=B8=
+=AA=E5=89=AF=E6=9C=AC(=E5=8D=95=E5=AE=9E=E4=BE=8B=E9=9B=86=E7=BE=A4=E6=B2=
+=A1=E6=9C=89=E5=89=AF=E6=9C=AC)</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;eg. =E6=AF=8F=E4=B8=AA=E5=88=86=E7=89=87=E9=
+=83=BD=E6=98=AF=E4=B8=80=E4=B8=AALucene=E7=B4=A2=E5=BC=95=E3=80=82=E5=8D=95=
+=E4=B8=AALucene=E7=B4=A2=E5=BC=95=E4=B8=AD=E5=8F=AF=E4=BB=A5=E5=8C=85=E5=90=
+=AB=E7=9A=84=E6=9C=80=E5=A4=A7=E6=96=87=E6=A1=A3=E6=95=B0=E9=87=8F=E4=B8=BA=
+ 2147483519(Integer.MAX_VALUE - 128) =E3=80=82=E4=B9=9F=E5=8F=AF=E4=BB=A5=
+=E8=87=AA=E5=B7=B1=E6=8E=A7=E5=88=B6=E5=88=86=E7=89=87=E6=96=87=E6=A1=A3=E4=
+=B8=AA=E6=95=B0=E9=99=90=E5=88=B6=E3=80=82</p>
+<h3 id=3D"id-1.ES-=E5=9F=BA=E7=A1=80=E7=9F=A5=E8=AF=86-2.ES=E7=9A=84=E5=AE=
+=89=E8=A3=85">2.ES=E7=9A=84=E5=AE=89=E8=A3=85</h3>
+<ul>
+<li>es=E5=BD=93=E5=89=8D=E7=89=88=E6=9C=AC=E6=98=AF6.5.0=EF=BC=8C=E5=AE=89=
+=E8=A3=85=E8=AF=A5=E7=89=88=E6=9C=AC=E9=9C=80=E8=A6=81java=E7=89=88=E6=9C=
+=AC=E4=B8=8D=E4=BD=8E=E4=BA=8E 1.8 =E3=80=82</li>
+<li>tar=E5=AE=89=E8=A3=85=E6=96=B9=E5=BC=8F=EF=BC=9A<br>
+<ul>
+<li><p class=3D"auto-cursor-target">=E4=B8=8B=E8=BD=BD=E5=AF=B9=E5=BA=94=E7=
+=9A=84tar=E5=8C=85=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/el=
+asticsearch-6.5.0.tar.gz
+# =E8=A7=A3=E5=8E=8B
+tar -xvf elasticsearch-6.5.0.tar.gz
+# =E5=90=AF=E5=8A=A8
+./elasticsearch</pre>=20
+</div>=20
+</div></li>
+</ul></li>
+<li><p class=3D"auto-cursor-target">=E5=85=B7=E4=BD=93=E5=AE=89=E8=A3=85=E6=
+=95=99=E7=A8=8B=E8=AF=A6=E8=A7=81=E5=AE=98=E7=BD=91=EF=BC=9A<a class=3D"ext=
+ernal-link" href=3D"https://www.elastic.co/guide/en/elasticsearch/reference=
+/current/_installation.html" rel=3D"nofollow">https://www.elastic.co/guide/=
+en/elasticsearch/reference/current/_installation.html</a>=E3=80=82=E5=A6=82=
+=E4=B8=8B=E4=B8=BA=E5=AE=89=E8=A3=85=E6=88=90=E5=8A=9F=E5=90=8E=E6=98=BE=E7=
+=A4=BA=E7=9A=84=E7=BB=93=E6=9E=9C=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">=3D=3D&gt; Downloading https://artifacts.elastic.co/downloads/elas=
+ticsearch/elasticsearch-6.5.0.tar.gz
+######################################################################## 10=
+0.0%
+=3D=3D&gt; /usr/local/Cellar/elasticsearch/6.5.0/bin/elasticsearch-keystore=
+ create
+=3D=3D&gt; Caveats
+Data:    /usr/local/var/lib/elasticsearch/elasticsearch_tutu/
+Logs:    /usr/local/var/log/elasticsearch/elasticsearch_tutu.log
+Plugins: /usr/local/var/elasticsearch/plugins/
+Config:  /usr/local/etc/elasticsearch/
+
+To have launchd start elasticsearch now and restart at login:
+  brew services start elasticsearch
+Or, if you don't want/need a background service you can just run:
+  elasticsearch
+=3D=3D&gt; Summary
+/usr/local/Cellar/elasticsearch/6.5.0: 336 files, 160MB, built in 4 minutes=
+ 49 seconds</pre>=20
+</div>=20
+</div><p class=3D"auto-cursor-target">=E5=A6=82=E4=B8=8A=E6=98=AFes=E5=AE=
+=89=E8=A3=85=E6=88=90=E5=8A=9F=E4=B9=8B=E5=90=8E=E7=9A=84=E6=8F=90=E7=A4=BA=
+=E3=80=82</p></li>
+</ul>
+<h3 id=3D"id-1.ES-=E5=9F=BA=E7=A1=80=E7=9F=A5=E8=AF=86-3.ES=E5=AE=89=E8=A3=
+=85=E5=8F=AF=E8=83=BD=E5=87=BA=E7=8E=B0=E7=9A=84=E5=BC=82=E5=B8=B8">3.ES=E5=
+=AE=89=E8=A3=85=E5=8F=AF=E8=83=BD=E5=87=BA=E7=8E=B0=E7=9A=84=E5=BC=82=E5=B8=
+=B8</h3>
+<ul>
+<li>=E4=B8=8D=E8=83=BD=E4=BB=A5root=E7=94=A8=E6=88=B7=E8=BF=90=E8=A1=8C=EF=
+=BC=8C=E4=BC=9A=E5=87=BA=E7=8E=B0=E4=BB=A5=E4=B8=8B=E7=9A=84=E9=94=99=E8=AF=
+=AF<br><span style=3D"color: rgb(199,37,78);">org.elasticsearch.bootstrap.S=
+tartupException: java.lang.RuntimeException: can not run elasticsearch as r=
+oot</span><span style=3D"color: rgb(0,0,0);"><span style=3D"color: rgb(199,=
+37,78);"><br></span></span><span style=3D"color: rgb(199,37,78);"><span sty=
+le=3D"color: rgb(0,0,0);">=E8=A7=A3=E5=86=B3=E6=96=B9=E6=B3=95=EF=BC=9A=E5=
+=88=87=E6=8D=A2=E4=B8=80=E4=B8=AA=E6=96=B0=E7=94=A8=E6=88=B7=E5=8D=B3=E5=8F=
+=AF</span><br></span><span style=3D"color: rgb(199,37,78);"><span style=3D"=
+color: rgb(0,0,0);"><br></span></span></li>
+<li><span style=3D"color: rgb(199,37,78);"><span style=3D"color: rgb(0,0,0)=
+;">=E5=86=85=E6=A0=B8=E7=89=88=E6=9C=AC=E9=97=AE=E9=A2=98</span></span><br>=
+<span style=3D"color: rgb(199,37,78);">java.lang.UnsupportedOperationExcept=
+ion: seccomp unavailable: requires kernel 3.5+ with CONFIG_SECCOMP and CONF=
+IG_SECCOMP_FILTER compiled in</span><br><span style=3D"color: rgb(0,0,0);">=
+=E6=97=A0=E9=9C=80=E5=85=B3=E5=BF=83=EF=BC=8C=E4=B8=80=E4=B8=AA=E6=8A=A5=E8=
+=AD=A6</span><br><span style=3D"color: rgb(0,0,0);"><br></span></li>
+<li><span style=3D"color: rgb(199,37,78);"><span style=3D"color: rgb(0,0,0)=
+;">=E8=BF=9B=E7=A8=8B=E6=8C=81=E6=9C=89=E6=96=87=E4=BB=B6=E5=8F=A5=E6=9F=84=
+=E6=95=B0=E8=B6=85=E6=A0=87</span></span><br><span style=3D"color: rgb(199,=
+37,78);"><span style=3D"color: rgb(0,0,0);">=E5=BC=82=E5=B8=B8=E4=BF=A1=E6=
+=81=AF=EF=BC=9A</span></span><br><span style=3D"color: rgb(0,0,0);">&nbsp; =
+&nbsp; &nbsp; &nbsp;<span style=3D"color: rgb(199,37,78);">max file descrip=
+tors [10240] for elasticsearch process is too low, increase to at least [65=
+536]</span></span><br><span><span style=3D"color: rgb(199,37,78);">&nbsp; &=
+nbsp; &nbsp; &nbsp;<span style=3D"color: rgb(199,37,78);">max number of thr=
+eads [1024] for user [lishang] likely too low, increase to at least [2048]<=
+/span></span></span><span><span style=3D"color: rgb(199,37,78);"><br></span=
+></span><span style=3D"color: rgb(199,37,78);"><span style=3D"color: rgb(0,=
+0,0);">=E8=A7=A3=E5=86=B3=E6=96=B9=E6=B3=95=EF=BC=9A</span></span><br><p>Li=
+nux=E9=99=90=E5=88=B6=E7=B3=BB=E7=BB=9F=E5=AE=B9=E9=87=8F=E3=80=82=E5=8C=85=
+=E6=8B=AC=E8=BF=9B=E7=A8=8B=E6=8C=81=E6=9C=89=E7=9A=84=E7=A3=81=E7=9B=98=E6=
+=96=87=E4=BB=B6=E3=80=81=E7=BD=91=E7=BB=9C=E8=BF=9E=E6=8E=A5=EF=BC=9B=E7=94=
+=A8=E6=88=B7=E6=8C=81=E6=9C=89=E7=9A=84=E8=BF=9B=E7=A8=8B=E6=95=B0=E3=80=81=
+=E7=AD=89=E3=80=82=E9=85=8D=E7=BD=AE=E5=9C=A8<span style=3D"color: rgb(255,=
+0,0);">/etc/security/limits.conf</span>=E4=B8=AD=E3=80=82</p><p>=E9=85=8D=
+=E7=BD=AE=E6=96=B9=E5=BC=8F=E4=B8=BA: =E7=94=A8=E6=88=B7 =E9=99=90=E5=88=B6=
+=E4=BE=9D=E6=8D=AE =E9=99=90=E5=88=B6=E9=A1=B9=E7=9B=AE =E9=99=90=E5=88=B6=
+=E5=80=BC</p><p>1.=E7=94=A8=E6=88=B7=EF=BC=9A=E5=8F=AF=E4=BB=A5=E6=98=AF*/=
+=E6=9F=90=E4=B8=AA=E7=94=A8=E6=88=B7/@=E7=94=A8=E6=88=B7=E7=BB=84<br>2.=E9=
+=99=90=E5=88=B6=E4=BE=9D=E6=8D=AE <br>&nbsp; &nbsp; &nbsp; &nbsp; hard-=E8=
+=AF=A5=E9=99=90=E5=AE=9A=E5=80=BC=E4=B8=8D=E5=8F=AF=E8=B6=85=E8=BF=87<br>&n=
+bsp; &nbsp; &nbsp; &nbsp; soft-=E8=AF=A5=E9=99=90=E5=AE=9A=E5=80=BC=E8=B6=
+=85=E8=BF=87=E4=B9=8B=E5=90=8E=E4=BC=9A=E8=AD=A6=E5=91=8A<br>3.=E9=99=90=E5=
+=88=B6=E9=A1=B9=E7=9B=AE <br>&nbsp; &nbsp; &nbsp; &nbsp; nofile =E5=8D=95=
+=E4=B8=AA=E7=94=A8=E6=88=B7=E6=8C=81=E6=9C=89=E6=9C=80=E5=A4=A7=E6=96=87=E4=
+=BB=B6=E6=95=B0=E9=87=8F=EF=BC=88=E6=AD=A4=E5=A4=84=E6=94=B9=E6=AD=A4=E5=80=
+=BC=E5=8D=B3=E5=8F=AF=EF=BC=89<br>&nbsp; &nbsp; &nbsp; &nbsp; nproc =E5=8F=
+=AF=E6=89=93=E5=BC=80=E7=9A=84=E6=96=87=E4=BB=B6=E6=8F=8F=E8=BF=B0=E7=AC=A6=
+file descriptors=E6=95=B0=E9=87=8F<br>4.=E9=99=90=E5=88=B6=E5=80=BC =E5=B0=
+=B1=E6=98=AF=E4=B8=80=E4=B8=AA=E6=95=B0=E5=AD=97 =E9=85=8D=E5=90=88=E9=99=
+=90=E5=88=B6=E4=BE=9D=E6=8D=AE=E4=BD=BF=E7=94=A8</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence"># vim /etc/security/limits.conf
+* soft nofile 131072
+* hard nofile 131072
+* soft nproc 131072
+* hard nproc 131072 </pre>=20
+</div>=20
+</div><p class=3D"auto-cursor-target"><span style=3D"color: rgb(199,37,78);=
+"><span class=3D"auto-cursor-target" style=3D"color: rgb(0,0,0);"><br></spa=
+n></span></p></li>
+<li><p class=3D"auto-cursor-target"><span style=3D"color: rgb(199,37,78);">=
+<span style=3D"color: rgb(0,0,0);">=E8=99=9A=E6=8B=9F=E5=86=85=E5=AD=98=E6=
+=95=B0=E9=87=8F=E8=B6=85=E6=A0=87</span></span><br><span style=3D"color: rg=
+b(199,37,78);"><span style=3D"color: rgb(0,0,0);">=E5=BC=82=E5=B8=B8=E4=BF=
+=A1=E6=81=AF=EF=BC=9A<span style=3D"color: rgb(199,37,78);">max virtual mem=
+ory areas vm.max_map_count [65530] is too low, increase to at least [262144=
+]</span></span></span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence"># vim /etc/sysctl.conf=20
+
+vm.max_map_count=3D655360
+# sysctl -p</pre>=20
+</div>=20
+</div><p class=3D"auto-cursor-target"><span style=3D"color: rgb(199,37,78);=
+"><span style=3D"color: rgb(0,0,0);"><span style=3D"color: rgb(199,37,78);"=
+><br></span></span></span></p></li>
+<li><p class=3D"auto-cursor-target"><span style=3D"color: rgb(199,37,78);">=
+<span style=3D"color: rgb(0,0,0);">=E5=86=85=E6=A0=B8=E5=AE=89=E5=85=A8=E6=
+=94=AF=E6=8C=81</span></span></p><p class=3D"auto-cursor-target"><span styl=
+e=3D"color: rgb(0,0,0);">=E5=BC=82=E5=B8=B8=E4=BF=A1=E6=81=AF=EF=BC=9A</spa=
+n><span style=3D"color: rgb(199,37,78);">system call filters failed to inst=
+all; check the logs and fix your configuration or disable system call filte=
+rs at your own risk</span></p><p class=3D"auto-cursor-target"><span style=
+=3D"color: rgb(199,37,78);"><span style=3D"color: rgb(79,79,79);">=E9=80=9A=
+=E8=BF=87=E9=85=8D=E7=BD=AE&nbsp;</span><code>config/elasticsearch.yml</cod=
+e><span style=3D"color: rgb(79,79,79);">=E7=A6=81=E7=94=A8</span><br></span=
+></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence"># vim config/elasticsearch.yml
+
+bootstrap.memory_lock: false=20
+bootstrap.system_call_filter: false</pre>=20
+</div>=20
+</div><p class=3D"auto-cursor-target"><span style=3D"color: rgb(199,37,78);=
+"><span style=3D"color: rgb(79,79,79);"><br></span></span></p></li>
+<li><p class=3D"auto-cursor-target"><span style=3D"color: rgb(199,37,78);">=
+<span style=3D"color: rgb(0,0,0);">=E8=AE=A9head=E6=8F=92=E4=BB=B6=E7=9B=B4=
+=E6=8E=A5=E8=AE=BF=E9=97=AE</span></span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence"># vim config/elasticsearch.yml=20
+
+http.cors.enabled: true
+http.cors.allow-origin: "*"</pre>=20
+</div>=20
+</div><p class=3D"auto-cursor-target"><span style=3D"color: rgb(199,37,78);=
+"><span class=3D"auto-cursor-target" style=3D"color: rgb(0,0,0);"><br></spa=
+n></span></p></li>
+</ul>
+<h3 id=3D"id-1.ES-=E5=9F=BA=E7=A1=80=E7=9F=A5=E8=AF=86-4.ES=E5=9F=BA=E7=A1=
+=80=E4=B9=8BCRUD">4.ES=E5=9F=BA=E7=A1=80=E4=B9=8BCRUD</h3>
+<ul>
+<li>ES=E6=8F=90=E4=BE=9B=E4=BA=86=E6=8A=A2=E5=88=B0=E7=9A=84restful =E6=A0=
+=BC=E5=BC=8F=E7=9A=84API=E3=80=82=E6=89=80=E6=9C=89=E7=9A=84=E8=AF=B7=E6=B1=
+=82=E9=83=BD=E9=80=9A=E8=BF=87HTTP=E7=9A=84=E5=BD=A2=E5=BC=8F=E5=AE=9E=E7=
+=8E=B0=E3=80=82(ES=E4=B8=8E=E5=A4=96=E9=83=A8=E9=80=9A=E4=BF=A1=E9=BB=98=E8=
+=AE=A4=E7=AB=AF=E5=8F=A39200=EF=BC=8C=E5=86=85=E9=83=A8=E9=9B=86=E7=BE=A4=
+=E8=8A=82=E7=82=B9=E9=97=B4=E7=9A=84=E9=80=9A=E4=BF=A1=E7=AB=AF=E5=8F=A3=E9=
+=BB=98=E8=AE=A49300)
+<ul>
+<li><p class=3D"auto-cursor-target">ES=E5=81=A5=E5=BA=B7=E7=8A=B6=E6=80=81<=
+/p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/_cluster/heal=
+th?pretty
+{
+  "cluster_name" : "elasticsearch_tutu",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 0,
+  "active_shards" : 0,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/_cat/nodes?v
+ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role m=
+aster name
+127.0.0.1           34          94  25    1.56                  mdi       *=
+      BM4BUG6</pre>=20
+</div>=20
+</div></li>
+<li><p class=3D"auto-cursor-target">=E5=88=9B=E5=BB=BA=E7=B4=A2=E5=BC=95</p=
+>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/customer?pret=
+ty -X PUT
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "customer"
+}</pre>=20
+</div>=20
+</div></li>
+<li><p class=3D"auto-cursor-target">=E6=9F=A5=E7=9C=8B=E7=B4=A2=E5=BC=95=E5=
+=88=97=E8=A1=A8</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/_cat/indices?=
+v
+health status index    uuid                   pri rep docs.count docs.delet=
+ed store.size pri.store.size
+yellow open   customer fHKzRF27ShWRsEQMS-ehcQ   5   1          0           =
+ 0      1.1kb          1.1kb</pre>=20
+</div>=20
+</div></li>
+<li><p class=3D"auto-cursor-target">=E4=B8=BA=E7=B4=A2=E5=BC=95=E6=96=B0=E5=
+=A2=9E=E5=86=85=E5=AE=B9</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/customer/_doc=
+/1?pretty -X PUT -d '{"name":"=E5=BC=A0=E4=B8=89", "age":18, "sex":"male"}'=
+ -H 'Content-Type:application/json'
+{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 0,
+  "_primary_term" : 1
+}
+-- =E4=B8=8D=E6=8C=87=E5=AE=9AID=E7=9A=84=E5=BD=A2=E5=BC=8F=E5=88=9B=E5=BB=
+=BA=E6=96=87=E6=A1=A3=EF=BC=8C=E9=87=87=E7=94=A8POST
+tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/customer/_doc?pretty -=
+X POST -d '{"name":"=E7=8E=8B=E4=BA=8C", "age":22}' -H 'Content-Type:applic=
+ation/json'
+{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "lE6zL2cB_ryq8Y5eN0v6",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 0,
+  "_primary_term" : 1
+}
+
+
+</pre>=20
+</div>=20
+</div></li>
+<li><p class=3D"auto-cursor-target">=E7=B4=A2=E5=BC=95=E6=96=87=E6=A1=A3</p=
+>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/customer/_doc=
+/1?pretty -X GET
+{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 1,
+  "found" : true,
+  "_source" : {
+    "name" : "=E5=BC=A0=E4=B8=89",
+    "age" : 18,
+    "sex" : "male"
+  }
+}</pre>=20
+</div>=20
+</div></li>
+<li><p class=3D"auto-cursor-target">=E6=9B=B4=E6=96=B0=E6=96=87=E6=A1=A3</p=
+>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">-- =E9=99=A4=E4=BA=86=E5=A6=82=E4=B8=8B=E6=96=B9=E5=BC=8F=E7=9A=84=
+=E6=9B=B4=E6=96=B0=E5=A4=96=EF=BC=8C=E8=BF=98=E6=9C=89=E4=B8=80=E7=A7=8D=E6=
+=96=B9=E5=BC=8F=E7=9B=B4=E6=8E=A5=E6=9B=BF=E6=8D=A2=EF=BC=8C=E5=BD=93=E4=BD=
+=A0=E5=B0=9D=E8=AF=95=E5=88=9B=E5=BB=BA=E4=B8=80=E4=B8=AAid=E4=B8=80=E6=A0=
+=B7=E7=9A=84=E6=96=87=E6=A1=A3=E6=97=B6=EF=BC=8Ces=E5=B0=86=E4=BC=9A=E5=88=
+=A0=E9=99=A4=E6=97=A7=E7=9A=84=E6=96=87=E6=A1=A3=E5=B9=B6=E5=88=9B=E5=BB=BA=
+=E6=96=B0=E7=9A=84=E6=96=87=E6=A1=A3
+tutudeMacBook-Pro:elasticsearch tutu$ curl -X POST -H 'Content-Type:applica=
+tion/json' http://localhost:9200/star_message/_doc/1/_update?pretty -d '{"d=
+oc":{"name":"update=E5=BC=A0=E4=B8=89"}}'
+{
+  "_index" : "star_message",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 2,
+  "result" : "noop",
+  "_shards" : {
+    "total" : 0,
+    "successful" : 0,
+    "failed" : 0
+  }
+}
+
+-- =E4=BD=BF=E7=94=A8=E8=84=9A=E6=9C=AC=E5=81=9A=E5=9F=BA=E6=9C=AC=E8=BF=90=
+=E7=AE=97
+tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/customer/_doc/1/_updat=
+e?pretty -X POST -H 'Content-Type:application/json' -d '{"script":"ctx._sou=
+rce.age +=3D 5"}'
+{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 4,
+  "result" : "updated",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 3,
+  "_primary_term" : 1
+}</pre>=20
+</div>=20
+</div></li>
+<li><p class=3D"auto-cursor-target">=E5=88=A0=E9=99=A4=E6=96=87=E6=A1=A3</p=
+>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">tutudeMacBook-Pro:~ tutu$ curl http://localhost:9200/customer/_doc=
+/1?pretty -X DELETE
+{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 5,
+  "result" : "deleted",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 4,
+  "_primary_term" : 1
+}</pre>=20
+</div>=20
+</div></li>
+<li><p class=3D"auto-cursor-target">=E6=89=B9=E5=A4=84=E7=90=86</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">-- =E6=89=B9=E5=A4=84=E7=90=86=E5=91=BD=E4=BB=A4=E5=9C=A8=E6=89=A7=
+=E8=A1=8C=E6=97=B6=EF=BC=8C=E6=90=BA=E5=B8=A6=E7=9A=84json=E6=95=B0=E6=8D=
+=AE=E5=BF=85=E9=A1=BB=E8=A6=81=E5=B8=A6=E6=8D=A2=E8=A1=8C
+curl -X POST -H 'Content-Type:application/json' http://localhost:9200/custo=
+mer/_doc/_bulk?pretty -d'
+{"index":{"_id":"1"}}
+{"name":"=E5=88=98=E5=BE=B7=E5=8D=8E1", "age":49, "sex":"male"}
+{"update":{"_id":"1"}}
+{"doc":{"name":"=E5=88=98=E5=BE=B7=E5=8D=8Eupdate", "age":99}}
+{"delete":{"_id":"2"}}
+'</pre>=20
+</div>=20
+</div></li>
+</ul></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_9629_414726350.1592900992538--

@@ -1,0 +1,570 @@
+Message-ID: <116928337.9818.1592901074053.JavaMail.root@wiki01.mgr.prod.bj2>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_9817_203036177.1592901074053"
+
+------=_Part_9817_203036177.1592901074053
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>5.ES-=E5=B1=82=E7=BA=A7=E6=96=87=E6=A1=A3</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>5.ES-=E5=B1=82=E7=BA=A7=E6=96=87=E6=A1=A3</h1>
+    <div class=3D"Section1">
+        <p>ES 6.X =E6=8F=90=E4=BE=9B=E4=BA=86join=E7=B1=BB=E5=9E=8B=E6=9D=
+=A5=E8=A1=A8=E7=A4=BA=E5=B1=82=E7=BA=A7=E5=85=B3=E7=B3=BB=E6=96=87=E6=A1=A3=
+=E7=BB=93=E6=9E=84=E3=80=82=E5=8F=AF=E4=BB=A5=E7=90=86=E8=A7=A3=E4=B8=BAMys=
+ql=E4=B8=AD=E7=9A=84=E5=A4=9A=E8=A1=A8=E5=85=B3=E8=81=94=E3=80=82join=E7=9A=
+=84mapping=E7=9A=84=E6=A0=B7=E5=BC=8F=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "my_join_field": {=20
+          "type": "join",
+          "relations": {
+            "question": "answer"
+          }
+        }
+      }
+    }
+  }
+}</pre>=20
+</div>
+</div>
+<p>=E9=9C=80=E8=A6=81=E6=B3=A8=E6=84=8F=E7=9A=84=E7=82=B9=EF=BC=9A</p>
+<ul>
+<li>=E5=9B=A0=E4=B8=BAes=E6=95=B0=E6=8D=AE=E6=9C=89=E5=88=86=E7=89=87=E5=AD=
+=98=E5=82=A8=EF=BC=8C=E4=B8=BA=E4=BA=86=E4=B8=8D=E5=BD=B1=E5=93=8D=E7=88=B6=
+=E5=AD=90=E6=96=87=E6=A1=A3=E7=9A=84=E7=B4=A2=E5=BC=95=E6=9F=A5=E8=AF=A2=E7=
+=AD=89=E5=8A=9F=E8=83=BD=EF=BC=8C=E7=88=B6=E5=AD=90=E6=96=87=E6=A1=A3=E5=BF=
+=85=E9=A1=BB=E5=AD=98=E5=82=A8=E5=9C=A8=E5=90=8C=E4=B8=80=E5=88=86=E7=89=87=
+=E4=B8=8A=EF=BC=8C=E8=BF=99=E4=B9=9F=E5=B0=B1=E6=98=AF=E8=AF=B4=E5=9C=A8=E4=
+=BD=A0=E5=88=9B=E5=BB=BA=E5=AD=90=E6=96=87=E6=A1=A3=E7=9A=84=E6=97=B6=E5=80=
+=99=E5=BF=85=E9=A1=BB=E6=8C=87=E5=AE=9Arouting=E3=80=82=E8=BF=99=E4=B9=9F=
+=E6=84=8F=E5=91=B3=E8=BF=99=E4=BD=A0=E5=9C=A8=E5=88=A0=E9=99=A4=E6=96=87=E6=
+=A1=A3=E7=9A=84=E6=97=B6=E5=80=99=E5=BF=85=E9=A1=BB=E6=8F=90=E4=BE=9Broutin=
+g=E5=80=BC=E3=80=82</li>
+<li>=E6=AF=8F=E4=B8=80=E4=B8=AA=E7=B4=A2=E5=BC=95=E5=8F=AA=E8=83=BD=E5=8C=
+=85=E5=90=AB=E4=B8=80=E4=B8=AA=E7=B1=BB=E5=9E=8B=E4=B8=BAjoin=E7=9A=84=E5=
+=AD=97=E6=AE=B5=E3=80=82</li>
+<li>=E6=AF=8F=E4=B8=AA=E6=96=87=E6=A1=A3=E5=8F=AA=E5=8F=AF=E4=BB=A5=E6=9C=
+=89=E4=B8=80=E4=B8=AA=E7=88=B6=E4=BA=B2=E3=80=82</li>
+<li>=E8=99=BD=E7=84=B6es=E6=94=AF=E6=8C=81=E5=A4=9A=E5=B1=82=E7=BA=A7=E7=9A=
+=84join=EF=BC=8C=E4=BD=86=E6=98=AF=E5=B1=82=E7=BA=A7=E8=B6=8A=E6=B7=B1=EF=
+=BC=8C=E5=9C=A8=E8=BF=9B=E8=A1=8C=E6=90=9C=E7=B4=A2=E5=92=8C=E8=81=9A=E5=90=
+=88=E7=9A=84=E6=97=B6=E5=80=99=E5=AF=B9=E5=86=85=E5=AD=98=E5=92=8C=E6=80=A7=
+=E8=83=BD=E7=9A=84=E5=BD=B1=E5=93=8D=E5=B0=B1=E8=B6=8A=E5=A4=A7=EF=BC=8C=E5=
+=A6=82=E6=9E=9C=E5=AF=B9=E5=93=8D=E5=BA=94=E9=80=9F=E5=BA=A6=E6=9C=89=E8=A6=
+=81=E6=B1=82=EF=BC=8C=E5=8F=AF=E4=BB=A5=E8=80=83=E8=99=91=E4=BC=98=E5=8C=96=
+=E6=95=B0=E6=8D=AE=E7=BB=93=E6=9E=84=E3=80=82</li>
+</ul>
+<p>=E4=B8=8B=E9=9D=A2=E6=88=91=E4=BB=AC=E5=88=9B=E5=BB=BA=E5=A4=9A=E5=B1=82=
+=E7=BA=A7=E7=9A=84=E7=B4=A2=E5=BC=95=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">question(username, title, content, id)
+=09|
+=09answer(username, content, question_id, id)
+=09=09|
+=09=09comment(username, content, answer_id, question_id, id), likes(likes_c=
+ount)</pre>=20
+</div>=20
+</div>
+<p>=E5=AF=B9=E5=BA=94=E4=B8=8A=E8=BF=B0=E7=BB=93=E6=9E=84=E7=9A=84mapping=
+=E4=B8=BA:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X PUT -H 'Content-type:application/json' http://localhost:92=
+00/question_idx_1?pretty \
+-d '{
+  "mappings":{
+    "_doc":{
+      "properties":{
+        "question_relations":{
+          "type":"join",
+          "relations":{
+            "question":"answer",
+            "answer":["comment", "likes"]
+          }
+        },
+        "id":{
+          "type":"integer"
+        },
+        "username":{
+          "type":"keyword"
+        },
+        "title":{
+          "type":"text",
+          "analyzer":"ik_max_word"
+        },
+        "content":{
+          "type":"text",
+          "analyzer":"ik_max_word"
+        },
+        "question_id":{
+          "type":"integer"
+        },
+        "answer_id":{
+          "type":"integer"
+        },
+        "likes_count":{
+          "type":"integer"
+        }
+      }
+    }
+  }
+}'</pre>=20
+</div>=20
+</div>
+<p>=E5=88=9B=E5=BB=BA=E4=B8=A4=E4=B8=AAquestion:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1. id =3D 1, title =3D es=E5=9F=
+=BA=E7=A1=80=E5=AD=A6=E4=B9=A0, content =3D =E7=8E=B0=E5=9C=A8=E6=88=91=E4=
+=BB=AC=E6=AD=A3=E5=9C=A8=E5=88=86=E4=BA=AB=E7=9A=84=E6=98=AFes=E7=9A=84=E5=
+=9F=BA=E7=A1=80=E9=83=A8=E5=88=86=EF=BC=8C=E8=AF=B7=E5=A4=A7=E5=AE=B6=E8=B7=
+=9F=E6=88=91=E4=B8=80=E8=B5=B7=E6=8E=A2=E8=AE=A8=E6=8E=A2=E8=AE=A8=E3=80=82=
+username=3Dadmin001</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2. id =3D 2, title =3D es=E9=AB=
+=98=E7=BA=A7=E5=AD=A6=E4=B9=A0, content =3D =E7=8E=B0=E5=9C=A8=E6=88=91=E4=
+=BB=AC=E6=AD=A3=E5=9C=A8=E5=88=86=E4=BA=AB=E7=9A=84=E6=98=AFes=E7=9A=84=E9=
+=AB=98=E7=BA=A7=E9=83=A8=E5=88=86=EF=BC=8C=E8=AF=B7=E5=A4=A7=E5=AE=B6=E8=B7=
+=9F=E6=88=91=E4=B8=80=E8=B5=B7=E6=8E=A2=E8=AE=A8=E6=8E=A2=E8=AE=A8=E3=80=82=
+username=3Dadmin001</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X PUT -H 'Content-Type:application/json' http://localhost:92=
+00/question_idx_1/_doc/Q_1?pretty \
+-d '{
+  "id":1,
+  "username":"admin001",=20
+  "title":"es=E5=9F=BA=E7=A1=80=E5=AD=A6=E4=B9=A0",
+  "content":"=E7=8E=B0=E5=9C=A8=E6=88=91=E4=BB=AC=E6=AD=A3=E5=9C=A8=E5=88=
+=86=E4=BA=AB=E7=9A=84=E6=98=AFes=E7=9A=84=E5=9F=BA=E7=A1=80=E9=83=A8=E5=88=
+=86=EF=BC=8C=E8=AF=B7=E5=A4=A7=E5=AE=B6=E8=B7=9F=E6=88=91=E4=B8=80=E8=B5=B7=
+=E6=8E=A2=E8=AE=A8=E6=8E=A2=E8=AE=A8=E3=80=82",=20
+  "question_relations":{
+    "name":"question"
+  }
+}'</pre>=20
+</div>=20
+</div>
+<p>=E5=9C=A8 id =3D 1 =E7=9A=84question=E4=B8=8B=E5=88=9B=E5=BB=BA2=E4=B8=
+=AA=E5=9B=9E=E7=AD=94,&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1. id =3D 2, content =3D =E8=AE=
+=A9=E6=88=91=E4=BB=AC=E6=9D=A5=E4=B8=80=E8=B5=B7=E6=8E=A2=E8=AE=A8=E6=8E=A2=
+=E8=AE=A8, username=3Dlisi, question_id=3D1</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2. id =3D 3, content =3D =E6=88=
+=91=E6=9B=B4=E6=83=B3=E5=AD=A6=E4=B9=A0=E9=AB=98=E7=BA=A7=E9=83=A8=E5=88=86=
+, username=3Dzhangsan, question_id=3D1</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X PUT -H 'Content-Type:application/json' http://localhost:92=
+00/question_idx_1/_doc/A_2?routing=3DQ_1 \
+-d '{
+  "id":2,
+  "username":"lisi",
+  "content":"=E8=AE=A9=E6=88=91=E4=BB=AC=E6=9D=A5=E4=B8=80=E8=B5=B7=E6=8E=
+=A2=E8=AE=A8=E6=8E=A2=E8=AE=A8",
+  "question_id":1,
+  "question_relations":{
+    "name":"answer",
+    "parent":"Q_1"
+  }
+}'</pre>=20
+</div>=20
+</div>
+<p>=E5=9C=A8id =3D 2 =E7=9A=84=E5=9B=9E=E7=AD=94=E4=B8=AD=E5=88=9B=E5=BB=BA=
+=E4=B8=80=E4=B8=AA=E8=AF=84=E8=AE=BA=EF=BC=8C=E4=B8=80=E4=B8=AA=E7=82=B9=E8=
+=B5=9E</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X PUT -H 'Content-Type:application/json' http://localhost:92=
+00/question_idx_1/_doc/C_4?routing=3DQ_1 \
+-d '{
+  "id":4,
+  "username":"=E6=9D=8E=E7=BE=8E=E4=B8=BD",
+  "content":"=E4=BD=A0=E8=BF=9E=E5=9F=BA=E7=A1=80=E7=9A=84=E9=83=A8=E5=88=
+=86=E9=83=BD=E4=B8=8D=E4=BC=9A",
+  "question_id":1,
+  "answer_id":3,
+  "question_relations":{
+    "name":"comment",
+    "parent":"A_3"
+  }
+}'
+
+
+curl -X PUT -H 'Content-Type:application/json' http://localhost:9200/questi=
+on_idx_1/_doc/L_5?routing=3DQ_1 \
+-d '{
+  "id":5,
+  "likes_count":7,
+  "question_relations":{
+    "name":"likes",
+    "parent":"A_3"
+  }
+}'</pre>=20
+</div>=20
+</div>
+<p>=E6=A0=B9=E6=8D=AE=E7=88=B6=E6=96=87=E6=A1=A3=E6=9F=A5=E8=AF=A2=E5=AD=90=
+=E6=96=87=E6=A1=A3=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X GET -H 'Content-Type:application/json' http://localhost:92=
+00/question_idx_1/_search?pretty \
+-d '{
+    "query": {
+        "has_parent" : {
+            "parent_type" : "question",
+            "query" : {
+                "match" : {
+                    "content":"=E5=9F=BA=E7=A1=80"
+                }
+            }
+        }
+    }
+}'</pre>=20
+</div>=20
+</div>
+<p class=3D"auto-cursor-target">=E6=A0=B9=E6=8D=AE=E5=AD=90=E6=96=87=E6=A1=
+=A3=E6=9F=A5=E8=AF=A2=E7=88=B6=E6=96=87=E6=A1=A3=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X GET -H 'Content-Type:application/json' http://localhost:92=
+00/question_idx_1/_search?pretty \
+-d '{
+    "query": {
+        "has_child" : {
+            "type" : "answer",
+            "query" : {
+                "match" : {
+                    "content":"=E9=AB=98=E7=BA=A7"
+                }
+            }
+        }
+    }
+}'</pre>=20
+</div>=20
+</div>
+<p class=3D"auto-cursor-target">=E8=81=9A=E5=90=88=E6=9F=A5=E8=AF=A2=EF=BC=
+=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X GET -H 'Content-Type:application/json' http://localhost:92=
+00/question_idx_1/_search?pretty \
+-d '{
+    "query": {
+        "parent_id" : {
+            "type" : "answer",
+            "id":"Q_1"
+        }
+    },
+    "aggs":{
+        "parents":{
+            "terms":{
+                "field":"question_relations#question"
+            }
+        }
+    }
+}'</pre>=20
+</div>=20
+</div>
+    </div>
+</body>
+</html>
+------=_Part_9817_203036177.1592901074053--

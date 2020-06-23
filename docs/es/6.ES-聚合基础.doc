@@ -1,0 +1,444 @@
+Message-ID: <2000791593.9820.1592901079544.JavaMail.root@wiki01.mgr.prod.bj2>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_9819_2009850897.1592901079543"
+
+------=_Part_9819_2009850897.1592901079543
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>6.ES-=E8=81=9A=E5=90=88=E5=9F=BA=E7=A1=80</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>6.ES-=E8=81=9A=E5=90=88=E5=9F=BA=E7=A1=80</h1>
+    <div class=3D"Section1">
+        <p>=E8=81=9A=E5=90=88=E6=98=AF=E5=9F=BA=E4=BA=8E=E6=9F=A5=E8=AF=A2=
+=E6=9D=A5=E5=AF=B9=E6=95=B0=E6=8D=AE=E8=BF=9B=E8=A1=8C=E7=BB=9F=E8=AE=A1=E7=
+=9A=84=E6=93=8D=E4=BD=9C=E3=80=82=E5=85=B7=E4=BD=93=E5=8F=AF=E6=8B=86=E5=88=
+=86=E4=B8=BA =E6=A1=B6=E5=92=8C=E6=8C=87=E6=A0=87=EF=BC=9A</p>
+<ul>
+<li>Buckets=EF=BC=9A=E6=BB=A1=E8=B6=B3=E7=89=B9=E5=AE=9A=E6=9D=A1=E4=BB=B6=
+=E7=9A=84=E6=96=87=E6=A1=A3=E9=9B=86=E5=90=88</li>
+<li>Metrics=EF=BC=9A=E5=AF=B9=E6=A1=B6=E5=86=85=E7=9A=84=E6=96=87=E6=A1=A3=
+=E8=BF=9B=E8=A1=8C=E7=BB=9F=E8=AE=A1=E8=AE=A1=E7=AE=97(=E5=A6=82=E6=9C=80=
+=E5=A4=A7=E5=80=BC=EF=BC=8C=E6=9C=80=E5=B0=8F=E5=80=BC=EF=BC=8C=E5=B9=B3=E5=
+=9D=87=E5=80=BC=EF=BC=8C=E6=B1=82=E5=92=8C=EF=BC=8C=E6=B1=87=E6=80=BB=E7=AD=
+=89)</li>
+</ul>
+<p>=E5=88=9B=E5=BB=BA=E6=B1=BD=E8=BD=A6=E7=B4=A2=E5=BC=95&amp;=E6=89=B9=E9=
+=87=8F=E5=AF=BC=E5=85=A510=E6=9D=A1=E6=95=B0=E6=8D=AE</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X PUT -H 'Content-type:application/json' http://localhost:92=
+00/car_index?pretty \
+-d '{
+    "mappings":{
+        "_doc":{
+            "properties":{
+                "brand":{
+                    "type":"keyword"
+                },
+                "price":{
+                    "type":"float"
+                },
+                "color":{
+                    "type":"keyword"
+                },
+                "sale_time":{
+       =09=09=09=09     "type":"date",
+=09=09=09=09=09         "format":"yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_mi=
+llis"
+=09=09=09=09        },
+                "remark":{
+                    "type":"text",
+                    "analyzer":"ik_max_word"
+                }
+            }
+        }
+    }
+}'
+
+
+curl -X POST -H 'Content-Type:application/json' http://localhost:9200/car_i=
+ndex/_doc/_bulk?pretty \
+-d '{"index":{"_id":"1"}}
+{"brand":"BMW", "price":350000, "color":"gray", "sale_time":"2018-10-12", "=
+remark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E5=8D=96=E7=9A=84=E7=9C=9F=E5=
+=A5=BD=E5=95=8A"}
+{"index":{"_id":"2"}}
+{"brand":"BMW", "price":250000, "color":"red", "sale_time":"2018-10-10", "r=
+emark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E5=8D=96=E7=9A=84=E4=B8=80=E8=
+=88=AC=E8=88=AC=E5=95=8A"}
+{"index":{"_id":"3"}}
+{"brand":"BMW", "price":250000, "color":"red", "sale_time":"2018-10-11", "r=
+emark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E5=8D=96=E7=9A=84=E4=B8=80=E8=
+=88=AC=E8=88=AC=E5=95=8A"}
+{"index":{"_id":"4"}}
+{"brand":"BMW", "price":1000000, "color":"black", "sale_time":"2018-10-12",=
+ "remark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E6=9C=89=E7=82=B9=E8=B4=B5=
+=E5=95=8A"}
+{"index":{"_id":"5"}}
+{"brand":"BMW", "price":1000000, "color":"black", "sale_time":"2018-10-10",=
+ "remark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E6=9C=89=E7=82=B9=E8=B4=B5=
+=E5=95=8A"}
+{"index":{"_id":"6"}}
+{"brand":"BMW", "price":1000000, "color":"blue", "sale_time":"2018-10-10", =
+"remark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E6=9C=89=E7=82=B9=E8=B4=B5=
+=E5=95=8A"}
+{"index":{"_id":"7"}}
+{"brand":"BENZ", "price":700000, "color":"black", "sale_time":"2018-10-12",=
+ "remark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E4=B8=8D=E6=98=AF=E5=BE=88=
+=E5=A5=BD=E5=8D=96"}
+{"index":{"_id":"8"}}
+{"brand":"BENZ", "price":700000, "color":"red", "sale_time":"2018-10-11", "=
+remark":"=E5=A5=94=E9=A9=B0=E8=BD=A6=E5=AD=90=E5=B0=B1=E6=98=AF=E5=A5=BD=E5=
+=8D=96=E5=95=8A"}
+{"index":{"_id":"9"}}
+{"brand":"BENZ", "price":700000, "color":"red", "sale_time":"2018-10-12", "=
+remark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E5=8D=96=E7=9A=84=E7=9C=9F=E5=
+=A5=BD=E5=95=8A"}
+{"index":{"_id":"10"}}
+{"brand":"BENZ", "price":300000, "color":"red", "sale_time":"2018-10-10", "=
+remark":"=E8=BF=99=E4=B8=AA=E8=BD=A6=E5=AD=90=E5=8D=96=E7=9A=84=E7=9C=9F=E5=
+=A5=BD=E5=95=8A"}</pre>=20
+</div>=20
+</div>
+<p>=E6=9F=A5=E7=9C=8B=E5=90=84=E4=B8=AA=E9=A2=9C=E8=89=B2=E8=BD=A6=E8=BE=86=
+=E7=9A=84=E5=94=AE=E5=8D=96=E6=95=B0=E9=87=8F=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X GET -H 'Content-Type:application/json' http://localhost:92=
+00/car_index/_search?pretty \
+-d '{
+    "size":0,
+    "aggs" : {=20
+        "popular_colors" : {=20
+            "terms" : {=20
+              "field" : "color"
+            }
+        }
+    }
+}'</pre>=20
+</div>=20
+</div>
+<p>=E4=BB=A5=E9=A2=9C=E8=89=B2=E4=B8=BA=E5=8D=95=E4=BD=8D=E8=AE=A1=E7=AE=97=
+=E9=94=80=E5=94=AE=E6=80=BB=E9=A2=9D=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X GET -H 'Content-Type:application/json' http://localhost:92=
+00/car_index/_search?pretty \
+-d '{
+   "size" : 0,
+   "aggs": {
+      "colors": {
+         "terms": {
+            "field": "color"
+         },
+         "aggs": {=20
+            "sum_price": {=20
+               "sum": {
+                  "field": "price"=20
+               }
+            }
+         }
+      }
+   }
+}'</pre>=20
+</div>=20
+</div>
+<p>=E5=A4=9A=E5=88=97=E8=81=9A=E5=90=88:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">=20
+<div class=3D"codeHeader panelHeader pdl hide-border-bottom">=20
+<b class=3D"code-title"></b>=20
+<span class=3D"collapse-source expand-control" style=3D"display:none;"><spa=
+n class=3D"expand-control-icon icon">&nbsp;</span><span class=3D"expand-con=
+trol-text">=E5=B1=95=E5=BC=80=E6=BA=90=E7=A0=81</span></span>=20
+<span class=3D"collapse-spinner-wrapper"></span>=20
+</div>=20
+<div class=3D"codeContent panelContent pdl hide-toolbar">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: bash; gutter: false; theme: Confluence; collapse: true" data-theme=3D"Con=
+fluence">curl -X GET -H 'Content-Type:application/json' http://localhost:92=
+00/car_index/_search?pretty \
+-d '{
+   "size" : 0,
+   "aggs": {
+      "colors": {
+         "terms": {
+            "field": "color"
+         },
+         "aggs":{
+            "sale_pre_day":{
+              "terms":{
+                "field":"sale_time"
+              },
+              "aggs": {=20
+                 "sum_price": {=20
+                    "sum": {
+                       "field": "price"=20
+                    }
+                 }
+              }
+            }
+         }
+      }
+   }
+}'</pre>=20
+</div>=20
+</div>
+<p>=E8=81=9A=E5=90=88=E8=BF=98=E6=9C=89=E5=BE=88=E5=A4=9A=E9=AB=98=E7=BA=A7=
+=E7=89=B9=E6=80=A7=EF=BC=9A=E6=AF=94=E5=A6=82=E8=81=9A=E5=90=88=E6=88=90=E5=
+=9B=BE=E6=A0=87=E6=A0=BC=E5=BC=8F=E7=9A=84=E6=95=B0=E6=8D=AE=E7=AD=89=E7=AD=
+=89=E6=93=8D=E4=BD=9C=E3=80=82</p>
+<p><br></p>
+<p><br></p>
+    </div>
+</body>
+</html>
+------=_Part_9819_2009850897.1592901079543--
