@@ -314,6 +314,12 @@
             <version>${commons.net.version}</version>
         </dependency>
         <!-- apache commons 家族 -->
+
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>2.3.2</version>
+        </dependency>
     </dependencies>
 
     <profiles>
