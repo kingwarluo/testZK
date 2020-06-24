@@ -2,7 +2,9 @@ es学习日志
 
 RestClient API
 
-<Elasticsearch权威指南>：https://www.elastic.co/guide/cn/elasticsearch/guide/current/intro.html
+<Elasticsearch权威指南> : https://www.elastic.co/guide/cn/elasticsearch/guide/current/intro.html
+
+<Elasticsearch 官方文档> : https://www.elastic.co/guide/en/elasticsearch/reference/current/_basic_concepts.html
 
 1、基础知识
 安装
