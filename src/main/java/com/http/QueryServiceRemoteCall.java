@@ -14,13 +14,16 @@ import java.util.stream.Collectors;
  */
 public class QueryServiceRemoteCall {
 
-    public static List<Map<Long, Object>> queryUserByIdBatch(List<Long> ids) {
-        List<Map<Long, Object>> list = new ArrayList<>();
-        for (Long id : ids) {
-            Map<Long, Object> map = new HashMap<Long, Object>();
-            map.put(id, new Object());
-            list.add(map);
+    public static List<User> queryUserByIdBatch(List<Long> ids) {
+        if(ids.size() == 0) {
+            return new ArrayList<>();
         }
+        List<User> list = new ArrayList<>(ids.size());
+        for (Long id : ids) {
+            //这段代码会异常退出，也没有错误提示
+            list.add(new User(id, id.toString(), id.intValue()));
+        }
+        System.out.println("ids:" + ids.size() + ", list" + list.size());
         return list;
     }
 

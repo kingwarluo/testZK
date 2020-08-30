@@ -1,7 +1,9 @@
 package com.http;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.collections.CollectionUtils;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.concurrent.*;
  * @author jianhua.luo
  * @date 2020/8/29
  */
+@Service
 public class MergeRequestService {
 
     @Data
@@ -29,7 +32,7 @@ public class MergeRequestService {
         /**
          * 返回结果
          */
-        private CompletableFuture<Map<Long, Object>> future;
+        private CompletableFuture<User> future;
     }
 
     // 积攒的请求。（每隔N毫秒批量处理一次）
@@ -56,22 +59,24 @@ public class MergeRequestService {
             for (Request request : requests) {
                 ids.add(request.getId());
             }
+            if(CollectionUtils.isEmpty(ids)) {
+                return;
+            }
             // RPC调用或者service调用
-            List<Map<Long, Object>> responses = QueryServiceRemoteCall.queryUserByIdBatch(ids);
+            List<User> responses = QueryServiceRemoteCall.queryUserByIdBatch(ids);
 
             // 3、将结果响应 分发给每一个单独的用户请求。  由定时任务处理线程 --> 1000个用户的请求线程
             // [
             // {"code":"500",star: tony}
             // {"code":"600",star: tony}
             // ]
-            Map<Long, Map<Long, Object>> responseMap = new HashMap<>();
-            for (Map<Long, Object> response : responses) {
-                Long id = (Long) response.get("id");
-                responseMap.put(id, response);
+            Map<Long, User> responseMap = new HashMap<>();
+            for (User user : responses) {
+                responseMap.put(user.getId(), user);
             }
             for (Request request : requests) {
                 // 根据请求中携带的能表示唯一参数，去批量查询的结果中找响应
-                Map<Long, Object> result = responseMap.get(request.getId());
+                User result = responseMap.get(request.getId());
                 // 将结果返回到对应的请求线程
                 request.future.complete(result);
             }
@@ -80,14 +85,14 @@ public class MergeRequestService {
     }
 
     // 1000 用户请求，1000个线程
-    public Map<Long, Object> queryUserList(Long userId) throws ExecutionException, InterruptedException {
+    public User queryUserList(Long userId) throws ExecutionException, InterruptedException {
         // 1000次 怎么样才能变成  更少的接口
         // 思路： 将不同用户的同类请求合并起来
         // 并非立刻发起接口调用，请求 收集起来，再进行
         Request request = new Request();
         request.setId(userId);
         // 异步编程： 获取异步处理的结果
-        CompletableFuture<Map<Long, Object>> future = new CompletableFuture<>();
+        CompletableFuture<User> future = new CompletableFuture<>();
         request.setFuture(future);
         queue.add(request);
         return future.get(); // 此处get方法，会阻塞线程运行，直到future有返回
