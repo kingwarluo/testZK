@@ -43,42 +43,47 @@ public class MergeRequestService {
     public void init() {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
         scheduledExecutorService.scheduleAtFixedRate(() -> {
-            // 1、 取出queue的请求，生成一次批量查询
-            int size = queue.size();
-            if (size == 0) {
-                return;
-            }
-            List<Request> requests = new ArrayList<>();
-            for (int i = 0; i < size; i++) {
-                Request request = queue.poll();
-                requests.add(request);
-            }
-            System.out.println("批量处理数据量:" + size);
-            // 2、 组装一个批量查询（一定需要 目的资源能够支持批量查询。 http）
-            List<Long> ids = new ArrayList<>();
-            for (Request request : requests) {
-                ids.add(request.getId());
-            }
-            if(CollectionUtils.isEmpty(ids)) {
-                return;
-            }
-            // RPC调用或者service调用
-            List<User> responses = QueryServiceRemoteCall.queryUserByIdBatch(ids);
+            // 如果使用者抛出异常，ScheduledExecutorService 将会停止线程的运行，而且不会报错，没有任何提示信息。
+            try {
+                // 1、 取出queue的请求，生成一次批量查询
+                int size = queue.size();
+                if (size == 0) {
+                    return;
+                }
+                List<Request> requests = new ArrayList<>();
+                for (int i = 0; i < size; i++) {
+                    Request request = queue.poll();
+                    requests.add(request);
+                }
+                System.out.println("批量处理数据量:" + size);
+                // 2、 组装一个批量查询（一定需要 目的资源能够支持批量查询。 http）
+                List<Long> ids = new ArrayList<>();
+                for (Request request : requests) {
+                    ids.add(request.getId());
+                }
+                if(CollectionUtils.isEmpty(ids)) {
+                    return;
+                }
+                // RPC调用或者service调用
+                List<User> responses = QueryServiceRemoteCall.queryUserByIdBatch(ids);
 
-            // 3、将结果响应 分发给每一个单独的用户请求。  由定时任务处理线程 --> 1000个用户的请求线程
-            // [
-            // {"code":"500",star: tony}
-            // {"code":"600",star: tony}
-            // ]
-            Map<Long, User> responseMap = new HashMap<>();
-            for (User user : responses) {
-                responseMap.put(user.getId(), user);
-            }
-            for (Request request : requests) {
-                // 根据请求中携带的能表示唯一参数，去批量查询的结果中找响应
-                User result = responseMap.get(request.getId());
-                // 将结果返回到对应的请求线程
-                request.future.complete(result);
+                // 3、将结果响应 分发给每一个单独的用户请求。  由定时任务处理线程 --> 1000个用户的请求线程
+                // [
+                // {"code":"500",star: tony}
+                // {"code":"600",star: tony}
+                // ]
+                Map<Long, User> responseMap = new HashMap<>();
+                for (User user : responses) {
+                    responseMap.put(user.getId(), user);
+                }
+                for (Request request : requests) {
+                    // 根据请求中携带的能表示唯一参数，去批量查询的结果中找响应
+                    User result = responseMap.get(request.getId());
+                    // 将结果返回到对应的请求线程
+                    request.future.complete(result);
+                }
+            } catch (Exception e) {
+                System.out.println("在ScheduledExecutorService中有异常抛出，异常堆栈：" + e.getStackTrace());
             }
         }, 0, 10, TimeUnit.MILLISECONDS);
         System.out.println("init完成");

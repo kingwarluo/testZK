@@ -49,6 +49,13 @@ public class MergeRequestServiceTest {
             // 田径。启动后，倒计时器倒计数 减一，代表又有一个线程就绪了
             countDownLatch.countDown();
         }
+
+        try {
+            // 线程执行中需要等待，随意休眠10秒钟
+            Thread.sleep(10000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
