@@ -48,3 +48,166 @@ search_after:性能优秀，类似于优化后的分页查询，历史条件过�
 理解为mysql多表关联
 
 6、聚合基础
+
+
+es的setting和mapping例子：
+setting:
+{
+  "cust_2016090519205300000": {
+    "settings": {
+      "index": {
+        "number_of_shards": "5",
+        "provided_name": "cust_2016090519205300000",
+        "max_result_window": "1000000000",
+        "creation_date": "1519362414487",
+        "analysis": { // 自定义分词器
+          "analyzer": { // 关键字
+            "my_ngram_analyzer": { // 自定义的分词器
+              "character filters": "",  // 针对原始文本进行处理，比如去除html标签
+              "tokenizer": "my_ngram_tokenizer",  // 将原始文本按照一定规则切分为单词
+              "token filters": "",  // 针对Tokenizer处理的单词进行再加工，比如转小写、删除或增新等处理
+            },
+            "my_analyzer":{ // 自定义的分词器
+              "type":"standard",  // 分词器类型standard
+              "stopwords":"_english_" // standard分词器的参数，默认的stopwords是\_none_
+            }
+          },
+          "tokenizer": {
+            "my_ngram_tokenizer": { // 其中my_ngram_tokenizer 用于设置最小分词、最大分词，该分词器用于处理 无法精确查询中文字段；
+              "token_chars": [
+                "letter",
+                "digit"
+              ],
+              "min_gram": "2",
+              "type": "nGram",
+              "max_gram": "3"
+            }
+          }
+        },
+        "number_of_replicas": "1",
+        "uuid": "ERntEIMET8a0iwlT7paYjA",
+        "version": {
+          "created": "5060199"
+        }
+      }
+    }
+  }
+}
+
+mapping:
+{
+  "cust_2016090519205300000": {
+    "mappings": {
+      "customer_type": {   // customer_type 为索引类型，在6.0之后的版本该类型每个索引只能又一个,尝试创建第二个类型的时候es报错
+        "dynamic": "strict", // dynamic取值，true：默认值，动态添加字段；false：忽略新字段；strict：碰到陌生字段，抛出异常。
+        "_source": {    // 如果有的字段只想索引，不想存储，可以使用_source
+          "excludes": ["AesPhoneNum", "AesEmail"]
+        },
+        "properties": {
+          "ClassID": {
+            "type": "text", // text类型支持分词索引，支持模糊查询、精确查询，不支持聚合。一般用于全文搜索，比如博客内容检索，在检索前要对内容进行分词操作
+                            // 不能对该字段进行排序，一般不用来聚合
+            "fields": {     // ClassID的内置属性，可以用ClassID.keyword访问
+              "keyword": {
+                "type": "keyword",  // keyword类型不支持分词索引，但支持模糊查询、精确查询、聚合等操作，一般用来索引结构化内容，如邮箱地址，电话号码，状态，性别）
+                                    // 一般用来进行状态过滤、聚合、排序
+                "ignore_above": 256,
+                "index_options": "freqs" // index_options参数用于控制增加到倒排索引的信息，为了搜索和高亮，接受如下设置：
+                                         // docs 只索引文档号，可用于回答词项是否存在于文档中的这个域
+                                         // freqs 文档号和词频都会被存储，词项频率越高积分越高
+                                         // positions 文档号、词项、词的位置都会被索引，位置可以用于模糊或短语查询
+                                         // offsets 文档号、词项、词的位置、开始到结束的字符偏移（词项映射到原来的字符串）被索引，偏移提供postings highlighter
+                                         // 分析字符串域默认是会使用positions，其他域默认使用docs。
+              }
+            }
+          },
+          "attr1517905675669": {
+            "type": "long"
+          },
+          "birthday": {
+            "type": "date",
+            "format": "yyyy-MM-dd HH:mm:ss"
+          },
+          "city": {
+            "type": "text",
+            "fields": {
+              "id": {
+                "type": "keyword",
+                "index": false
+              }
+            },
+            "index":"analyzed", // 该字段要被分词索引
+            "analyzer": "ik_smart", // 存储时，使用的分词器
+            "search_analyzer": "ik_max_word", // 查询时，使用的分词器
+            "fielddata": true
+          },
+          "createTime": {
+            "type": "date",
+            "format": "yyyy-MM-dd HH:mm:ss"
+          },
+          "custName": {
+            "type": "text",
+            "boost": 8,
+            "store": true,
+            "fields": {
+              "keyword": {
+                "type": "text"
+              }
+            },
+            "analyzer": "my_ngram_analyzer",
+            "include_in_all": true,
+            "fielddata": true
+          },
+          "language": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "mobile": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            },
+            "analyzer": "ik_max_word",
+            "fielddata": true
+          },
+          "province": {
+            "type": "text",
+            "fields": {
+              "id": {
+                "type": "keyword",
+                "index": false
+              }
+            },
+            "analyzer": "ik_smart",
+            "fielddata": true
+          },
+          "tagCount": {
+            "type": "nested",
+            "properties": {
+              "11": {
+                "type": "long"
+              },
+              "12": {
+                "type": "long"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+----对于有数据的需要更改的mapping
+close index
+post mapping
+open index
+这样可以保证原数据不丢, 但执行过程中会丢掉执行过程的1-2s的数据
