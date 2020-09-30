@@ -148,7 +148,7 @@ mapping:
           "custName": {
             "type": "text",
             "boost": 8,
-            "store": true,
+            "store": true,  // 是否存储, 适合all
             "fields": {
               "keyword": {
                 "type": "text"
@@ -207,7 +207,7 @@ mapping:
 }
 
 ----对于有数据的需要更改的mapping
-close index
-post mapping
-open index
+POST /my_index/_close
+PUT /my_source_index/_mappings
+POST /my_index/_open
 这样可以保证原数据不丢, 但执行过程中会丢掉执行过程的1-2s的数据
