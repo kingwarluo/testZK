@@ -320,6 +320,25 @@
             <artifactId>elasticsearch</artifactId>
             <version>2.3.2</version>
         </dependency>
+
+        <!-- 基准测试工具 JMH -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.23</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.23</version>
+        </dependency>
+
+        <!-- 跨线程池传递线程变量 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+            <version>2.2.0</version>
+        </dependency>
     </dependencies>
 
     <profiles>
