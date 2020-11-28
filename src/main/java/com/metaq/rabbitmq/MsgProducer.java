@@ -2,15 +2,17 @@ package com.metaq.rabbitmq;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 @Component
-public class MsgProducer implements RabbitTemplate.ConfirmCallback {
+public class MsgProducer implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
  
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
  
@@ -22,16 +24,19 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback {
     @Autowired
     public MsgProducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
+        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
         rabbitTemplate.setConfirmCallback(this); //rabbitTemplate如果为单例的话，那回调就是最后设置的内容
+        rabbitTemplate.setReturnCallback(this);
     }
  
     public void sendMsg(String content) {
         CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
         //把消息放入ROUTINGKEY_A对应的队列当中去，对应的是队列A
+        //*** 发送保障机制有事务机制和confirm机制
         rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_A, RabbitConfig.ROUTINGKEY_A, content, correlationId);
     }
     /**
-     * 回调
+     * 消息投递确认
      */
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
@@ -41,5 +46,19 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback {
         } else {
             logger.info("消息消费失败:" + cause);
         }
+    }
+
+    /**
+     * 当消息无法路由到queue时，触发的方法
+     * mandatory为true时触发
+     * @param message
+     * @param replyCode
+     * @param replyText
+     * @param routingKey
+     * @param exchange
+     */
+    @Override
+    public void returnedMessage(Message message, int replyCode, String replyText, String routingKey, String exchange) {
+        logger.info("消息无法投递到队列");
     }
 }
