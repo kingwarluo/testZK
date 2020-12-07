@@ -49,7 +49,8 @@ public class TimeOutImplement {
      * timeoutV：超时的返回值
      * timeout：超时时间
      * 原理：启动一个单线程池，利用future.get(timeout, unit)单位来实现
-     *
+     * 另外：Thread.join(timeout)，发起线程和业务线程，两个线程合二为一，先执行业务线程
+     * ExecutorService.awaitTermination(long million, TimeUnit unit)也可以
      * @author jianhua.luo
      * @date 2020/12/7
      */
@@ -69,7 +70,7 @@ public class TimeOutImplement {
 
         @Override
         public V call() throws Exception {
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            ExecutorService executorService = Executors.newCachedThreadPool();
             Future<V> future = executorService.submit(callable);
             V v = null;
             try {
