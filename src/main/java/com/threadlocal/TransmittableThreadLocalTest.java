@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 阿里 跨线程池传递线程变量 库
+ * https://blog.csdn.net/liubenlong007/article/details/107050929
  *
  * @author jianhua.luo
  * @date 2020/11/19
@@ -22,27 +23,27 @@ public class TransmittableThreadLocalTest {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("主线程开启");
         threadLocal.set(1);
-        System.out.println("主线程读取本地变量：" + threadLocal.get());
+        System.out.println("主线程读取本地变量1：" + threadLocal.get());
 
         executorService.submit(() -> {
-            System.out.println("子线程读取本地变量：" + threadLocal.get());
+            System.out.println("子线程读取本地变量1：" + threadLocal.get());
         });
 
         TimeUnit.SECONDS.sleep(1);
 
         threadLocal.set(2);
-        System.out.println("主线程读取本地变量：" + threadLocal.get());
+        System.out.println("主线程读取本地变量2：" + threadLocal.get());
 
         executorService.submit(() -> {
             //[读到了主线程修改后的新值]
-            System.out.println("子线程读取本地变量：" + threadLocal.get());
+            System.out.println("子线程读取本地变量2：" + threadLocal.get());
             threadLocal.set(3);
-            System.out.println("子线程读取本地变量：" + threadLocal.get());
+            System.out.println("子线程读取本地变量3：" + threadLocal.get());
         });
 
         TimeUnit.SECONDS.sleep(1);
         //依旧读取的是 2
-        System.out.println("主线程读取本地变量：" + threadLocal.get());
+        System.out.println("主线程读取本地变量2：" + threadLocal.get());
     }
 
 }
