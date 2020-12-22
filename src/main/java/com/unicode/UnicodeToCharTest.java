@@ -31,7 +31,7 @@ public class UnicodeToCharTest {
         String unicodeBytes = "";
         for (int byteIndex = 0; byteIndex < utfBytes.length; byteIndex++) {
             System.out.println("char:" + (int)utfBytes[byteIndex]);
-            String hexB = Integer.toHexString(utfBytes[byteIndex]);   //转换为16进制整型字符串
+            String hexB = Integer.toBinaryString(utfBytes[byteIndex]);   //转换为16进制整型字符串
             if (hexB.length() <= 2) {
                 hexB = "00" + hexB;
             }
