@@ -15,7 +15,7 @@ public class UnicodeToCharTest {
 
         // chars to unicode
         // 用户昵称为🐟🐟🐂
-        String content = "\uD83D\uDC1F\uD83D\uDC1F\uD83D\uDC02";
+        String content = "1\uD83D\uDC1F\uD83D\uDC1F\uD83D\uDC02";
         content.codePoints().boxed().forEach(System.out::println);
 
         //
@@ -31,7 +31,8 @@ public class UnicodeToCharTest {
         String unicodeBytes = "";
         for (int byteIndex = 0; byteIndex < utfBytes.length; byteIndex++) {
             System.out.println("char:" + (int)utfBytes[byteIndex]);
-            String hexB = Integer.toBinaryString(utfBytes[byteIndex]);   //转换为16进制整型字符串
+            String hexB = Integer.toHexString(utfBytes[byteIndex]);   //转换为16进制整型字符串
+            System.out.println("hexb:" + hexB);
             if (hexB.length() <= 2) {
                 hexB = "00" + hexB;
             }
@@ -54,10 +55,12 @@ public class UnicodeToCharTest {
             } else {
                 charStr = dataStr.substring(start + 2, end);
             }
+            System.out.println("charStr:" + charStr);
             char letter = (char) Integer.parseInt(charStr, 16); // 16进制parse整形字符串。
             buffer.append(new Character(letter).toString());
             start = end;
         }
+        System.out.println(buffer.toString().length());
         return buffer.toString();
     }
 
