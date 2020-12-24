@@ -20,7 +20,7 @@ public class UnicodeTest {
         content = String.format("%s%s%s", namePrefix, "*", nameSuffix);
         System.out.println(content);
 
-        System.out.println(containsEmoji(content));
+        System.out.println(containsEmoji("\uD83E\uDD23"));
     }
 
     /**
@@ -87,8 +87,7 @@ public class UnicodeTest {
             if (0xd800 <= hs && hs <= 0xdbff) {
                 if (source.length() > 1) {
                     char ls = source.charAt(i+1);
-                    int uc = ((hs - 0xd800) * 0x400) + (ls - 0xdc00) + 0x10000;
-                    if (0x1d000 <= uc && uc <= 0x1f77f) {
+                    if (0xdc00 <= ls && ls <= 0xdfff) {
                         return true;
                     }
                 }
