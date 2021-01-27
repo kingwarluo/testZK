@@ -1,0 +1,9 @@
+Hbase  mysql
+Hdfs   文件系统
+Hive   mybatis
+pig	   mybatis
+yarn   运行环境分发
+spark  计算组件
+flink  计算组件
+
+yarn将计算组件分发给各个文件系统，计算完再由yarn集中调度

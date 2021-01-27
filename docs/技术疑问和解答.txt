@@ -20,6 +20,14 @@ maven脚手架快速生成项目模板
 
 jdk查看内存：jcmd、jmap、jstack
 
+nmon 获取系统性能数据；
+
+jvisualvm 获取 JVM 性能数据；
+
+jmc 获取 Java 应用详细性能数据；
+
+arthas 获取单个请求的调用链耗时；
+
 github pages、hexo、markdown mermaid流程图
 
 设计模式：factory、handler、builder、manager、proxy、loader、adapter、strategy
