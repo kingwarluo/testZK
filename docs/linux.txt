@@ -21,6 +21,11 @@ assword:  用于输入密码
 linux 查找文件夹下文件包含某个字符串
 grep -rn "set" *     -r 是递归查找  -n 是显示行号
 
+linux查找某个关键字所在行，并展示前后日志：
+grep -n ‘关键字’ catalina.out
+当出现binary file matches时，加上-a
+若只需匹配最后一个，加上 | tail -1
+tail -n+定位的行数 catalina.out | head -n 要显示的行数
 
 查看磁盘命令
 df -lh 查看磁盘使用量
