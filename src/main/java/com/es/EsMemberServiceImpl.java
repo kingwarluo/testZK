@@ -304,6 +304,7 @@ public class EsMemberServiceImpl {
         memberQueryDto.setDeptId(123);
         memberQueryDto.setLevelCode("1,3,4");
         memberQueryDto.setMobile("156 5945 5896");
+        memberQueryDto.setMemberName("15659455896");
         queryMemberList(memberQueryDto);
     }
 
