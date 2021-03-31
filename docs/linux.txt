@@ -39,3 +39,15 @@ sz filename1 filename2 下载多个文件
 sz dir/*  下载dir目录下的所有文件，不包含dir下的文件夹
 rz 上传文件，输入rz命令，xshell会提示选择上传的文件
 需要远程linux安装这两个命令，安装方式：yum -y install lrzsz
+
+查找 tomcat目录  conf文件夹下，包含session字样的位置
+grep -R "session" conf/
+
+查找文件内，包含session字样的内容
+？session
+
+查看堆内存使用情况
+jmap jstat
+
+查看栈使用情况
+jstack

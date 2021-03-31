@@ -6,11 +6,15 @@
 
 4、关于order by 耗时，可以先减少order by的数据量
 
-5、使用force index强制使用某个索引
+5、使用force index强制使用某个索引，使用ignore index忽略某个索引
 
 6、查询条件使用了多个索引，索引会选取哪个？
 
-7、left join后，为什么会使用原表索引？
+7、left join后，为什么会使用原表索引？-- 本来就会用到
+
+7.1 查询未走索引原因
+  -- 字符集不一样
+  -- order by导致
 
 8、简单的 select * from A left join B on A.c = B.c where A.employee_id = 3，这是有问题的。
 	https://www.jianshu.com/p/a0673621c94f
@@ -38,3 +42,18 @@
 不允许执行极度耗时的事务，配合应用程序拆分成更小的事务。
 
 预估重要数据表（比如订单表）的负载和数据增长态势，提前优化。
+
+
+mysql left join 原理
+1、Simple Nested-Loop Join（简单嵌套循环连接，效率是A*B条数次）
+2、Index Nested-Loop Join（索引嵌套循环连接，非驱动表利用索引查找，效率更高）
+3、Block Nested-Loop Join（效率与第一种一样，这种方式取出select和on的列）
+原理：先将join的多个表按on条件拼接成一张临时表，再用where条件过滤
+注意:开发时遵循小表驱动大表原则
+
+mysql or查询执行过程及优化
+注意：or里只要一个条件没索引，就不会走索引（原因：全表扫描+索引扫描+merge）、会引起sql注入（mybatis用#{}预编译sql避免）
+原理：
+优化：1、A=1 or (B=2 and c=3)，优化为select A=1 union select B=2 and c=3，用union查询然后排序
+     2、单个（A=1 or A=2 or A=3）可以用in代替
+     3、如果多条件(A=1 and B=2) or (A=2 and B=1)的，可以添加个唯一标识表示
