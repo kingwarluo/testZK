@@ -7,8 +7,10 @@ import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.ChannelAwareMessageListener;
@@ -20,6 +22,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+/**
+ * 把大象装进冰箱的三步：
+ *  配置类：创建交换机、创建队列、创建绑定关系
+ *  消费者：监听类（监听队列）
+ *  生产者：调用template发消息（Exchange）
+ *
+ * @author jianhua.luo
+ * @date 2021/4/6
+ */
 @Configuration
 public class RabbitConfig {
  
@@ -46,10 +57,13 @@ public class RabbitConfig {
     public static final String QUEUE_A = "QUEUE_A";
     public static final String QUEUE_B = "QUEUE_B";
     public static final String QUEUE_C = "QUEUE_C";
- 
+
+    // routing key 指根据rabiitmq设置的路由规则，来指定消息推送到哪个队列
     public static final String ROUTINGKEY_A = "spring-boot-routingKey_A";
-    public static final String ROUTINGKEY_B = "spring-boot-routingKey_B";
-    public static final String ROUTINGKEY_C = "spring-boot-routingKey_C";
+    public static final String ROUTINGKEY_B = "*.gupao.*";
+
+    public static final String BINDINGKEY_A = "shanghai.gupao.china";
+    public static final String BINDINGKEY_B = "changsha.gupao.india";
  
     @Bean
     public ConnectionFactory connectionFactory() {
@@ -77,7 +91,7 @@ public class RabbitConfig {
      FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
      HeadersExchange ：通过添加属性key-value匹配
      DirectExchange:按照routingkey分发到指定队列
-     TopicExchange:多关键字匹配
+     TopicExchange:多关键字匹配（*代表一个匹配，#代表一个或多个匹配）
      */
     @Bean
     public DirectExchange defaultExchange() {
@@ -98,6 +112,11 @@ public class RabbitConfig {
         return BindingBuilder.bind(queueA()).to(defaultExchange()).with(RabbitConfig.ROUTINGKEY_A);
     }
 
+    @Bean
+    public TopicExchange topicExchange() {
+        return new TopicExchange(EXCHANGE_B);
+    }
+
     /**
      * 获取队列B
      * @return
@@ -108,12 +127,39 @@ public class RabbitConfig {
     }
 
     /**
-     * 一个交换机可以绑定多个消息队列，也就是消息通过一个交换机，可以分发到不同的队列当中去。
+     * 交换机和队列是多对多
+     * 交换机和队列绑定规则在rabbitmq平台匹配规则
+     *
      * @return
      */
     @Bean
     public Binding bindingB(){
-        return BindingBuilder.bind(queueB()).to(defaultExchange()).with(RabbitConfig.ROUTINGKEY_B);
+        return BindingBuilder.bind(queueB()).to(topicExchange()).with(RabbitConfig.ROUTINGKEY_B);
+    }
+
+    @Bean
+    public FanoutExchange fanoutExchange() {
+        return new FanoutExchange(EXCHANGE_C);
+    }
+
+    /**
+     * 获取队列C
+     * @return
+     */
+    @Bean
+    public Queue queueC() {
+        return new Queue(QUEUE_C, true); //队列持久
+    }
+
+    /**
+     * 交换机和队列是多对多
+     * 交换机和队列绑定规则在rabbitmq平台匹配规则
+     *
+     * @return
+     */
+    @Bean
+    public Binding bindingC(){
+        return BindingBuilder.bind(queueC()).to(fanoutExchange());
     }
 
     /**

@@ -30,10 +30,13 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback, RabbitTempla
     }
  
     public void sendMsg(String content) {
-        CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
         //把消息放入ROUTINGKEY_A对应的队列当中去，对应的是队列A
-        //*** 发送保障机制有事务机制和confirm机制
-        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_A, RabbitConfig.ROUTINGKEY_A, content, correlationId);
+        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_A, RabbitConfig.ROUTINGKEY_A, content);
+        // 主题交换机
+        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_B, RabbitConfig.BINDINGKEY_A, content);
+        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_B, RabbitConfig.BINDINGKEY_B, content);
+        // 广播交换机
+        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_C, "", content);
     }
     /**
      * 消息投递确认
