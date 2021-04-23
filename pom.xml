@@ -351,6 +351,13 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
             <version>1.5.2.RELEASE</version>
         </dependency>
+
+        <!-- protobuf -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.7.1</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -399,7 +406,7 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <compilerArguments>
-                        <bootclasspath>${java.home}/lib/rt.jar</bootclasspath>
+                        <bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
                     </compilerArguments>
                 </configuration>
             </plugin>
