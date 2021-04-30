@@ -47,7 +47,10 @@ grep -R "session" conf/
 ？session
 
 查看堆内存使用情况
-jmap jstat
+jmap
+jstat -gc pid 查看gc情况
 
 查看栈使用情况
 jstack
+
+整体看板 阿里的arthas
