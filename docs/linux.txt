@@ -2,10 +2,10 @@
 less 文件名
 /查找的内容
 
-获取tomcat进程pid 
+获取tomcat进程pid
 ps -ef|grep tomcat
 
-统计该tomcat进程内的线程个数 
+统计该tomcat进程内的线程个数
 ps -Lf 29295|wc -l
 
 修改密码：
@@ -58,3 +58,10 @@ jstack pid
 scp linux
 
 top -H -p pid 查看线程数量
+
+日志切割
+
+
+统计文档出现次数并排序
+cat t.log |grep  -Po "(?<=serviceId:).*?(?=,)"|sort |uniq -c
+
