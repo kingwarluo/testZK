@@ -1,0 +1,20 @@
+1、数据结构
+表、列簇、列、rowkey（主键）
+
+2、查询基础
+主键查询、范围查询、条件过滤（filter）
+
+3、phoenix入门
+用sql语句查询hbase，遵循ANSI SQL-92标准。赋予hbase OLTP和轻量级OLAP的能力。
+同时解决hbase原生不支持的orderby groupby join subquery function等
+毫秒级交互体验，MPP并行执行，充分利用HBase Coprocessor实现计算下推。
+
+4、查询加速
+协处理器Coprocessor： 计算下推，避免数据移动。observer（触发器）：在一些特定事件执行回调函数、endpoint（存储过程）：客户端远程调用服务端代码。
+二级索引：建立一个单独索引表，基于协处理器observer实现，特定事件写入索引表。查询时判断是否走索引表。
+全文索引：hbase+es。
+  1.同时写入hbase+es，查询可以查hbase和es，这样会导致写入失败，需要做补偿机制保障数据一致性
+  2.写入hbase，利用hbase的协处理器observer，将数据写入es。查询时可以查询es。
+  3.写入hbase，读写都从hbase。利用hbase的协处理器observer，将数据写入es，查询时利用协处理器observer，转换成es查询语句查询。
+
+5.lsm 重写轻读
