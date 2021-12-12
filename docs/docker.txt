@@ -1,0 +1,23 @@
+1、指令集
+docker ps -a 显示所有docker容器
+docker images 显示所有镜像
+docker pull mysql:latest 拉取docker镜像
+docker exec XXX /bin/bash 打开docker容器（类似linux）
+docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql 最后的mysql是镜像名称
+
+docker 镜像仓库设置
+安装 docker engine-community
+安装所需的软件包。yum-utils 提供了 yum-config-manager ，并且 device mapper 存储驱动程序需要 device-mapper-persistent-data 和 lvm2
+设置案例云镜像 sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+2、Dockerfile--->用来构建镜像的文本文件，包含构建镜像所需指令和说明
+FROM fiadliel/java8-jre
+VOLUME /tmp
+ADD shop-bootstrap-2.0.jar shop-api-2.0.jar
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' >/etc/timezone
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/shop-api-2.0.jar"]
+
+
+3、docker compose
+

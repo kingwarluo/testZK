@@ -46,6 +46,12 @@ grep -R "session" conf/
 查找文件内，包含session字样的内容
 ？session
 
+查找文件  find / -name "filename"
+查找目录  find / -name "path" -type d
+查找内容
+find . | xargs grep -ri 'content'
+find . | xargs grep -ril 'content' //只显示文件名称
+
 jps查看pid
 查看堆内存使用情况
 jmap -heap pid 查看堆情况
