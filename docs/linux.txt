@@ -46,7 +46,7 @@ grep -R "session" conf/
 查找文件内，包含session字样的内容
 ？session
 
-查找文件  find / -name "filename"
+查找文件  find / -name "filename*"
 查找目录  find / -name "path" -type d
 查找内容
 find . | xargs grep -ri 'content'

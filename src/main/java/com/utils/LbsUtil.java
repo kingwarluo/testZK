@@ -59,12 +59,11 @@ public class LbsUtil {
 
     public static void main(String[] args) {
         // 1426105726751453337
-        double distance = getDistance(28.7021540000, 115.8076500000, 28.6680470000, 115.9690640000);
+        double distance = getDistance(24.491068, 118.194795, 27.1583660000, 117.3026070000);
         // 1426105726751453201
         double distance2 = getDistance(28.6572740000, 115.8867700000, 28.6680470000, 115.9690640000);
         System.out.println(distance);
         System.out.println(distance2);
     }
-
 
 }

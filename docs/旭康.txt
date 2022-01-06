@@ -1,0 +1,31 @@
+1、日志平台  grafana+loki
+
+2、idea --> tools -> http client 代替postman
+
+3、maven脚手架
+
+4、nacos ap cp切换，集群部署，namespace、group含义，数据库持久化
+
+
+namespace一般用于区分环境、租户，可手动创建
+groupId一般区分多个模块（子系统），一般以artifactId命名，可在配置文件配置
+dataId一般指应用内配置的key
+
+5、项目管理软件--禅道
+
+6、api要考虑的点
+  客户端请求：
+    1、token是客户端访问服务端的凭证
+    2、时间戳收到的timestamp与当前时间相差超5分钟，认为请求失效。防止DOS攻击的有效手段
+    3、签名机制将token和时间戳加上其他请求参数，用MD5或SHA-1算法（可加盐，但是盐如何传到客户端？？？由客户端保存）加密，防止数据被篡改
+    4、流水号+timestamp+盐值（流水号保障请求仅一次有效，但是每次保存流水号，耗费内存资源，timestamp保障请求60s内有效，所以流水号可以只保存60s）
+    {@see com.api.DownStream}
+  服务端返回（数据上行加密优先级低，可以延后处理）：
+    1、非对称加密RSA
+        api重放攻击：
+        数据加密问题
+        DOS攻击：限流降级熔断
+
+7、k8s
+
+8
