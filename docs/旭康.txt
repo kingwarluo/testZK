@@ -28,4 +28,25 @@ dataId一般指应用内配置的key
 
 7、k8s
 
-8
+8、frp内网穿透	
+	[http]
+	type = http
+	local_ip = 127.0.0.1
+	local_port = 8889
+	remote_port = 8000  #访问服务器端的8000相当于访问本机8889
+	custom_domains = www.abc.com
+
+	[web]
+	type = tcp
+	local_ip = 127.0.0.1
+	local_port = 8889
+	remote_port = 8030
+解释：需hosts代理本地为www.abc.com域名
+
+9、时序数据库 influxdb
+
+10、kong网关
+
+从作用上来说，漏桶和令牌桶算法最明显的区别就是是否允许突发流量(burst)的处理，漏桶算法能够强行限制数据的实时传输（处理）速率，对突发流量不做额外处理；而令牌桶算法能够在限制数据的平均传输速率的同时允许某种程度的突发传输。
+
+nginx 限流  https://www.cnblogs.com/biglittleant/p/8979915.html
