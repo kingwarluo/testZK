@@ -6,6 +6,14 @@ package com.设计模式.adapter.audio;
  * @author jianhua.luo
  * @date 2020/10/28
  */
+// 这里不能用类适配器的形式，因为先进的播放器有两种实现，MP4和VLC
+//public class MediaPlayerAdapter extends Mp4Player implements Player {
+//
+//    @Override
+//    public void play(String audioType, String fileName) {
+//
+//    }
+//}
 public class MediaPlayerAdapter implements Player {
 
     // 对象适配器，采用delegate委托来实现
