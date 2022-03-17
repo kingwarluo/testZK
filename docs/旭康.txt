@@ -1,4 +1,4 @@
-1、日志平台  grafana+loki
+1、日志平台  grafana+loki  /  sentry 错误日志监控
 
 2、idea --> tools -> http client 代替postman
 
@@ -11,7 +11,7 @@ namespace一般用于区分环境、租户，可手动创建
 groupId一般区分多个模块（子系统），一般以artifactId命名，可在配置文件配置
 dataId一般指应用内配置的key
 
-5、项目管理软件--禅道
+5、项目管理软件--禅道  scrum
 
 6、api要考虑的点
   客户端请求：
@@ -48,5 +48,13 @@ dataId一般指应用内配置的key
 10、kong网关
 
 从作用上来说，漏桶和令牌桶算法最明显的区别就是是否允许突发流量(burst)的处理，漏桶算法能够强行限制数据的实时传输（处理）速率，对突发流量不做额外处理；而令牌桶算法能够在限制数据的平均传输速率的同时允许某种程度的突发传输。
+
+11、docker-compose/docker镜像制作
+compose包含version、services、networks三部分
+
+docker build -t imagename . 制作镜像
+
+12、rocketmq可靠性保障？顺序消息实现？事务消息的实现？
+事务消息，
 
 nginx 限流  https://www.cnblogs.com/biglittleant/p/8979915.html
