@@ -26,3 +26,18 @@
 ### 消息幂等性
     1.消费端做消息幂等性处理（msgId,BizId）
     2.重帐控制（落库）
+    
+### 一些疑问
+    1、rabbitmq发送确认机制
+        见5
+    2、rabbitmq交换机  路由key  队列绑定机制  
+        生产者指定 交换机、路由
+        消费者指定 队列、交换机、绑定方式
+        由消费队列机绑定
+    3、多次绑定spring中如何存储  
+        beanName为方法名
+    4、如何查看spring中所有bean  
+        actuator监控查看
+    5、confirmCallBack & returnCallBack区别
+        confirmCallBack消息到达交换机
+        returnCallBack消息到达队列
