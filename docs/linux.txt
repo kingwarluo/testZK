@@ -27,6 +27,12 @@ grep -n ‘关键字’ catalina.out
 若只需匹配最后一个，加上 | tail -1
 tail -n+定位的行数 catalina.out | head -n 要显示的行数
 
+https://www.cnblogs.com/east7/p/15856725.html   查找“keyword”出现位置
+取出关键词keyword中首次出现的前两行记录
+grep  -A10  "keyword" /etc/man.config | head -2
+取出关键词keyword中最近出现的前两行记录
+grep  -B10  "keyword" /etc/man.config | tail -2
+
 查看磁盘命令
 df -lh 查看磁盘使用量
 df -h 目录  查看目录挂载在哪个磁盘上
