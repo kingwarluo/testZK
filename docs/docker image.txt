@@ -1,0 +1,33 @@
+参考：https://blog.csdn.net/sunyuhua_keyboard/article/details/124915289
+
+1、Dockerfile docker build 打包成镜像
+    安装 alibaba cloud toolkit
+
+    申请access key:
+    AccessKey ID:LTAI5tJB5mhUhsK2Q9F2Qw6A
+    AccessKey Secret:KzFxFpWTooPwyDUCC25aGgEKIcF2Sq
+
+    Deploy to Registry
+    配置windows docker可用，wsl --update， 启用虚拟机
+
+    创建Dockerfile
+        FROM fiadliel/java8-jre
+        MAINTAINER kingwarluo
+        VOLUME /tmp
+        ADD target/es-1.0.jar es-1.0.jar  -- 注意这里的原路径context是根据配置来的
+        RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+        RUN echo 'Asia/Shanghai' >/etc/timezone
+        ENTRYPOINT ["java", "-jar", "/es-1.0.jar "]
+
+2、上传到阿里云镜像仓库
+    阿里云 -> 容器镜像服务 -> 创建命名空间 -> 创建镜像仓库
+
+3、云服务器拉取镜像 运行
+    docker login 阿里云仓库，永久不用登陆
+
+    配置docker-compose.yml文件
+     bootEs:
+        image: registry.cn-hangzhou.aliyuncs.com/kingwarluo/java:20220601164741
+        container_name: SpringBootEs
+        ports:
+          - 8081:8080
