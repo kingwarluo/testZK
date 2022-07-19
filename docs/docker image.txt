@@ -4,8 +4,8 @@
     安装 alibaba cloud toolkit
 
     申请access key:
-    AccessKey ID:LTAI5tJB5mhUhsK2Q9F2Qw6A
-    AccessKey Secret:KzFxFpWTooPwyDUCC25aGgEKIcF2Sq
+    AccessKey ID:XXX
+    AccessKey Secret:XXX
 
     Deploy to Registry
     配置windows docker可用，wsl --update， 启用虚拟机
