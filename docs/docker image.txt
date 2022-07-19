@@ -23,7 +23,7 @@
     阿里云 -> 容器镜像服务 -> 创建命名空间 -> 创建镜像仓库
 
 3、云服务器拉取镜像 运行
-    docker login 阿里云仓库，永久不用登陆
+    docker login 阿里云仓库，永久不用登陆，登录信息放在/root/.docker/config.json目录
 
     配置docker-compose.yml文件
      bootEs:
