@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title 直播中
+
+actor 主播 as 主播
+autonumber
+
+主播 -> 商户端: 点击开始直播
+activate 商户端
+商户端 --> 后台: 获取推流地址、场次状态变为直播中
+activate 后台
+后台 --> 商户端: 获取成功
+deactivate 后台
+商户端 --> 商户端: 登录im、创建直播群、启动推流、其他客户可以进入直播间
+deactivate 商户端
+
+participant 商户端 as 商户端
+participant 后台 as 后台
+actor 助理 as 助理
+autonumber
+助理 --> 商户端: 点击进入直播间
+activate 商户端
+商户端 --> 后台: 直播分享
+商户端 --> 后台: 直播禁言（后台处理禁言）
+商户端 --> 后台: 直播弹幕（前端处理弹幕）
+商户端 --> 后台: 直播公告（前端推送给在线用户，后端保存公告）
+商户端 --> 后台: 直播介绍（请求后台保存介绍）
+商户端 --> 后台: 操作直播商品
+
+@enduml
