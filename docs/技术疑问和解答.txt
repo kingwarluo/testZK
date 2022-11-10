@@ -14,7 +14,7 @@
 建议：更新内容按每月一次进行总体会议；组员轮流做不同系统了解不同系统的需求；
 
 idea插件：backgroud-img，alibaba Java coding guidelines, findbugs, sonarLint, jrebel热部署 、lombok、maven helper、uuid生成插件、vuejs插件、atom代码效果插件、restulToolKit、、Mybatis mini-plugin跳转ibatis文件
-单元测试：jacoco（测试代码覆盖率）、h2（模拟dao层）、mock平台（模拟RPC服务）、junit、vue.js devtools、codeglance、rainbow brackets、gittoolbox
+单元测试：jacoco（测试代码覆盖率）、h2（模拟dao层）、mock平台（模拟RPC服务）、junit、vue.js devtools、codeglance、rainbow brackets、gittoolbox、plantUml画图、jclasslib查看字节码
 postman、swagger说明文档编写、jmeter测试工具、
 maven脚手架快速生成项目模板
 
