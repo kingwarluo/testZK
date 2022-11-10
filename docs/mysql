@@ -1,0 +1,30 @@
+参考：
+    https://blog.csdn.net/Tomwildboar/article/details/122111449
+    https://blog.csdn.net/ahuangqingfeng/article/details/124500917
+
+1、更新操作
+先写入buffer pool  顺序写入redolog buffer（innodb_log_buffer_size默认16M），事务提交时入盘（为了提高响应。
+不能直接直接入盘是因为随机写入，影响效率。每次入盘操作都是操作页，每页大小16k，而一次事务远远小于16k）
+
+redolog buffer入盘时机：
+当缓存内容大于全部空间一半的时候（默认大小16MB，一半就是8MB）
+后台有个线程定时每秒刷入磁盘
+每个事物提交的时候
+MySQL关闭的时候
+
+两阶段提交（XA）：
+1、server到innodb引擎，更新数据行，将修改结果写入buffer pool中的数据，并记录redolog buffer为prepare状态，通知server修改好了
+2、server写入bin log，并通知innodb提交事务，innodb将redolog buffer写入redolog（bin log相当于事务协调者）
+
+2、redolog和binlog的区别
+redolog是属于innodb引擎，binlog属于mysql
+redolog会覆盖之前的数据，而binlog会一直增长（可以设置过期时间）
+redolog是用来防止mysql异常导致修改数据丢失，binlog是用来数据备份和主从节点数据同步的。
+redolog是物理日志，记录的是“在某个数据页上做了什么修改”（数据页上某个偏移量的值）；binlog是逻辑日志，记录的是这个语句的原始逻辑（sql、数据行）
+
+
+3、ReadView
+https://blog.csdn.net/qq_41361506/article/details/108538702
+RR和RC的区别在于：开启事务后，读取数据，RR只在第一次读取时生成ReadView，RC每次都会重新生成ReadView。所以RR后续每次看到都是一样的，RC可以看到每次更新后的。
+
+RC、RR 两种隔离级别的事务在执行普通的读操作时，通过访问版本链的方法，使得事务间的读写操作得以并发执行，从而提升系统性能。

@@ -1,0 +1,5 @@
+https://blog.csdn.net/qq_19922839/article/details/120731372
+
+Histogram：堆中对象分析
+Leak Inspect： 内存泄漏检查
+Top Component： 对象占用内存检查
