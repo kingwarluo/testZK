@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title 观看直播
+
+actor 主播 as 主播
+
+
+participant 商户端 as 商户端 order 10
+participant 后台 as 后台 order 30
+autonumber
+
+主播 -> 商户端: 点击立即直播
+activate 商户端
+商户端 --> 后台: 创建直播场次
+activate 后台
+后台 --> 商户端: 返回场次id
+deactivate 后台
+商户端 --> 后台: 直播分享
+商户端 --> 后台: 直播公告（后端保存公告）
+商户端 --> 后台: 直播介绍（请求后台保存介绍）
+deactivate 商户端
+
+actor 助理 as 助理 order 8
+autonumber
+助理 --> 商户端: 点击立即直播
+activate 商户端
+商户端 --> 后台: 直播分享
+商户端 --> 后台: 直播公告（后端保存公告）
+商户端 --> 后台: 直播介绍（请求后台保存介绍）
+商户端 --> 后台: 操作直播商品
+
+@enduml

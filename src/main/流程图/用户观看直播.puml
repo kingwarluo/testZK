@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title 用户观看直播
+start
+:用户进入直播间;
+:调用直播间详情接口初始化;
+:调用joinGroup接口加入群聊（启用im事件）;
+fork
+switch(监听后台推送)
+case(监听系统通知)
+    :用户进入直播间推送;
+    :用户下单改变人气推送;
+    :后台下播、主播封禁、直播异常推送;
+case(监听普通消息)
+    :用户正在购买消息;
+    :展示到聊天框;
+case(其他群聊事件监听)
+    :前端自行响应;
+endswitch
+fork again
+switch(操作)
+case(购买商品)
+    :点击商店图标;
+    :选择一件商品;
+    :判断是否超出个人限购、库存;
+    :直播间菜场下单流程;
+case(发送群聊)
+    :发送群聊;
+    :监听群聊信息并响应;
+case(分享)
+    :分享到微信好友、朋友圈;
+case(清晰度、举报、退出直播间)
+    :对应操作;
+endswitch
+end fork
+stop
+@enduml
