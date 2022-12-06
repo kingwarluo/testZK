@@ -23,7 +23,7 @@
         <commons.io.version>2.6</commons.io.version>
         <commons.lang3.version>3.9</commons.lang3.version><!-- lang已废弃，采用lang3 -->
         <commons.logging.version>1.2</commons.logging.version>
-        <commons.net.version>3.6</commons.net.version>
+        <commons.net.version>3.9.0</commons.net.version>
         <testable.version>0.6.4</testable.version>
     </properties>
 
