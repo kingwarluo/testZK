@@ -62,9 +62,19 @@ GC条件：要回收方法区的类对象，堆内存的实例对象要先被回
 	jstack -m >jvm_deadlocks.txt
 	jstack -l >jvm_listlocks.txt
 	参考资料http://docs.oracle.com/javase/6/docs/technotes/tools/share/jstack.html
-3、jprofiler 分析神器
+3、https://www.jb51.net/article/261532.htm
+    查看gc时长及频率：jstat -gcutil 进程pid 滚动时间可不设置
+    查询前20个大对象：jmap -histo:live pid|head -n 20
+4、查看占用cpu最高的线程
+    1. top
+    2. top -Hp <pid>
+    3. 获取cpu最高的进程号并转换为16进制<pid_16>  printf '%x\n' pid
+    4. jstack <pid>|grep -A 10 <pid_16>; -A 10 打印后续10行; -B 10 打印前面10行;
+    5. 查看对应问题的代码
+5、查看死锁
+    jstack -l(打印锁信息) pid
 
-jvm调优：https://www.cnblogs.com/likehua/p/3369823.html
+jm调优：https://www.cnblogs.com/likehua/p/3369823.html
 
 神州JDK1.7的JVM配置：
 -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Xms4135m -Xmx4135m -Xmn512m -Xss256k -XX:PermSize=256m -XX:MaxPermSize=256m -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+UseCMSCompactAtFullCollection -XX:+CMSParallelRemarkEnabled -XX:CMSInitiatingOccupancyFraction=70 -Dcom.sun.management.jmxremote -Dcom.sun.management.snmp.port=8044 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=8045 -Djava.rmi.server.hostname=10.204.114.170 -Djdk.tls.ephemeralDHKeySize=2048 -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/tmp
