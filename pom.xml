@@ -25,6 +25,7 @@
         <commons.logging.version>1.2</commons.logging.version>
         <commons.net.version>3.6</commons.net.version>
         <testable.version>0.6.4</testable.version>
+        <kafka.client.version>2.0.1</kafka.client.version>
     </properties>
 
     <parent>
@@ -389,6 +390,12 @@
             <groupId>com.alibaba.testable</groupId>
             <artifactId>testable-all</artifactId>
             <version>${testable.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka.client.version}</version>
         </dependency>
 
     </dependencies>
