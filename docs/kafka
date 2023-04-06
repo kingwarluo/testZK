@@ -1,0 +1,35 @@
+参考：https://blog.csdn.net/u013200380/article/details/114135666
+
+1、controller
+    承担了集群的可用性管理，负责每个partition的leader选举工作。
+    在集群启动时，每个partition的节点会去抢占一个/controller的临时节点，抢占成功则成为controller，抢占失败则在该节点添加监听，controller节点失败后，会再次发起抢占
+    每次抢占controller节点成功，会维护一个epoch+1，controller每次发消息会携带这个epoch，可以防止脑裂，旧的controller携带的epoch会被忽略
+2、水位(HW)
+    指partition分区中最低的LEO(Log End Offset日志末端位移)。满足数据一致性。还未同步给follower的消息不会让consumer看到。
+    同步：
+        follower会主动拉取leader的数据并更新自己的LEO。同步时同时更新leader返回的HW
+        leader会根据follower的LEO更新自己HW。当leader重新选举后，会更新HW
+3、isr
+    kafka维护的一个follower子集，包括leader本身。follower会不断从leader拉取数据
+    如果follower在10s内没有向leader发送拉数据请求，这个follower将会被踢出isr(不用条数的原因是，遇到瞬时流量高峰，follower很容易落后leader较多消息。)
+    可以设置最少isr数量
+4、生产者producer
+    每个broker都可以返回响应producer请求，返回topic的元信息，包括哪些机器是存活，leader partition在哪一台，哪个leader partition可以直接访问
+    以batch方式推送数据可以极大的提高效率，减少网络IO次数（累计消息数、累计间隔时间、累计消息大小）
+    具体参数：
+        acks(0-不等待落盘直接返回成功,1-等待leader落盘,all-等待分区所有replica落盘)
+        retries(收到可恢复异常时，重试次数)，结合retry.backoff.ms(重试等待间隔)使用，建议总的重试时间比选举leader时间长
+        batch.size(批量消息的大小上限)
+        linger.ms(发送批量消息前等待的时间)
+        buffer.memory(生产者缓冲发送消息的内存大小？？)
+        client.id(可以任意字符，识别消息来自哪个客户端)
+        max.in.flight.requests.per.connection(生产者可以发送多少条消息给broker并等待响应，如果要保证有序性，只能设置为1)
+        max.request.size(限制生产者发送数据包大小)
+5、消费者consumer
+    tips:
+        生产者发送消息，同一个组中的多个消费者只能有一个消费者接收消息
+        生产者发送消息，如果有多个组，每个组中只能有一个消费者接收消息
+        如果想要实现广播的效果，可以让每个消费者单独有一个组即可，这样每个消费者都可以接收到消息
+    rebalance重平衡会引发消息重复消费和消息堆积
+
+    session.timeout.ms要比heartbeat.interval.ms小，一般是1/3
