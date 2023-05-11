@@ -6,7 +6,8 @@ import org.redisson.config.Config;
 
 public class RedisUtil {
 
-    private static final String CONNECT_STRING = "localhost:6379";
+    private static final String CONNECT_STRING = "192.168.0.18:16379";
+    private static final String PASSWORD = "xk@redis";
 
     private static RedisUtil util = null;
 
@@ -23,7 +24,9 @@ public class RedisUtil {
 
     public static RedissonClient getRedisClient(){
         Config config = new Config();
-        config.useSingleServer().setAddress(CONNECT_STRING);
+        config.useSingleServer().setAddress("redis://" + CONNECT_STRING);
+        config.useSingleServer().setPassword(PASSWORD);
+        config.useSingleServer().setDatabase(8);
         RedissonClient client = Redisson.create(config);
         return client;
     }
