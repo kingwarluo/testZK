@@ -10,6 +10,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 import java.net.InetSocketAddress;
 
@@ -33,7 +35,7 @@ public class EchoServer {
             server.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel channel) throws Exception {
-                    channel.pipeline().addLast(new EchoServerHandler());
+                    channel.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
                 }
             });
             server.option(ChannelOption.SO_BACKLOG, 128);
