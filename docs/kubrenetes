@@ -1,0 +1,71 @@
+1、pod生命周期
+
+2、pod调度
+自动调度：Scheduler计算出pod运行在哪个节点
+定向调度：跳过Scheduler调度，直接匹配NodeName（node名称匹配）、NodeSelector（给node打标签）
+亲和性调度：定向调度NodeSelector的拓展，如果没有，也可以调度到不满足条件的节点上，
+    NodeAffinity(node亲和性）：以node为目标，解决pod可以调度到哪些node的问题
+        pod.spec.affinity.nodeAffinity
+          requiredDuringSchedulingIgnoredDuringExecution  Node节点必须满足指定的所有规则才可以，相当于硬限制（找不到会调度失败）
+            nodeSelectorTerms  节点选择列表
+              matchFields   按节点字段列出的节点选择器要求列表
+              matchExpressions   按节点标签列出的节点选择器要求列表(推荐)
+                key    键
+                values 值
+                operator 关系符 支持Exists（存在）, DoesNotExist（不存在）, In（范围）, NotIn（范围取反）, Gt（大于）, Lt（小于）
+          preferredDuringSchedulingIgnoredDuringExecution 优先调度到满足指定的规则的Node，相当于软限制 (倾向，找不到不会调度失败)
+            preference   一个节点选择器项，与相应的权重相关联
+              matchFields   按节点字段列出的节点选择器要求列表
+              matchExpressions   按节点标签列出的节点选择器要求列表(推荐)
+                key    键
+                values 值
+                operator 关系符 支持In, NotIn, Exists, DoesNotExist, Gt, Lt
+            weight 倾向权重，在范围1-100。
+    PodAffinity(pod亲和性) ：以pod为目标，解决pod可以和哪些已存在的pod部署在同一个拓扑域中的问题
+        pod.spec.affinity.podAffinity
+          requiredDuringSchedulingIgnoredDuringExecution  硬限制
+            namespaces       指定参照pod的namespace
+            topologyKey      指定调度作用域
+            labelSelector    标签选择器
+              matchExpressions  按节点标签列出的节点选择器要求列表(推荐)
+                key    键
+                values 值
+                operator 关系符 支持In, NotIn, Exists, DoesNotExist.
+              matchLabels    指多个matchExpressions映射的内容
+          preferredDuringSchedulingIgnoredDuringExecution 软限制
+            podAffinityTerm  选项
+              namespaces
+              topologyKey
+              labelSelector
+                matchExpressions
+                  key    键
+                  values 值
+                  operator
+                matchLabels
+            weight 倾向权重，在范围1-100
+    PodAntiAffinity(pod反亲和性) ：以pod为目标，解决pod不能和哪些已存在pod部署在同一个拓扑域中的问题
+污点(taint)和容忍（toleration）调度：污点就是拒绝，容忍就是忽略
+    node节点设置污点，key=value:effect形式，如name=nginx:NoSchedule，effect有如下三种：
+        PreferNoSchedule（最好不要来，实在没资源就来吧）
+        NoSchedule（不要来了，已经在的就在了）
+        NoExecute（不要来了，已经在的就驱逐）
+    pod设置容忍：
+        tolerations:      # 添加容忍
+          - key: "tag"        # 要容忍的污点的key
+            operator: "Equal" # 操作符
+            value: "heima"    # 容忍的污点的value
+            effect: "NoExecute"   # 添加容忍的规则，这里必须和标记的污点规则相同
+3、控制器
+ReplicaSet：保障有特定数量的pod正在运行
+Deployment：滚动升级、扩缩容、副本等功能，一般用于无状态的应用
+StatefulSet：有序命名、有序启停、pod采用稳定的持久化存储卷（PV或PVC实现），保证数据安全、实现稳定持久化存储状态数据
+    -- 拓展：有了这个编号后StatefulSet就使用Kubernetes里的两个标准功能：Headless Service 和 PV/PVC,实现了对 Pod 的拓扑状态和存储状态的维护
+hpa：自动监测当前负载（如：cpu利用率），进行扩缩容
+DaemonSet：为集群每个Node创建一个pod，默认添加对所有节点污点的容忍
+Job：
+CornJob：
+4、service和ingress
+
+
+5、拓展
+    PV、PVC
