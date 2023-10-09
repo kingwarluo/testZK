@@ -150,4 +150,116 @@ CornJob：
               storage: 3Gi #小于等于PV大小
 自身资源
     configmap：
+        # 创建configMap,   special.how: very   键名：键值
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: special-config
+          namespace: default
+        data:
+          special.how: very
+          special.type: charm
+
+        # 创建第二个configMap
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: env-config
+          namespace: default
+        data:
+          log_level: INFO
+
+        # 第一种方式： 在pod中使用configmap配置,使用ConfigMap来替代环境变量
+        spec:
+          containers:
+            - name: test-container
+              image: hub.kaikeba.com/library/myapp:v1
+              command: ["/bin/sh", "-c", "env"]
+              env:
+                - name: SPECIAL_LEVEL_KEY
+                  valueFrom:
+                    configMapKeyRef:
+                      name: special-config  # 第一种导入方式：在env中导入
+                      key: special.how
+                - name: SPECIAL_TYPE_KEY
+                  valueFrom:
+                    configMapKeyRef:
+                      name: special-config
+                      key: special.type
+              envFrom:                      # 第二种导入方式，直接使用envFrom导入
+                - configMapRef:
+                    name: env-config
+        # 第二种方式：用ConfigMap设置命令行参数
+        spec:
+          containers:
+            - name: test-container
+              image: hub.kaikeba.com/library/myapp:v1
+              command: [ "/bin/sh", "-c", "echo $(SPECIAL_LEVEL_KEY) $(SPECIAL_TYPE_KEY)" ]
+              env:
+                - name: SPECIAL_LEVEL_KEY
+                  valueFrom:
+                    configMapKeyRef:
+                      name: special-config
+                      key: special.how
+                - name: SPECIAL_TYPE_KEY
+                  valueFrom:
+                    configMapKeyRef:
+                      name: special-config
+                      key: special.type
+        # 第三种方式：通过数据卷插件使用ConfigMap
+        spec:
+          containers:
+            - name: test-container
+              image: hub.kaikeba.com/library/myapp:v1
+              command: [ "/bin/sh", "-c", "sleep 600s" ]
+              volumeMounts:
+                - name: config-volume
+                  mountPath: /etc/config # 表示把conifg-volume挂载卷挂载到容器的/etc/config目录下
+          volumes:    # 开启挂载外部configmap
+            - name: config-volume
+              configMap:
+                name: special-config
+        configmap热更新: kubectl edit configmap log-config
     secret：
+        # secret.yaml配置文件方式
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: mysecret
+        type: Opaque
+        data:
+         password: YWJjZGVmZ2g=
+         username: YWRtaW4=
+
+        # 将secret挂载到volume中
+        spec:
+          volumes:
+          - name: secrets
+            secret:
+              secretName: mysecret
+          containers:
+          - image: hub.kaikeba.com/java12/myapp:v1
+            name: db
+            volumeMounts:
+            - name: secrets
+              mountPath: "/etc/secrets"
+              readOnly: true
+
+        # 将secret导出到环境变量中
+        spec:
+          containers:
+          - name: pod-1
+            image: hub.kaikeba.com/java12/myapp:v1
+            ports:
+            - containerPort: 80
+            env:
+            - name: TEST_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysecret
+                  key: username
+            - name: TEST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysecret
+                  key: password
