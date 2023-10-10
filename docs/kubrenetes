@@ -1,3 +1,7 @@
+kuberadmin集群：
+    apiserver：作为控制平面的入口，负责处理集群的配置、调度和管理等操作。还提供了认证、授权和准入控制等安全机制。
+    kube-proxy：运行在每个节点上，并监听API Server的Service配置变化
+
 1、pod生命周期
 
 2、pod调度
@@ -85,7 +89,47 @@ hpa：自动监测当前负载（如：cpu利用率），进行扩缩容
 DaemonSet：为集群每个Node创建一个pod，默认添加对所有节点污点的容忍
 Job：
 CornJob：
+
 4、service和ingress
+    service：
+        网络模式：userspace（频繁线程切换，淘汰）、iptables（预解析service映射关系）、ipvs（更多负载均衡算法（最小负载、最少连接、加权）、健康检查、连接重试），
+             endpoint（即一组pod的ip地址和端口的列表）和service的ip映射关系。
+             kubectl edit configmap kube-proxy -n kube-system 命令执行修改网络模式，修改mode： ipvs
+             先安装ipvsadm yum install ipvsadm -y
+             查看ipvs规则 ipvsadm -L -n
+        资源类型：
+        ClusterIP：只能在集群内部访问，一般k8s集群中不同项目沟通一般使用clusterip
+            apiVersion: v1
+            kind: Service
+            metadata:
+              name: service1
+            spec:
+              type: ClusterIP
+              sessionAffinity: ClientIP # 会话亲和性，同一的客户端产生的所有请求都指向同一个pod
+              ports:
+              - port: 80 # 服务的可用端口
+                targetPort: 8080 # pod内容器端口
+              selector:
+                app: nginx
+        Headless：同上，只是clusterIP: None
+            {servicename}.{namespace}.svc.cluster.local方问，不能通过ip访问
+        NodePort：
+            apiVersion: v1
+            kind: Service
+            metadata:
+              name: nodeport1
+            spec:
+              type: NodePort
+              sessionAffinity: ClientIP # 会话亲和性，同一的客户端产生的所有请求都指向同一个pod
+              ports:
+              - port: 80 # 服务的可用端口
+                targetPort: 8080 # pod内容器端口
+                nodePort: 30123 # 30000-32000范围内
+              selector:
+                app: nginx
+        LoadBalancer：
+        ExternalName：
+    ingress：
 
 
 5、存储（pod内的容器共享存储）
