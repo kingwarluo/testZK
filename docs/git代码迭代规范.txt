@@ -111,3 +111,20 @@ GIT版本规范：GIT版本规范
 6）若此时有正在进行中的开发，则将hotfix代码merge回各个分支，走正常开发流程的回归测试。
 
 注：若线上bug不是短时间、一两个人可以解决的，建议还是走常规开发，使用多分支并行开发。Hotfix只用于修复需要快速响应的bug。
+
+
+git删除提交：
+    假设远程仓库的提交记录中存在（时间倒叙）
+    commitA
+    commitB
+    commitC
+
+    1git log --oneline
+    2 git reset --hard commitB
+    将代码恢复至commitB的状态
+    也就是删除了commitA的所有修改
+
+    3 git push origin 分支名 --force
+    强制提交到远程代码库的指定分支，直接覆盖了远程代码库的代码。
+    commitA这个提交记录直接没了。
+    注意：慎用git push --force
