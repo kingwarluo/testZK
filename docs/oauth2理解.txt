@@ -2,6 +2,9 @@ spring security + oauth2
 https://blog.csdn.net/Michael_lcf/article/details/130334316
 https://blog.csdn.net/shandian534/article/details/120261009
 
+oauth2 client
+https://blog.csdn.net/chisuisi5702/article/details/131478153
+
 认证服务器
 
 1、角色区分 -- 系统自定义，校验时根据配置来判断
