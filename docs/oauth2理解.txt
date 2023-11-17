@@ -5,6 +5,17 @@ https://blog.csdn.net/shandian534/article/details/120261009
 oauth2 client
 https://blog.csdn.net/chisuisi5702/article/details/131478153
 
+*** 一个核心类: FilterChainProxy，认证EndPoint核心类ApplicationFilterChain ***
+1、spring oauth security跳转登录页逻辑
+    accessDecisionManager的decide方法，触发Acess denied。触发LoginUrlAuthenticationEntryPoint.commence()方法，redirect到loginPage
+2、弹出授权窗口逻辑（read write）
+    AuthorizationEndpoint的authorize，检查权限，没有权限则弹出选择权限窗口
+3、获取token逻辑
+    /oauth/token根据code获取token
+4、资源服务器，校验token
+    OAuth2AuthenticationProcessingFilter调用RemoteTokenServices(/oauth/check_token)，向授权服务器验证token
+    问题：每次请求都向授权服务器请求，会影响性能，是否可优化？JWT方式？
+
 认证服务器
 
 1、角色区分 -- 系统自定义，校验时根据配置来判断
