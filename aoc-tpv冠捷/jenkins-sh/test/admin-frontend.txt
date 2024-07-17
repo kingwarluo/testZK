@@ -1,0 +1,104 @@
+#!/bin/bash
+
+BUILD_ID=DONTKILLME
+
+FOLDER="admin-frontend"
+REMOTE_BAK_ROOT="/data/bak"
+
+#改变后台服务地址
+cp_to_remote() {
+	
+	echo ""
+	echo "********************远程备份文件$REMOTE_BAK_ROOT/$FOLDER.bak********************"
+	
+	rm_then_bak="rm -fr $REMOTE_BAK_ROOT/$FOLDER.bak && mv $REMOTE_ROOT $REMOTE_BAK_ROOT/$FOLDER.bak"
+	ssh -i /home/obmsw.admin/aliyun.pem root@47.98.140.56 "$rm_then_bak"
+	
+	if [ $? -eq 0 ]; then
+		echo "********************远程备份文件完成********************"
+	else
+		echo "********************远程备份文件失败，不影响程序运行********************"
+	fi
+	
+	echo ""
+	echo "********************本地文件拷贝到服务器********************"
+	
+	scp -r -i /home/obmsw.admin/aliyun.pem ./dist "root@47.98.140.56:$REMOTE_ROOT"
+	
+	if [ $? -eq 0 ]; then
+		echo "********************本地文件拷贝到服务器完成********************"
+	else
+		echo "********************本地文件拷贝到服务器失败********************"
+	fi
+	
+	echo "$ProjectName启动完成"
+}
+
+LOCAL_DIR="/home/obmsw.admin/workspace"
+NPM_DIR="/home/obmsw.admin/.nvm/versions/node/v14.21.3/bin"
+
+# 切换到本地目录
+cd "$LOCAL_DIR"
+
+npm_run_build() {
+
+	echo "开始npm install"
+	PATH=$PATH:$NPM_DIR
+
+	npm install
+	
+	if [ $? -eq 0 ]; then
+		echo "npm install完成"
+		
+		echo "删除dist目录"
+		rm -fr "./dist/"
+
+		echo "开始npm run build"
+		npm run build:r4
+		
+		if [ $? -eq 0 ]; then
+			echo "npm run build完成"
+		else
+			echo "npm run build失败"
+			exit 1
+		fi
+		
+		cp_to_remote
+	else
+		echo "npm install失败"
+		exit 1
+	fi
+	
+}
+
+GIT_REPO="ssh://jianhua.luo@172.20.30.2:29418/IWB/Cloud/SCS/$ProjectName"
+# 检查本地目录是否存在，如果不存在则克隆仓库
+if [ ! -d "$LOCAL_DIR/$ProjectName" ]; then
+    echo "克隆Git仓库到本地目录..."
+    git clone "$GIT_REPO"
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库克隆成功！"
+	
+		cd "./$ProjectName"
+		npm_run_build
+	else
+		echo "Git仓库克隆失败！"
+		exit 1
+	fi
+else
+    echo "更新本地Git仓库..."
+    cd "./$ProjectName"
+	git config --global --add safe.directory $(pwd)
+    git pull
+	
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库拉取成功！"
+
+		npm_run_build
+	else
+		echo "Git仓库拉取失败！"
+		exit 1
+	fi
+fi

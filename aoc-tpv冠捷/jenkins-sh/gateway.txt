@@ -1,0 +1,142 @@
+#!/bin/bash
+
+BUILD_ID=DONTKILLME
+
+MVN_HOME="/home/obmsw.admin/apache-maven-3.5.0/bin"
+LOCAL_DIR="/home/obmsw.admin/workspace"
+DEPLOY_PARENT_DIR="./d-$ProjectName"
+CATALINA_OPTS="-Xms512m -Xmx1024m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m -XX:+UseG1GC"
+
+move_and_kill_and_start() {
+
+	cd "$LOCAL_DIR"	
+	cd "./scs_backend/$ProjectName/target"
+	JAR_NAME="$ProjectName"
+	for jar in *.jar; do
+		JAR_NAME="$jar"
+		break
+	done
+	
+	cd "$LOCAL_DIR"
+	echo "将编译后文件$LOCAL_DIR/scs_backend/$ProjectName/target/$JAR_NAME移动到$LOCAL_DIR/d-$ProjectName/$ProjectName.jar"
+	#移动编译后的jar文件，到当前目录
+	mv "./scs_backend/$ProjectName/target/$JAR_NAME" "./d-$ProjectName/$ProjectName.jar"
+	
+	#mv操作成功
+	if [ $? -eq 0 ]; then
+		#杀死当前进程
+		PID=$(ps -ef | grep "$ProjectName" | grep -v grep | awk '{ print $2 }')
+		if [ -z "$PID" ]
+		then
+			echo "$ProjectName当前未运行"
+		else
+			echo "杀死原进程kill $PID"
+			kill -9 $PID
+		fi
+		
+		cd "$DEPLOY_PARENT_DIR"
+		# 启动jar
+		echo "启动命令 nohup java -jar $ProjectName.jar > /home/obmsw.admin/logs/$ProjectName.log 2>&1 &"
+		nohup java -jar $CATALINA_OPTS "$ProjectName.jar" > "/home/obmsw.admin/logs/$ProjectName.log" 2>&1 &
+		PID=$!
+		echo "$ProjectName启动完成，PID=$PID，日志路径 /home/obmsw.admin/logs/$ProjectName.log"
+	else
+		echo "未找到编译后的jar包！"
+		exit 1
+	fi
+}
+
+backup() {
+	#备份jar
+	cd "$LOCAL_DIR/d-$ProjectName"
+	
+	echo "备份$ProjectName.jar.bak"
+	mv "./$ProjectName.jar" "./$ProjectName.jar.bak"
+}
+
+git_checkout() {
+	git pull
+	if [ $? -eq 0 ]; then
+		git checkout "$branch"
+		if [ $? -eq 0 ]; then
+			git pull
+			if [ $? -eq 0 ]; then
+				echo "切换分支并更新代码成功...."
+			else
+				echo "切换分支后拉取失败....."
+				exit 1
+			fi
+		else
+			echo "切换分支失败....."
+			exit 1
+		fi
+	else
+		echo "拉取分支失败....."
+		exit 1
+	fi
+}
+
+# 切换到本地目录
+cd "$LOCAL_DIR"
+
+GIT_REPO="ssh://jianhua.luo@172.20.30.2:29418/IWB/Cloud/SCS/scs_backend"
+# 检查本地目录是否存在，如果不存在则克隆仓库
+if [ ! -d "$LOCAL_DIR/scs_backend" ]; then
+    echo "克隆Git仓库到本地目录..."
+    git clone "$GIT_REPO"
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库克隆成功！"
+		
+		#进入当前项目目录
+		cd "./scs_backend/$ProjectName"
+		
+		git_checkout
+
+		#maven编译，跳过测试
+		echo "开始编译$ProjectName，路径$(pwd)"
+		$MVN_HOME/mvn clean install -q -DskipTests
+		
+		if [ $? -eq 0 ]; then	
+			echo "$ProjectName编译完成"
+			backup
+			move_and_kill_and_start
+		else
+			echo "maven编译失败"
+			exit 1
+		fi
+	else
+		echo "Git仓库克隆失败！"
+		exit 1
+	fi
+else
+    echo "更新本地Git仓库..."
+    cd "./scs_backend"
+	git config --global --add safe.directory $(pwd)
+    
+	git_checkout
+	
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库拉取成功！"
+
+		#进入当前项目目录
+		cd "./$ProjectName"
+
+		#maven编译，跳过测试
+		echo "开始编译$ProjectName，路径$(pwd)"
+		$MVN_HOME/mvn clean install -q -DskipTests
+		
+		if [ $? -eq 0 ]; then			
+			echo "$ProjectName编译完成"
+			backup
+			move_and_kill_and_start
+		else
+			echo "maven编译失败"
+			exit 1
+		fi
+	else
+		echo "Git仓库拉取失败！"
+		exit 1
+	fi
+fi

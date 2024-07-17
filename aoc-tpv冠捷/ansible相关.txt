@@ -1,0 +1,43 @@
+1、安装
+sudo apt update
+sudo apt -y install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+
+apt install ansible
+
+
+2、指定私有工作目录
+ansible.cfg内容
+[defaults]
+inventory = /home/obmsw.admin/ansible/inventory  //配置文件路径
+
+inventory文件内容
+[dev]
+172.20.30.152 ansible_connection=ssh ansible_user=obmsw.admin ansible_ssh_password=dws.30.152
+172.20.30.151 ansible_connection=ssh ansible_user=company_user ansible_ssh_password=dws.30.151
+
+3、使用ssh登录被管理机器
+	控制机器生成ansible的公私钥
+	将公钥传输到目标服务器  ssh-copy-id -i .ssh/ansible obmsw.admin@172.20.30.152
+	使用 ssh -i .ssh/ansible 172.20.30.152 验证，不需要输入密码
+	删除inventory的ansible_ssh_password参数，使用 ansible dev -m ping -i inventory --private-key=/home/company_user/.ssh/ansible 验证不需要密码
+
+
+4、playbook
+ansible-playbook 
+var 变量 ， whth_loop with_nested, when, group_vars host_vars
+ansible.cfg优先级： 1、当前目录  2、export ANSIBLE_CONFIG 3、home/ansible/cfg  4、/etc/ansible/ansible.cfg
+
+
+命令
+ansible-inventory --graph
+ansible-doc 模块 yum/service/copy/firewalld/template
+
+
+5、模块 module
+module模块大全 https://docs.ansible.com/ansible/latest/collections/index_module.html
+
+debug
+copy/file
+template -- jinjia2
+shell  --->  ansible dev -m shell -i inventory -a "pwd"
