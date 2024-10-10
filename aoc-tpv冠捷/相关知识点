@@ -1,4 +1,5 @@
 使用ubuntu系统
+    执行code .可以在本地vscode编辑ubuntu系统文件
 
 DPS项目
 ruby on rails
@@ -7,5 +8,7 @@ active admin
 运维相关
 zabbix监控主机内存/硬盘/cpu
 ansible 类似k8s，一台主机控制多台设备执行指令
-one panel
+1panel   https://blog.csdn.net/u010025272/article/details/135300225
 jenkins 权限（rbac）、运行脚本部署服务
+
+MQTT 发布-订阅模式

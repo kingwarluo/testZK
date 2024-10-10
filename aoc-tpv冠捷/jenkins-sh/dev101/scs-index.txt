@@ -1,0 +1,96 @@
+#!/bin/bash
+
+LOCAL_DIR="/home/obmsw.admin/workspace"
+
+FOLDER="scs-index"
+SERVER="hld@172.20.26.90"
+REMOTE_ROOT="/var/www/html"
+
+mv_to_nginx() {	
+	
+	echo ""
+	echo "********************清空文件夹$REMOTE_ROOT/$FOLDER********************"
+	
+	rm_folder="rm -fr $REMOTE_ROOT/$FOLDER/*"
+	ssh $SERVER "$rm_folder"
+	
+	if [ $? -eq 0 ]; then
+		echo "********************清空文件夹完成********************"
+	else
+		echo "********************清空文件夹失败，不影响程序运行********************"
+	fi
+	
+	echo ""
+	echo "********************本地文件拷贝到服务器********************"
+	
+	scp -r "$LOCAL_DIR/scs-index/" "$SERVER:$REMOTE_ROOT/$FOLDER"
+	echo "拷贝项目到$SERVER:$REMOTE_ROOT/$FOLDER"
+	if [ $? -eq 0 ]; then
+		echo "********************本地文件拷贝到服务器完成********************"
+	else
+		echo "********************本地文件拷贝到服务器失败********************"
+	fi
+			
+	echo "$ProjectName启动完成"
+}
+
+git_checkout() {
+	git pull
+	if [ $? -eq 0 ]; then
+		git checkout "$branch"
+		if [ $? -eq 0 ]; then
+			git pull
+			if [ $? -eq 0 ]; then
+				echo "切换分支并更新代码成功...."
+			else
+				echo "切换分支后拉取失败....."
+				exit 1
+			fi
+		else
+			echo "切换分支失败....."
+			exit 1
+		fi
+	else
+		echo "拉取分支失败....."
+		exit 1
+	fi
+}
+
+# 切换到本地目录
+cd "$LOCAL_DIR"
+
+GIT_REPO="ssh://jianhua.luo@172.20.30.2:29418/IWB/Cloud/SCS/scs-index"
+# 检查本地目录是否存在，如果不存在则克隆仓库
+if [ ! -d "$LOCAL_DIR/scs-index" ]; then
+    echo "克隆Git仓库到本地目录..."
+    git clone "$GIT_REPO"
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库克隆成功！"
+	
+		cd "./scs-index"
+		
+		git_checkout
+		sleep 2
+		mv_to_nginx
+	else
+		echo "Git仓库克隆失败！"
+		exit 1
+	fi
+else
+    echo "更新本地Git仓库..."
+    cd "./scs-index"
+	git config --global --add safe.directory $(pwd)
+    
+	git_checkout
+	sleep 2
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库拉取成功！"
+
+		mv_to_nginx
+	else
+		echo "Git仓库拉取失败！"
+		exit 1
+	fi
+fi

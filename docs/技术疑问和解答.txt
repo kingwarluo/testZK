@@ -18,6 +18,9 @@ idea插件：backgroud-img，alibaba Java coding guidelines, findbugs, sonarLint
 postman、swagger说明文档编写、jmeter测试工具、
 maven脚手架快速生成项目模板
 
+linux： one panel、zabbix
+
+
 jdk查看内存：jcmd、jmap、jstack
 
 nmon 获取系统性能数据；

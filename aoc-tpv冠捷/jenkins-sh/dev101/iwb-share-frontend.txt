@@ -1,0 +1,130 @@
+#!/bin/bash
+
+FOLDER="iwb"
+SERVER="hld@172.20.26.90"
+REMOTE_ROOT="/var/www/html"
+
+cp_to_remote() {
+	
+	echo ""
+	echo "********************清空文件夹$REMOTE_ROOT/$FOLDER********************"
+	
+	rm_folder="rm -fr $REMOTE_ROOT/$FOLDER/*"
+	ssh $SERVER "$rm_folder"
+	
+	if [ $? -eq 0 ]; then
+		echo "********************清空文件夹完成********************"
+	else
+		echo "********************清空文件夹失败，不影响程序运行********************"
+	fi
+	
+	echo ""
+	echo "********************本地文件拷贝到服务器********************"
+	
+	scp -r dist/* "$SERVER:$REMOTE_ROOT/$FOLDER"
+	
+	if [ $? -eq 0 ]; then
+		echo "********************本地文件拷贝到服务器完成********************"
+	else
+		echo "********************本地文件拷贝到服务器失败********************"
+	fi
+	
+	echo "$ProjectName启动完成"
+}
+
+npm_run_build() {
+
+	echo "开始npm install"
+	PATH=$PATH:$NPM_DIR
+
+	npm install
+	
+	if [ $? -eq 0 ]; then
+		echo "npm install完成"
+		
+		echo "删除dist目录"
+		rm -fr "./dist/"
+
+		echo "开始npm run build"
+		npm run build:r5dev
+		
+		if [ $? -eq 0 ]; then
+			echo "npm run build完成"
+		else
+			echo "npm run build失败"
+			exit 1
+		fi
+		
+		cp_to_remote
+		
+	else
+		echo "npm install失败"
+		exit 1
+	fi
+	
+}
+
+
+git_checkout() {
+	git pull
+	if [ $? -eq 0 ]; then
+		git checkout "$branch"
+		if [ $? -eq 0 ]; then
+			git pull
+			if [ $? -eq 0 ]; then
+				echo "切换分支并更新代码成功...."
+			else
+				echo "切换分支后拉取失败....."
+				exit 1
+			fi
+		else
+			echo "切换分支失败....."
+			exit 1
+		fi
+	else
+		echo "拉取分支失败....."
+		exit 1
+	fi
+}
+
+LOCAL_DIR="/home/obmsw.admin/workspace"
+NPM_DIR="/home/obmsw.admin/.nvm/versions/node/v14.21.3/bin"
+
+# 切换到本地目录
+cd "$LOCAL_DIR"
+
+GIT_REPO="ssh://jianhua.luo@172.20.30.2:29418/IWB/Cloud/IWB/$ProjectName"
+# 检查本地目录是否存在，如果不存在则克隆仓库
+if [ ! -d "$LOCAL_DIR/$ProjectName" ]; then
+    echo "克隆Git仓库到本地目录..."
+    git clone "$GIT_REPO"
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库克隆成功！"
+	
+		cd "./$ProjectName"
+		
+		git_checkout
+		sleep 2
+		npm_run_build
+	else
+		echo "Git仓库克隆失败！"
+		exit 1
+	fi
+else
+    echo "更新本地Git仓库..."
+    cd "./$ProjectName"
+	git config --global --add safe.directory $(pwd)
+    
+	git_checkout
+	sleep 2
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库拉取成功！"
+
+		npm_run_build
+	else
+		echo "Git仓库拉取失败！"
+		exit 1
+	fi
+fi

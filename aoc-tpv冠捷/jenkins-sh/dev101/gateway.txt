@@ -1,0 +1,177 @@
+#!/bin/bash
+
+BUILD_ID=DONTKILLME
+
+LOCAL_DIR="/home/obmsw.admin/workspace"
+JAR_NAME=""
+SERVER="hld@172.20.26.90"
+REMOTE_ROOT="/home/hld/projects/iwb"
+
+backup() {
+	
+	echo ""
+	echo "********************远程备份文件$JAR_NAME********************"
+	
+	ssh $SERVER mv "$REMOTE_ROOT/$JAR_NAME $REMOTE_ROOT/$JAR_NAME.bak"
+	
+	if [ $? -eq 0 ]; then
+		echo "********************远程备份文件完成********************"
+	else
+		echo "********************远程备份文件失败，不影响程序运行********************"
+	fi
+
+}
+
+move() {
+	
+	echo ""
+	echo "********************上传新jar包到$REMOTE_ROOT********************"
+
+	scp "$JAR_NAME" "$SERVER:$REMOTE_ROOT"
+	# 改名为项目名
+	ssh $SERVER mv "$REMOTE_ROOT/$JAR_NAME $REMOTE_ROOT/$ProjectName.jar"
+	
+	if [ $? -eq 0 ]; then
+		echo "********************上传新jar包成功********************"
+	else
+		echo "********************上传新jar包失败********************"
+		exit 1
+	fi
+	
+}
+
+stop_app() {
+	
+	echo ""
+	echo "********************停止服务********************"
+	
+	ssh $SERVER "$REMOTE_ROOT/batch.sh stop $ProjectName"
+	
+	if [ $? -eq 0 ]; then
+		echo "********************停止服务完成********************"
+	else
+		echo "********************停止服务失败********************"
+		exit 1
+	fi
+	
+}
+
+start_app() {
+
+	echo ""
+	echo "********************启动应用********************"
+	
+	start_cmd="cd $REMOTE_ROOT && ./batch.sh start $ProjectName"
+	ssh $SERVER $start_cmd
+	
+	if [ $? -eq 0 ]; then
+		echo "********************启动应用成功********************"
+	else
+		echo "********************启动应用失败********************"
+		exit 1
+	fi
+	
+}
+
+
+MVN_HOME="/home/obmsw.admin/apache-maven-3.5.0/bin"
+# 切换到本地目录
+cd "$LOCAL_DIR"
+
+backup_stop_move_and_start() {
+
+	cd "./target"
+	for jar in *.jar; do
+		JAR_NAME="$jar"
+		break
+	done
+
+	backup
+	move
+	stop_app
+	sleep 2
+	start_app
+}
+
+git_checkout() {
+	git pull
+	if [ $? -eq 0 ]; then
+		git checkout "$branch"
+		if [ $? -eq 0 ]; then
+			git pull
+			if [ $? -eq 0 ]; then
+				echo "切换分支并更新代码成功...."
+			else
+				echo "切换分支后拉取失败....."
+				exit 1
+			fi
+		else
+			echo "切换分支失败....."
+			exit 1
+		fi
+	else
+		echo "拉取分支失败....."
+		exit 1
+	fi
+}
+
+GIT_REPO="ssh://jianhua.luo@172.20.30.2:29418/IWB/Cloud/SCS/scs_backend"
+# 检查本地目录是否存在，如果不存在则克隆仓库
+if [ ! -d "$LOCAL_DIR/scs_backend" ]; then
+    echo "克隆Git仓库到本地目录..."
+    git clone "$GIT_REPO"
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库克隆成功！"
+		
+		#进入当前项目目录
+		cd "./scs_backend"
+		
+		git_checkout
+		
+		cd "./$ProjectName"
+
+		#maven编译，跳过测试
+		echo "开始编译$ProjectName，路径$(pwd)"
+		$MVN_HOME/mvn clean install -q -DskipTests
+		
+		if [ $? -eq 0 ]; then	
+			echo "$ProjectName编译完成"
+			backup_stop_move_and_start
+		else
+			echo "maven编译失败"
+			exit 1
+		fi
+	else
+		echo "Git仓库克隆失败！"
+		exit 1
+	fi
+else
+    echo "更新本地Git仓库..."
+    cd "./scs_backend"
+	git config --global --add safe.directory $(pwd)
+    
+	git_checkout
+	# 检查上一个命令（git clone）的退出状态
+	if [ $? -eq 0 ]; then
+		echo "Git仓库拉取成功！"
+
+		#进入当前项目目录
+		cd "./$ProjectName"
+
+		#maven编译，跳过测试
+		echo "开始编译$ProjectName，路径$(pwd)"
+		$MVN_HOME/mvn clean install -q -DskipTests
+		
+		if [ $? -eq 0 ]; then			
+			echo "$ProjectName编译完成"
+			backup_stop_move_and_start
+		else
+			echo "maven编译失败"
+			exit 1
+		fi
+	else
+		echo "Git仓库拉取失败！"
+		exit 1
+	fi
+fi
