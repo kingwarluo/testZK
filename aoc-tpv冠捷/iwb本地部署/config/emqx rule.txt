@@ -1,0 +1,173 @@
+ID:iwbshare_rt_id
+
+SQL:SELECT
+  payload,timestamp,topic,id
+FROM
+  "wbs/rt/#"
+
+ACTION:
+	Type: republish
+	target_topic: iwbshare/${topic}
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: {"data":"${payload}","timestamp":"${timestamp}","id":"${id}"}
+
+============================================================================================================================
+
+ID:cloudscreen_mass_push
+
+SQL:FOREACH 
+  payload.clients 
+DO 
+  payload.route+item as to, 
+  payload.type as type, 
+  payload.id as id, 
+  payload.body as body 
+FROM "cloudscreen/m/d/mass/push"
+
+ACTION:
+	Type: republish
+	target_topic: ${to}
+	target_retain: true
+	target_qos: 2
+	payload_tmpl: {"to":"${to}","type":"${type}","id":"${id}","body":${body}}
+
+============================================================================================================================
+
+ID:device_mass_republish
+
+SQL:FOREACH 
+  payload.clients 
+DO 
+  payload.route+item+'/REMOTE_CONTROL' as to, 
+  payload.type as type, 
+  payload.id as id, 
+  payload.body as body 
+FROM "dev101/device/m/d/mass/push"
+
+ACTION:
+	Type: republish
+	target_topic: ${to}
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: {"to":"${to}","type":"${type}","id":"${id}","body":${body}}
+
+============================================================================================================================
+
+ID:member_level_change
+
+SQL:FOREACH
+    payload.userIds
+FROM "member/level/change"
+
+ACTION:
+	Type: republish
+	target_topic: user/member/level/change/${item}
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: ${payload.data}
+	
+	Type: republish
+	target_topic: iwbshare/member/level/updated/${item}
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: ${payload.data}
+
+============================================================================================================================
+
+ID:device_client_disconnected
+
+SQL:SELECT clientid,username 
+FROM "$events/client_disconnected" 
+WHERE lower(last(split(clientid,'-'))) = 'online'
+
+ACTION:
+	Type: republish
+	target_topic: dev101/device/m/d/c/i
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: {"clientid":"${clientid}","username":"${username}","type":"client_disconnected"}
+
+============================================================================================================================
+
+ID:device_client_connected
+
+SQL:SELECT clientid,username 
+FROM "$events/client_connected" 
+WHERE lower(last(split(clientid,'-'))) = 'online'
+
+ACTION:
+	Type: republish
+	target_topic: dev101/device/m/d/c/i
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: {"clientid":"${clientid}","username":"${username}","type":"client_connected"}
+
+============================================================================================================================
+
+ID:iwbshare_client_connected
+
+SQL:SELECT clientid,username 
+FROM "$events/client_connected" 
+where find(clientid,'IWB-SHARE-') != ''
+
+ACTION:
+	Type: republish
+	target_topic: iwbshare/a/h
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: {"clientid":"${clientid}","username":"${username}","type":"client_connected"}
+
+============================================================================================================================
+
+ID:iwbshare_client_disconnected
+
+SQL:SELECT clientid,username,reason 
+FROM "$events/client_disconnected" 
+where find(clientid,'IWB-SHARE-') != '' 
+
+ACTION:
+	Type: republish
+	target_topic: iwbshare/a/h
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: {"reason":"${reason}","clientid":"${clientid}","username":"${username}","type":"client_disconnected"}
+
+============================================================================================================================
+
+ID:iwbshare_session_unsubscribed
+
+SQL:SELECT
+  topic,
+  clientid,
+  username,
+  replace(topic,'iwbshare/wbs/rt/','') wbNo,
+  nth(3,split(clientid,'-')) userid
+FROM
+  "$events/session_unsubscribed"
+WHERE
+  topic =~ 'iwbshare/wbs/rt/#' and topic != 'iwbshare/wbs/rt/#'
+
+ACTION:
+	Type: republish
+	target_topic: iwbshare/a/h
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: {"clientid":"${clientid}","username":"${username}","topic":"${topic}","type":"session_unsubscribed"}
+
+============================================================================================================================
+
+ID:iwbshare_session_subscribed
+
+SQL:SELECT clientid,username,topic 
+FROM "$events/session_subscribed" 
+WHERE topic =~ 'iwbshare/wbs/rt/#' and topic!='iwbshare/wbs/rt/#'
+
+ACTION:
+	Type: republish
+	target_topic: iwbshare/a/h
+	target_retain: false
+	target_qos: 2
+	payload_tmpl: {"username":"${username}","topic":"${topic}","clientid":"${clientid}","type":"session_subscribed"}
+
+============================================================================================================================
