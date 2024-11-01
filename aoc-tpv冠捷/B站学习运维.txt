@@ -1,0 +1,28 @@
+1、gitlab实现ci/cd，即提交部署
+    安装runner，gitlab-ci-multi-runner-9.5.1-1.x86_64.rpm
+    目标项目根目录添加.gitlab-ci.yml，编写剧本
+    项目新提交一次，观察gitlab的pipeline，会自动执行剧本
+2、jenkins基于webhook实现ci/cd
+    新建jenkins job，配置构建触发器，获取weburl和secret token
+    在gitlab的setting -> integrations配置webhook，将weburl和secret token填写，并勾选push events
+    项目每次提交时，gitlab触发webhook，jenkins触发构建
+3、mysql binlog主从同步，使用amoeba实现读写分离
+4、nginx反向代理、负载均衡、负载均衡率、ip_hash负载均衡、控制请求频率、并发、限速
+5、搞懂https，Nginx+腾讯云证书实现https
+    非对称加密+可信赖ca证书
+6、frp+免费云主机，实现服务内网穿透
+7、Nginx升级openresty实现waf应用防火墙
+8、使用minio+s3（simple storage service）对象存储、mysql版本控制与增量备份
+    minio服务端安装
+    将minio的桶，挂载到本地文件系统
+    minio桶自身有版本管理功能
+9、mysql物理备份、远程百度网盘备份数据
+    /var/lib/mysql下，mysql数据物理储存方式，使用percona-xtrabackup-24-2.4.28-1.el7.x86_64.rpm物理备份数据（全量和增量）
+    apt install python3-pip,pip3 install bypy；使用bypy操作百度网盘
+10、keepalived实现mysql主从切换、amoeba主从切换，实现mysql高可用
+    安装keepalived，配置主从，切换
+11、LVS四层负载均衡和nginx七层负载均衡、TCP原理
+    LVS转发请求，无三次握手消耗
+    nginx代理http请求，与客户端，服务端都要三次握手
+12、promethus监控，node_exporter
+13、
