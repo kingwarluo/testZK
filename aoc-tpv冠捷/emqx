@@ -1,0 +1,13 @@
+1、规则引擎
+可以写sql，
+
+2、{topic}、$queue/{topic}、$share/{groupName}/{topic}
+最常见，消费者监听一个{topic}，当有消息到来时，所有监听者都会接收到消息
+监听$queue/{topic}的消费者，当有{topic}消息到来时，只有组内一个消费者消费消息（负载均衡策略：轮询、随机、哈希）
+监听$share/{groupName}/{topic}，假设两类监听$share/g1/{topic}和$share/g2/{topic}，在组g1和组g2，都会有一个对应的消费者消费消息
+
+消费者监听通配符
+#：匹配多级目录
++：匹配单级目录
+
+3、认证
