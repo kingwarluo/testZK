@@ -1,0 +1,10 @@
+1、关系确立
+2、观察者上溯
+3、事件通知
+
+被观察者（observable）  观察者（observer） 订阅（suscribe） 事件（event）
+
+Observable
+1、subscribe()和subscribe(Observer)
+    最后都是调用observeActual，无参函数构造了一个空的Observer
+2、subscribeOn()和observeOn()区别
