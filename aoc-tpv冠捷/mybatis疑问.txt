@@ -1,0 +1,82 @@
+
+@Mapper如何初始化？
+MybatisAutoConfiguration判断如果spring不存在MapperScannerConfigurer或者MapperFactoryBean时，扫描@Mapper
+
+mapper怎么代理成spring bean？
+@MapperScan扫描并创建BeanDefinition，设置BeanClass为MapperFactoryBean
+MapperFactoryBean implement SqlSessionDaoSupport extends DaoSupport->afterPropertiesSet() {checkDaoConfig()} 这里会创建一个SqlSessionTemplate
+
+初始化过程？
+MybatisAutoConfiguration
+xmlMapperBuilder
+Configuration的mappedStatements添加select|update|delete|insert
+Configuration的MapperRegistry的knownMappers添加一条MapperProxyFactory
+
+mybatis何时关联数据源datasource？
+SqlSessionFactory创建时，绑定数据源
+
+mybatis关联的数据源和数据库连接池有什么关系？
+mubatis的datasource去连接池pool获取连接
+
+LanguageDriver何时初始化？
+new Configuration()时，默认XMLLanguageDriver
+
+
+执行过程？
+sqlSessionTemplate->sqlSessionFactory->openSession创建session
+MapperFactoryBean.getObject()
+MapperProxy->MapperMethod（判断类型select|update|delete|insert）
+SqlSession.selectList
+------------------org.apache.ibatis.plugin.Interceptor--------@Intercepts（Executor StatemeSqlSourceBuilder.parse -> StaticSqlSource 保存  将#替换为？，解析#{}中间的参数名称，拼成数组
+ntHandler ParameterHandler ResultSetHandler）--------
+BaseExecutor.query() -> queryFromDatabase 判断一级缓存localCache
+SimpleExecutor.doQuery -> newStatementHandler
+ResultHandler
+
+执行时包含哪几个组件？
+SqlSession
+Executor  sessionFactory.openSession时，将Executor Plugin Inteceptor
+StatementHandler	Configuration.newStatementHandler时，将StatementHandler Plugin Inteceptor
+ParameterHandler	Configuration.newParameterHandler时，将ParameterHandler Plugin Inteceptor
+ResultSetHandler	Configuration.newResultSetHandler，将ResultSetHandler Plugin Inteceptor
+TypeHandler.setParameter()   jdbc类型和java类型映射，默认有25种
+
+参数解析？
+BoundSql  保存转为?的sql，参数映射，此次调用入参，额外入参
+handler.parameterize(PreparedStatement)  使用TypeHandler 解析 参数映射，映射到ps的下标 *****（ParameterHandler在这里起作用）
+PreparedStatementHandler.handlerResultSet   ********（ResultSetHandler在这里起作用）
+
+PageHelper怎么实现的？
+将Executor Plugin Inteceptor
+
+mybatis-plus 如何实现？
+直接重写初始化过程，实现了BaseMapper的直接sqlInject注入方法(MybatisMapperAnnotationBuilder.parse时)
+FieldFill是通过执行时，
+InnerInterceptor通过注解MybatisPlusInterceptor @Interceptor实现
+
+
+// 对接口的代理Plugin
+Proxy.newProxyInstance(
+          type.getClassLoader(),
+          interfaces,
+          new Plugin(target, interceptor, signatureMap));
+
+
+如何管理事务？
+手动事务  sqlSessionFactory.openSession();session.commit();
+springboot 
+手动事务 TransactionTemplate
+注解事务@Transactional
+	何时扫描@Transactional？
+		
+	事务如何起作用？
+		@EnableAspectJAutoProxy注解将AnnotationAwareAspectJAutoProxyCreator注册到bean定义
+			实例化：AbstractAutowireCapableBeanFactory.doCreateBean()调用addSingletonFactory()(AbstractAutoProxyCreator.getEarlyBeanReference)添加到第三级缓存
+			@Transactional注解会被BeanFactoryTransactionAttributeSourceAdvisor（advice=TransactionInterceptor）作为advisor代理
+			代理对象为：CglibAopProxy.getProxy()
+		运行时，CglibAopProxy调用callback=DynamicAdvisedInterceptor的代理类的intercept方法，取出BeanFactoryTransactionAttributeSourceAdvisor的advice（这里其实是一个advisor链）
+			然后调用CglibMethodInvocation.proceed()->TransactionInterceptor.invoke()
+		TransactionInterceptor作用？和mybatis有什么联系？
+			TransactionInterceptor.invokeWithinTransaction
+			TransactionSynchronizationManager管理线程绑定的资源(同一线程用同一连接,datasource->connectionHolder,sqlSessionFactory->sqlSessionHolder)
+				实际调试sqlSessionFactory->sqlSessionHolder在获取sqlsession前就绑定了，有疑问，后续观察？？

@@ -1,0 +1,16 @@
+1、配置文件何时加载
+DefaultConfigCenterManager里init(defaultConfigCenterManager) -> HttpPingServerUtil.pingAndVertify的时候
+
+2、如何自动刷新配置值
+DefaultConfigCenterManager里finally，启动一个netty客户端
+GaeaNettyClient.dealMessageReceived->GaeaClient.dealMessageReceived->
+GaeaBusiness.dealPingAndVertify的时候->比较配置是否有变化->CallBackTools回调dataChangeListener
+值改变时，如何实现交互？
+
+3、@GaeaValue如何实现
+@GaeaConfiguration初始化GaeaFactory（初始化IntermediateManager->初始化DefaultConfigCenterManager）、DefaultConfigCenterApi，
+@EnableGaea注解了@Import类实现ImportBeanDefinitionRegistrar接口，注入GaeaJsonValueProcessor的bean定义，实际上是一个beanPostProcessor，将属性@GaeaValue值赋值
+
+
+4、如何实现心跳
+本地客户端启动一个定时线程池，60秒发送一次心跳，第一次发送心跳，会返回配置，保存在本地文件
